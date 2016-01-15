@@ -320,9 +320,6 @@ public class RxPresenter<View> extends Presenter<View> {
         // >>>
     }
 
-
-
-
     /**
      * Please, use restartableXX and deliverXX methods for pushing data from RxPresenter into View.
      */
@@ -332,8 +329,6 @@ public class RxPresenter<View> extends Presenter<View> {
     public View getView() {
         return super.getView();
         // dev >>> 1
+        // master >>> 2
     }
-
-
-
 }
