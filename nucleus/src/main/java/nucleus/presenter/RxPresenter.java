@@ -317,6 +317,7 @@ public class RxPresenter<View> extends Presenter<View> {
     @Override
     protected void onDropView() {
         views.onNext(null);
+        // >>>
     }
 
 
