@@ -1,0 +1,36 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.AppStart" parent="android:Theme.Black.NoTitleBar.Fullscreen">
+        <item name="android:windowBackground">@mipmap/welcome</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Base" parent="AppTheme">
+        <item name="colorPrimary">@color/principle</item>
+        <item name="colorPrimaryDark">@color/state</item>
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+        <item name="android:listDivider">@color/divider</item>
+    </style>
+
+    <style name="AnimationActivity" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/anim_activity_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/anim_activity_over</item>
+        <item name="android:activityOpenExitAnimation">@anim/anim_activity_open_exit</item>
+    </style>
+
+    <!-- 加载滚动条样式 -->
+    <style name="loading">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateDrawable">@drawable/progress_loading</item>
+        <item name="android:indeterminateDuration">1000</item>
+        <item name="android:indeterminateOnly">true</item>
+    </style>
+
+
+</resources>

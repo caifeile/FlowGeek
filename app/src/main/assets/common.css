@@ -1,0 +1,204 @@
+body {
+	background-color: #f6f6f6;
+	word-wrap: break-word;
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+.about {
+	float: left;
+	padding-left:0;
+	padding-top: 0;
+	margin-top: 5px;
+}
+
+.about li {
+	line-height: 24px;
+}
+
+img {
+	max-width:100%;
+}
+
+img.alignleft {
+	float:left;
+	max-width:120px;
+	margin:0 10px 5px 0;
+	border:1px solid #ccc;
+	background:#fff;padding:2px;
+}
+
+pre {
+	font-size:9pt;
+	line-height:12pt;
+	font-family:Courier New,Arial;border:1px solid #ddd;
+	border-left:5px solid #6CE26C;background:#f6f6f6;
+	padding:5px;
+	overflow: auto;
+}
+
+a.tag {
+	font-size:15px;
+	text-decoration:none;
+	background-color:#cfc;
+	color:#060;
+	border-bottom:1px solid #B1D3EB;
+	border-right:1px solid #B1D3EB;
+	color:#3E6D8E;margin:2px 2px 2px 0;
+	padding:2px 4px;
+	white-space:nowrap;position:relative
+}
+
+a{
+	text-decoration:none;
+	color: #3E62A6
+}
+
+.title {
+	color: #333333;
+	font-size: 22px;
+	line-height: 24px;
+	font-weight: bold;
+	margin-top: 15px
+}
+
+.title img {
+	width: 28px;
+	vertical-align:middle;
+	margin-right: 8
+}
+
+.title .recommend {
+	width:20px
+}
+
+.authortime {
+	font-size: 13px;
+	color: #aaaaaa;
+	margin: 4px 0 2px 0
+}
+
+.authortime a {
+	color: #0b9a27
+}
+
+.author {
+	font-size: 13px;
+}
+
+.contentstyle {
+	color: #333333;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+// 相关软件
+.oschina_software {
+	color: #999999
+}
+
+// 软件详情
+.software_attr {
+	background: #f6f6f6;
+	font-size: 16px;
+}
+
+.software_attr {
+	list-style-type: none;
+	border: 1px solid #eee;
+	padding: 5px
+}
+
+.software_attr li {
+	padding: 0 0 5 0
+}
+
+.software_urls {
+	list-style-type: none;
+}
+
+.software_urls {
+	margin: 10px 10px 10px 0px;
+	margin: 10 0 50 0
+}
+
+.software_urls li {
+	float: left;
+	margin-right: 8px;
+	color: #fff;
+}
+
+.software_urls li a {
+	border-radius: 5px; 
+	background: #557DBA;
+	color: #fff;
+	width: 20px;
+	height: 30px;
+	line-height: 28px;
+	font-size: 12pt;
+	text-align: center;
+	text-decoration: none;
+	padding: 5 10 5 10
+	
+}
+
+body.night .contentstyle {
+	color: #FFF;
+}
+
+.contentstyle p {
+	line-height: 120%;
+	letter-spacing: 0.3px;
+}
+
+body.night {
+	opacity: 0.5;
+}
+
+body.night {
+	background: #222222;
+}
+
+body.night .about {
+	color: #999999
+}
+
+body.night .oschina_software {
+	color: #999999
+}
+
+body.night p {
+	color: #999999
+}
+
+body.night a {
+	color: #4877b1
+}
+
+body.night .title {
+	color: #a8a8a8;
+}
+
+body.night .authortime {
+	color: #696969;
+}
+
+body.night .authortime a {
+	color: #0b9a27
+}
+
+body.night .software_urls li a {
+	background: #696969;
+	color: #fff;r
+	width: 20px;
+	height: 30px;
+	line-height: 28px;
+	font-size: 12pt;
+	text-align: center;
+	text-decoration: none;
+	padding: 5 10 5 10
+}
+
+body.night pre {
+	background: #222222
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_selected="true">
+        <shape>
+            <corners
+                android:bottomLeftRadius="3dp"
+                android:bottomRightRadius="3dp"
+                android:topLeftRadius="3dp"
+                android:topRightRadius="3dp"/>
+            <size android:height="4dp" android:width="4dp"/>
+            <solid android:color="@color/dot_selected"/>
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <corners
+                android:bottomLeftRadius="3dp"
+                android:bottomRightRadius="3dp"
+                android:topLeftRadius="3dp"
+                android:topRightRadius="3dp"/>
+            <size android:height="4dp" android:width="4dp"/>
+            <solid android:color="@color/dot_unselected"/>
+        </shape>
+    </item>
+
+</selector>

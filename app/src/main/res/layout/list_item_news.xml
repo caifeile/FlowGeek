@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/selector_list_item"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:padding="7dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/item_title"
+        android:textSize="@dimen/item_title" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:alpha="@dimen/standard_alpha"
+        android:lineSpacingMultiplier="1.2"
+        android:textColor="@color/item_content"
+        android:textSize="@dimen/item_content" />
+
+    <RelativeLayout
+        android:padding="7dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_author"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="@color/principle"
+            android:textSize="@dimen/item_content"
+            android:alpha="@dimen/secondary_alpha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_toRightOf="@id/tv_author"
+            android:layout_toEndOf="@id/tv_author"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/item_content"
+            android:layout_marginTop="2dp"
+            android:textSize="@dimen/item_time"
+            android:alpha="@dimen/secondary_alpha"
+            android:drawableLeft="@mipmap/icon_clock_mini_not"
+            android:drawableStart="@mipmap/icon_clock_mini_not"
+            android:drawablePadding="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_comment_count"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/item_content"
+            android:textSize="@dimen/item_content"
+            android:drawableLeft="@mipmap/icon_comment_mini_not"
+            android:drawableStart="@mipmap/icon_comment_mini_not"
+            android:drawablePadding="3dp"
+            android:alpha="@dimen/secondary_alpha"
+            android:text="@string/zero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+
+
+</LinearLayout>

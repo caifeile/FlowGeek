@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">开源中国 · 改</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="news">资讯</string>
+    <string name="change_theme">改变主题</string>
+    <string name="setting">设置</string>
+    <string name="tweets">动弹</string>
+    <string name="blog">博客</string>
+    <string name="explore">发现</string>
+    <string name="technology_question_answer">技术问答</string>
+    <string name="open_drawer">open drawer</string>
+    <string name="close_drawer">close drawer</string>
+    <string name="loading">加载中...</string>
+    <string name="load_failed">加载失败</string>
+    <string name="invalid_network">没有可用的网络</string>
+    <string name="load_no_more">已经到底了~</string>
+    <string name="_new">最新</string>
+    <string name="week_news">周度资讯</string>
+    <string name="search">搜索</string>
+    <string name="reminder">提醒</string>
+    <string name="about">关于</string>
+    <string name="logout">注销</string>
+    <string name="refreshing">正在刷新</string>
+    <string name="month_news">月度资讯</string>
+    <string name="zero">0</string>
+    <string name="new_news">最新资讯</string>
+    <string name="share">分享</string>
+    <string name="like">赞</string>
+    <string name="collection">收藏</string>
+    <string name="comment">评论</string>
+    <string name="publish_on">发布时间:</string>
+    <string name="error">出了点小问题</string>
+    <string name="activity">活动</string>
+    <string name="bingo">嘟嘟噜</string>
+    <string name="post">问答</string>
+    <string name="software">软件</string>
+    <string name="news_detail">新闻详情</string>
+    <string name="blog_detail">博客详情</string>
+    <string name="post_detail">帖子详情</string>
+    <string name="tweet_detail">动弹详情</string>
+    <string name="software_detail">软件详情</string>
+    <string name="repaste">转载</string>
+    <string name="original">原创</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="say_something">说点什么吧</string>
+    <string name="emotion_qq">QQ表情</string>
+</resources>

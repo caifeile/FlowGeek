@@ -1,0 +1,26 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+//        maven { url 'http://maven.oschina.net/content/groups/public/' }
+        jcenter{
+            url 'http://jcenter.bintray.com/'
+        }
+//        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath 'me.tatarka:gradle-retrolambda:3.2.4'
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+//        maven { url 'http://maven.oschina.net/content/groups/public/' }
+        jcenter{
+            url 'http://jcenter.bintray.com/'
+        }
+//        jcenter()
+    }
+}

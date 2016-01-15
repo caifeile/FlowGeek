@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/error_frame"
+    android:background="@color/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        style="@style/loading"
+        android:layout_centerInParent="true"
+        android:layout_width="18dip"
+        android:layout_height="18dip"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/state_text"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loading"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/progressbar"
+        android:textColor="@color/loading"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/load_failed"
+        android:text="@string/load_failed"
+        android:textColor="@color/loading"
+        android:textSize="16sp"
+        android:drawableTop="@mipmap/load_failed"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/drawer_up">
+        <item
+            android:id="@+id/menu_new"
+            android:title="@string/news"
+            android:checkable="true"
+            android:icon="@mipmap/icon_news"/>
+        <item
+            android:id="@+id/menu_tweets"
+            android:title="@string/tweets"
+            android:checkable="true"
+            android:icon="@mipmap/icon_tweets"/>
+        <item
+            android:id="@+id/menu_blog"
+            android:title="@string/blog"
+            android:checkable="true"
+            android:icon="@mipmap/icon_blog"/>
+        <item
+            android:id="@+id/menu_explore"
+            android:title="@string/explore"
+            android:checkable="true"
+            android:icon="@mipmap/icon_explore"/>
+        <item
+            android:id="@+id/menu_technology_question_answer"
+            android:title="@string/technology_question_answer"
+            android:checkable="true"
+            android:icon="@mipmap/icon_technology_question_answer"/>
+    </group>
+    <group android:id="@+id/drawer_down">
+        <item
+            android:id="@+id/menu_theme"
+            android:title="@string/change_theme"
+            android:checkable="true"
+            android:icon="@mipmap/icon_theme"/>
+        <item
+            android:id="@+id/menu_setting"
+            android:title="@string/setting"
+            android:checkable="true"
+            android:icon="@mipmap/icon_setting"/>
+    </group>
+</menu>

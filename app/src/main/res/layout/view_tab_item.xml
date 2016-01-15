@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/pager_nav_item"
+        android:layout_centerInParent="true"
+        android:textSize="@dimen/pager_nav_item_text"
+        android:background="@drawable/selector_tab_item"
+        android:textColor="@drawable/selector_tab_item_text_color"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

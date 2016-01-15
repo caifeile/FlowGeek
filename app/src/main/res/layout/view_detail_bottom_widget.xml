@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?><!--bottom panel-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_bottom_panel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:orientation="vertical">
+    <!--horizontal line-->
+    <include layout="@layout/view_horizontal_line" />
+    <!--panel container-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="10dp">
+        <!--share-->
+        <TextView
+            android:id="@+id/btn_share"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:drawableTop="@mipmap/icon_share_mid_not"
+            android:gravity="center"
+            android:text="@string/share"
+            android:textColor="@color/detail_widget_option"
+            android:textSize="11sp" />
+        <!--like-->
+        <TextView
+            android:id="@+id/btn_like"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:drawableTop="@mipmap/icon_like_mid_not"
+            android:gravity="center"
+            android:text="@string/like"
+            android:textColor="@color/detail_widget_option"
+            android:textSize="11sp" />
+        <!--bookmark-->
+        <TextView
+            android:id="@+id/btn_bookmark"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:drawableTop="@mipmap/icon_star_mid_not"
+            android:gravity="center"
+            android:text="@string/collection"
+            android:textColor="@color/detail_widget_option"
+            android:textSize="11sp" />
+        <!--comments-->
+        <TextView
+            android:id="@+id/btn_comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:drawableTop="@mipmap/icon_comment_mid_not"
+            android:gravity="center"
+            android:text="@string/comment"
+            android:textColor="@color/detail_widget_option"
+            android:textSize="11sp" />
+    </LinearLayout>
+</LinearLayout>

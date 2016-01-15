@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/view_horizontal_line"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <org.thanatos.flowgeek.widget.ThxEditText
+            android:id="@+id/et_input"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:textColor="@color/input_text"
+            android:textSize="18sp"
+            android:padding="8dp"
+            android:drawableRight="@mipmap/icon_emotion"
+            android:drawableEnd="@mipmap/icon_emotion"
+            android:background="@drawable/selector_shape_input"
+            android:textColorHint="@color/hint"
+            android:hint="@string/say_something"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/iv_send"
+            android:src="@mipmap/icon_send"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null" />
+    </LinearLayout>
+
+    <include layout="@layout/view_emotion"/>
+
+</LinearLayout>
