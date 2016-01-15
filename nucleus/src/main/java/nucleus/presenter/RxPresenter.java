@@ -317,7 +317,6 @@ public class RxPresenter<View> extends Presenter<View> {
     @Override
     protected void onDropView() {
         views.onNext(null);
-        // >>>
     }
 
     /**
@@ -328,7 +327,8 @@ public class RxPresenter<View> extends Presenter<View> {
     @Override
     public View getView() {
         return super.getView();
-        // dev >>> 1
-        // master >>> 2
     }
+
+
+
 }
