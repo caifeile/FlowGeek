@@ -328,6 +328,7 @@ public class RxPresenter<View> extends Presenter<View> {
     public View getView() {
         return super.getView();
         // dev >>> 1
+        // dev >>> 
     }
 
 
