@@ -319,6 +319,9 @@ public class RxPresenter<View> extends Presenter<View> {
         views.onNext(null);
     }
 
+
+
+
     /**
      * Please, use restartableXX and deliverXX methods for pushing data from RxPresenter into View.
      */
