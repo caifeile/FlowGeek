@@ -63,6 +63,13 @@ public class Presenter<View> {
     }
 
     /**
+     * 非正常创建,对应{@link Activity#onSaveInstanceState(Bundle)}, {@link Activity#onRestoreInstanceState(Bundle)}
+     */
+    public void restore() {
+
+    }
+
+    /**
      * A callback to be invoked when a presenter is about to be destroyed.
      */
     public interface OnDestroyListener {

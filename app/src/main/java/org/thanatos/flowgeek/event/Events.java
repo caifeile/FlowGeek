@@ -11,16 +11,16 @@ public class Events<T> {
     }
 
     public Type what;
-    public T object;
+    public T message;
 
     public static <O> Events<O> just(O t){
         Events<O> events = new Events<>();
-        events.object = t;
+        events.message = t;
         return events;
     }
 
-    public <T> T getObj() {
-        return (T) object;
+    public <T> T getMessage() {
+        return (T) message;
     }
 
 }

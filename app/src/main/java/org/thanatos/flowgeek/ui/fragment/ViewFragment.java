@@ -16,6 +16,10 @@ public class ViewFragment extends BaseFragment {
 
     private View view;
 
+    public ViewFragment() {
+
+    }
+
     public ViewFragment(View view) {
         this.view = view;
     }

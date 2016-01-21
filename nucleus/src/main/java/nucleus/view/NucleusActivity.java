@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+
 import nucleus.factory.PresenterFactory;
 import nucleus.factory.ReflectionPresenterFactory;
 import nucleus.presenter.Presenter;
@@ -15,9 +17,9 @@ import nucleus.presenter.Presenter;
  *
  * @param <P> a type of presenter to return with {@link #getPresenter}.
  */
-public abstract class NucleusActivity<P extends Presenter> extends Activity implements ViewWithPresenter<P> {
+public abstract class NucleusActivity<P extends Presenter> extends RxAppCompatActivity implements ViewWithPresenter<P> {
 
-    private static final String PRESENTER_STATE_KEY = "presenter_state";
+    private static final String PRESENTER_STATE_KEY = "activity_presenter_state";
 
     private PresenterLifecycleDelegate<P> presenterDelegate =
         new PresenterLifecycleDelegate<>(ReflectionPresenterFactory.<P>fromViewClass(getClass()));
@@ -54,8 +56,12 @@ public abstract class NucleusActivity<P extends Presenter> extends Activity impl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null)
-            presenterDelegate.onRestoreInstanceState(savedInstanceState.getBundle(PRESENTER_STATE_KEY));
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        presenterDelegate.onRestoreInstanceState(savedInstanceState.getBundle(PRESENTER_STATE_KEY));
     }
 
     @Override
@@ -71,8 +77,8 @@ public abstract class NucleusActivity<P extends Presenter> extends Activity impl
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        presenterDelegate.onPause(isFinishing());
+    protected void onDestroy() {
+        super.onDestroy();
+        presenterDelegate.onDestroy(true);
     }
 }

@@ -15,12 +15,9 @@ import android.widget.TextView;
 import com.trello.rxlifecycle.FragmentEvent;
 import com.trello.rxlifecycle.RxLifecycle;
 
-import org.thanatos.flowgeek.AppManager;
 import org.thanatos.flowgeek.DeviceManager;
 import org.thanatos.flowgeek.R;
-import org.thanatos.flowgeek.UIManager;
 import org.thanatos.flowgeek.bean.EmotionRules;
-import org.thanatos.flowgeek.bean.Event;
 import org.thanatos.flowgeek.event.Events;
 import org.thanatos.flowgeek.event.RxBus;
 import org.thanatos.flowgeek.utils.UIHelper;
@@ -58,7 +55,7 @@ public class KeyboardFragment extends BaseTabNavFragment implements ThxEditText.
                 .compose(RxLifecycle.bindFragment(Observable.just(FragmentEvent.RESUME)))
                 .filter(events -> events.what == Events.Type.DELIVER_SELECT_EMOTION)
                 .subscribe(events -> {
-                    EmotionRules emotion = events.<EmotionRules>getObj();
+                    EmotionRules emotion = events.<EmotionRules>getMessage();
                     if (mInput == null || emotion == null) {
                         return;
                     }
@@ -120,7 +117,7 @@ public class KeyboardFragment extends BaseTabNavFragment implements ThxEditText.
         if (Utility.isEmpty(mInput.getText().toString())) return;
         Events<String> events = new Events<>();
         events.what = Events.Type.DELIVER_SEND_CMM;
-        events.object = mInput.getText().toString();
+        events.message = mInput.getText().toString();
         RxBus.getInstance().send(events);
     }
 

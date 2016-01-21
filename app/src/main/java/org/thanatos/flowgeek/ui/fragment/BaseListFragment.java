@@ -15,17 +15,18 @@ import org.thanatos.flowgeek.adapter.BaseListAdapter;
 import org.thanatos.flowgeek.bean.Entity;
 import org.thanatos.flowgeek.bean.Page;
 import org.thanatos.flowgeek.presenter.BaseListPresenter;
+import org.thanatos.flowgeek.ui.activity.BaseActivity;
 import org.thanatos.flowgeek.ui.view.ErrorLayout;
 import java.util.Iterator;
 import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import nucleus.view.NucleusSupportFragment;
+import nucleus.view.NucleusFragment;
 
 /**
  * Created by thanatos on 15-7-21.
  */
-public abstract class BaseListFragment<T extends Entity, P extends BaseListPresenter> extends ThxSupportFragment<P>
+public abstract class BaseListFragment<T extends Entity, P extends BaseListPresenter> extends BaseFragment<P>
         implements SwipeRefreshLayout.OnRefreshListener,ErrorLayout.OnActiveClickListener, BaseListAdapter.OnLoadingListener {
 
     @Bind(R.id.swipe_refresh) protected SwipeRefreshLayout mSwipeRefreshLayout;

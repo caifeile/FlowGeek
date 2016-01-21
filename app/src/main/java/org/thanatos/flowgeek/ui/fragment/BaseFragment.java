@@ -5,10 +5,13 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
+import nucleus.presenter.Presenter;
+import nucleus.view.NucleusFragment;
+
 /**
  * Created by aoyolo on 15/12/21.
  */
-public class BaseFragment extends Fragment{
+public class BaseFragment<P extends Presenter> extends NucleusFragment<P>{
 
     public Context mContext;
     public Resources resources;

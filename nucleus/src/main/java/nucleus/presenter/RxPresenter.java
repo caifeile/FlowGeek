@@ -8,15 +8,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import info.android15.nucleus.R;
 import nucleus.presenter.delivery.DeliverFirst;
 import nucleus.presenter.delivery.DeliverLatestCache;
 import nucleus.presenter.delivery.DeliverReplay;
 import nucleus.presenter.delivery.Delivery;
 import rx.Observable;
+import rx.Subscriber;
 import rx.Subscription;
 import rx.functions.Action1;
 import rx.functions.Action2;
 import rx.functions.Func0;
+import rx.functions.Func4;
 import rx.internal.util.SubscriptionList;
 import rx.subjects.BehaviorSubject;
 
@@ -30,11 +33,16 @@ public class RxPresenter<View> extends Presenter<View> {
     private static final String REQUESTED_KEY = RxPresenter.class.getName() + "#requested";
 
     private final BehaviorSubject<View> views = BehaviorSubject.create();
-    private final SubscriptionList subscriptions = new SubscriptionList();
 
+    // 希望在destroy的时候能够终结的subscription list
+    private SubscriptionList subscriptions = new SubscriptionList();
+
+    // 可重复使用的函数
     private final HashMap<Integer, Func0<Subscription>> restartables = new HashMap<>();
-    private final HashMap<Integer, Subscription> restartableSubscriptions = new HashMap<>();
-    private final ArrayList<Integer> requested = new ArrayList<>();
+
+    // 工作中的订阅者们
+    private final HashMap<Integer, Subscription> workingSubscribers = new HashMap<>();
+
 
     /**
      * Returns an {@link rx.Observable} that emits the current attached view or null.
@@ -67,19 +75,16 @@ public class RxPresenter<View> extends Presenter<View> {
     }
 
     /**
-     * A restartable is any RxJava observable that can be started (subscribed) and
-     * should be automatically restarted (re-subscribed) after a process restart if
-     * it was still subscribed at the moment of saving presenter's state.
-     *
-     * Registers a factory. Re-subscribes the restartable after the process restart.
+     * 这是一个可重复使用的,已绑定订阅者的可观察对象
      *
      * @param restartableId id of the restartable
      * @param factory       factory of the restartable
      */
     public void restartable(int restartableId, Func0<Subscription> factory) {
+        if (workingSubscribers.containsKey(restartableId))
+            stop(restartableId);
         restartables.put(restartableId, factory);
-        if (requested.contains(restartableId))
-            start(restartableId);
+
     }
 
     /**
@@ -89,9 +94,11 @@ public class RxPresenter<View> extends Presenter<View> {
      */
     public void start(int restartableId) {
         stop(restartableId);
-        requested.add(restartableId);
-        restartableSubscriptions.put(restartableId, restartables.get(restartableId).call());
+        Func0<Subscription> func = restartables.get(restartableId);
+        if (func != null)
+            workingSubscribers.put(restartableId, func.call());
     }
+
 
     /**
      * Unsubscribes a restartable
@@ -99,17 +106,22 @@ public class RxPresenter<View> extends Presenter<View> {
      * @param restartableId id of a restartable.
      */
     public void stop(int restartableId) {
-        requested.remove((Integer) restartableId);
-        Subscription subscription = restartableSubscriptions.get(restartableId);
-        if (subscription != null)
-            subscription.unsubscribe();
+        Subscription subscription = workingSubscribers.get(restartableId);
+        if (subscription != null){
+            if (!subscription.isUnsubscribed())
+                subscription.unsubscribe();
+            workingSubscribers.remove(restartableId);
+        }
     }
 
     /**
-     * This is a shortcut that can be used instead of combining together
-     * {@link #restartable(int, Func0)},
+     * 这是一种快捷方式, 结合了
+     * {@link #restartable(int, Func0)}
      * {@link #deliverFirst()},
-     * {@link #split(Action2, Action2)}.
+     * {@link #split(Action2, Action2)}
+     * 这三个方法
+     *
+     * Views'last item + observableFactory's first item
      *
      * @param restartableId     an id of the restartable.
      * @param observableFactory a factory that should return an Observable when the restartable should run.
@@ -124,8 +136,8 @@ public class RxPresenter<View> extends Presenter<View> {
             @Override
             public Subscription call() {
                 return observableFactory.call()
-                    .compose(RxPresenter.this.<T>deliverFirst())
-                    .subscribe(split(onNext, onError));
+                        .compose(RxPresenter.this.<T>deliverFirst())
+                        .subscribe(split(onNext, onError));
             }
         });
     }
@@ -138,10 +150,13 @@ public class RxPresenter<View> extends Presenter<View> {
     }
 
     /**
-     * This is a shortcut that can be used instead of combining together
+     * 这是一种快捷方式,结合了
      * {@link #restartable(int, Func0)},
      * {@link #deliverLatestCache()},
-     * {@link #split(Action2, Action2)}.
+     * {@link #split(Action2, Action2)}
+     * 这三个方法
+     *
+     * Views's last item + observableFactory's last item, when view emit subscriber will response
      *
      * @param restartableId     an id of the restartable.
      * @param observableFactory a factory that should return an Observable when the restartable should run.
@@ -156,8 +171,8 @@ public class RxPresenter<View> extends Presenter<View> {
             @Override
             public Subscription call() {
                 return observableFactory.call()
-                    .compose(RxPresenter.this.<T>deliverLatestCache())
-                    .subscribe(split(onNext, onError));
+                        .compose(RxPresenter.this.<T>deliverLatestCache())
+                        .subscribe(split(onNext, onError));
             }
         });
     }
@@ -170,10 +185,11 @@ public class RxPresenter<View> extends Presenter<View> {
     }
 
     /**
-     * This is a shortcut that can be used instead of combining together
+     * 这是一种快捷方式,结合了
      * {@link #restartable(int, Func0)},
      * {@link #deliverReplay()},
      * {@link #split(Action2, Action2)}.
+     * 这三个方法
      *
      * @param restartableId     an id of the restartable.
      * @param observableFactory a factory that should return an Observable when the restartable should run.
@@ -188,8 +204,8 @@ public class RxPresenter<View> extends Presenter<View> {
             @Override
             public Subscription call() {
                 return observableFactory.call()
-                    .compose(RxPresenter.this.<T>deliverReplay())
-                    .subscribe(split(onNext, onError));
+                        .compose(RxPresenter.this.<T>deliverReplay())
+                        .subscribe(split(onNext, onError));
             }
         });
     }
@@ -202,11 +218,14 @@ public class RxPresenter<View> extends Presenter<View> {
     }
 
     /**
-     * Returns an {@link rx.Observable.Transformer} that couples views with data that has been emitted by
-     * the source {@link rx.Observable}.
+     * 联合{@link BehaviorSubject<View>}和{@link Observable<T>}
      *
-     * {@link #deliverLatestCache} keeps the latest onNext value and emits it each time a new view gets attached.
-     * If a new onNext value appears while a view is attached, it will be delivered immediately.
+     * v.onNext(view1)
+     * v.onNext(view2)
+     *
+     * v.subscribe(new ...)
+     *
+     * only loading the lastest 'view2' value can emit
      *
      * @param <T> the type of source observable emissions
      */
@@ -215,10 +234,15 @@ public class RxPresenter<View> extends Presenter<View> {
     }
 
     /**
-     * Returns an {@link rx.Observable.Transformer} that couples views with data that has been emitted by
-     * the source {@link rx.Observable}.
      *
-     * {@link #deliverFirst} delivers only the first onNext value that has been emitted by the source observable.
+     * 联合{@link BehaviorSubject<View>}和{@link Observable<T>}
+     *
+     * v.onNext(view1)
+     * v.onNext(view2)
+     *
+     * v.subscribe(new ...)
+     *
+     * only loading the first 'view1' value can emit
      *
      * @param <T> the type of source observable emissions
      */
@@ -227,11 +251,14 @@ public class RxPresenter<View> extends Presenter<View> {
     }
 
     /**
-     * Returns an {@link rx.Observable.Transformer} that couples views with data that has been emitted by
-     * the source {@link rx.Observable}.
+     * 联合{@link BehaviorSubject<View>}和{@link Observable<T>}
      *
-     * {@link #deliverReplay} keeps all onNext values and emits them each time a new view gets attached.
-     * If a new onNext value appears while a view is attached, it will be delivered immediately.
+     * v.onNext(view1)
+     * v.onNext(view2)
+     *
+     * v.subscribe(new ...)
+     *
+     * both view1 and view2 will be emitted
      *
      * @param <T> the type of source observable emissions
      */
@@ -264,14 +291,39 @@ public class RxPresenter<View> extends Presenter<View> {
         return split(onNext, null);
     }
 
+    public <T> Observable<Delivery<View, T>> afterTakeViewDeliverLastestCache(){
+        return Observable.create((new Observable.OnSubscribe<T>() {
+            @Override
+            public void call(Subscriber<? super T> subscriber) {
+                subscriber.onNext(null);
+                subscriber.onCompleted();
+            }
+        })).compose(this.<T>deliverLatestCache());
+    }
+
+    /**
+     * 仅在第一次TakeView的时候起作用
+     * @return
+     */
+    public Observable<View> afterTakeView(){
+        return views.first();
+    }
+
     /**
      * {@inheritDoc}
      */
     @CallSuper
     @Override
     protected void onCreate(Bundle savedState) {
-        if (savedState != null)
-            requested.addAll(savedState.getIntegerArrayList(REQUESTED_KEY));
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void restore() {
+        subscriptions = new SubscriptionList();
     }
 
     /**
@@ -282,8 +334,9 @@ public class RxPresenter<View> extends Presenter<View> {
     protected void onDestroy() {
         views.onCompleted();
         subscriptions.unsubscribe();
-        for (Map.Entry<Integer, Subscription> entry : restartableSubscriptions.entrySet())
+        for (Map.Entry<Integer, Subscription> entry : workingSubscribers.entrySet())
             entry.getValue().unsubscribe();
+        workingSubscribers.clear();
     }
 
     /**
@@ -292,13 +345,7 @@ public class RxPresenter<View> extends Presenter<View> {
     @CallSuper
     @Override
     protected void onSave(Bundle state) {
-        for (int i = requested.size() - 1; i >= 0; i--) {
-            int restartableId = requested.get(i);
-            Subscription subscription = restartableSubscriptions.get(restartableId);
-            if (subscription != null && subscription.isUnsubscribed())
-                requested.remove(i);
-        }
-        state.putIntegerArrayList(REQUESTED_KEY, requested);
+        // do not thing
     }
 
     /**

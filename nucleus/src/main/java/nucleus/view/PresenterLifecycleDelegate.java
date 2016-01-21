@@ -18,9 +18,12 @@ public final class PresenterLifecycleDelegate<P extends Presenter> {
     private static final String PRESENTER_KEY = "presenter";
     private static final String PRESENTER_ID_KEY = "presenter_id";
 
-    @Nullable private PresenterFactory<P> presenterFactory;
-    @Nullable private P presenter;
-    @Nullable private Bundle bundle;
+    @Nullable
+    private PresenterFactory<P> presenterFactory;
+    @Nullable
+    private P presenter;
+    @Nullable
+    private Bundle bundle;
 
     public PresenterLifecycleDelegate(@Nullable PresenterFactory<P> presenterFactory) {
         this.presenterFactory = presenterFactory;
@@ -46,15 +49,19 @@ public final class PresenterLifecycleDelegate<P extends Presenter> {
     /**
      * {@link ViewWithPresenter#getPresenter()}
      */
+    @SuppressWarnings("all")
     public P getPresenter() {
-        if (presenterFactory != null) {
-            if (presenter == null && bundle != null)
+        if (presenterFactory != null && presenter == null) {
+            if (bundle != null)
                 presenter = PresenterStorage.INSTANCE.getPresenter(bundle.getString(PRESENTER_ID_KEY));
 
             if (presenter == null) {
                 presenter = presenterFactory.createPresenter();
+                // 添加到PresenterStorage中,已添加OnDestroyListener,当销毁时从Storage内移除,注意调用就是了
                 PresenterStorage.INSTANCE.add(presenter);
                 presenter.create(bundle == null ? null : bundle.getBundle(PRESENTER_KEY));
+            }else{
+                presenter.restore();
             }
             bundle = null;
         }
@@ -67,10 +74,15 @@ public final class PresenterLifecycleDelegate<P extends Presenter> {
     public Bundle onSaveInstanceState() {
         Bundle bundle = new Bundle();
         getPresenter();
+        // 有可能不需要presenter
         if (presenter != null) {
+
+            // 保存presenter内需要保存的值
             Bundle presenterBundle = new Bundle();
             presenter.save(presenterBundle);
             bundle.putBundle(PRESENTER_KEY, presenterBundle);
+
+            // 保存presenter在storage的key
             bundle.putString(PRESENTER_ID_KEY, PresenterStorage.INSTANCE.getId(presenter));
         }
         return bundle;
@@ -82,7 +94,8 @@ public final class PresenterLifecycleDelegate<P extends Presenter> {
     public void onRestoreInstanceState(Bundle presenterState) {
         if (presenter != null)
             throw new IllegalArgumentException("onRestoreInstanceState() should be called before onResume()");
-        this.bundle = ParcelFn.unmarshall(ParcelFn.marshall(presenterState));
+//        this.bundle = ParcelFn.unmarshall(ParcelFn.marshall(presenterState));
+        this.bundle = presenterState;
     }
 
     /**
@@ -96,13 +109,16 @@ public final class PresenterLifecycleDelegate<P extends Presenter> {
     }
 
     /**
-     * {@link android.app.Activity#onPause()}, {@link android.app.Fragment#onPause()}, {@link android.view.View#onDetachedFromWindow()}
+     * 如果订阅者要操作View,建议最好使用restartableXX和deliverXX方法,因为他们方法中handle有lastest View
+     * 解绑View的时候不会受影响,destroy又能正常解除订阅
      */
-    public void onPause(boolean destroy) {
+    public void onDestroy(boolean destroy) {
         if (presenter != null) {
+            // 解绑View
             presenter.dropView();
             if (destroy) {
                 presenter.destroy();
+                // 诱使GC回收
                 presenter = null;
             }
         }

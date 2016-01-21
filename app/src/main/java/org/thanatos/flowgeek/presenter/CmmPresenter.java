@@ -17,13 +17,12 @@ public class CmmPresenter extends BaseListPresenter<CmmFragment>{
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
-        put(RxBus.getInstance().toObservable()
+        RxBus.getInstance().toObservable()
                 .filter(events -> events.what == Events.Type.DELIVER_ARTICLE_ID)
                 .subscribe((events) -> {
                     Log.d("thanatos", "CmmPresenter receive a event");
-                    Log.d("thanatos", "id is " + events.<Long>getObj());
-                })
-        );
+                    Log.d("thanatos", "id is " + events.<Long>getMessage());
+                });
         RxBus.getInstance().send(Events.Type.GET_ARTICLE_ID);
 
     }

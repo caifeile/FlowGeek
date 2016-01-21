@@ -17,8 +17,6 @@ import android.widget.Toast;
 import android.widget.ZoomButtonsController;
 
 import com.squareup.picasso.Picasso;
-import com.trello.rxlifecycle.ActivityEvent;
-import com.trello.rxlifecycle.RxLifecycle;
 
 import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.UIManager;
@@ -38,9 +36,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import nucleus.factory.RequiresPresenter;
-import rx.Observable;
-import rx.android.plugins.RxAndroidSchedulersHook;
-import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by thanatos on 15/12/28.
@@ -222,7 +217,7 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter>{
             dialog.dismiss();
             dialog = null;
         }
-        Toast.makeText(this, R.string.error, Toast.LENGTH_SHORT).show();
+        Toast.makeText(DetailActivity.this, R.string.error, Toast.LENGTH_SHORT).show();
     }
 
     public void onLoading() {
@@ -235,7 +230,7 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter>{
 
     @OnClick(R.id.btn_comment) void onClickCmm(){
         RxBus.getInstance().toObservable()
-//                .compose(RxLifecycle.bindActivity(Observable.<ActivityEvent>empty()))
+                .compose(bindToLifecycle())
                 .filter(events -> {
                     Log.d("thanatos", "validate");
                     return events.what == Events.Type.GET_ARTICLE_ID;
@@ -244,7 +239,7 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter>{
                     Log.d("thanatos", "DetailActivity said: someone need id !!");
                     Events<Long> event = new Events<Long>();
                     event.what = Events.Type.DELIVER_ARTICLE_ID;
-                    event.object = article.getId();
+                    event.message = article.getId();
                     RxBus.getInstance().send(event);
                 });
         UIManager.showCmmActivity(this);

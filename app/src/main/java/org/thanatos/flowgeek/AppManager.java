@@ -7,6 +7,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 
+import com.squareup.leakcanary.LeakCanary;
+
 /**
  * Created by thanatos on 15-9-22.
  */
@@ -24,6 +26,7 @@ public class AppManager extends Application{
         context = getApplicationContext();
         resources = getResources();
         preferences = getSharedPreferences(context.getPackageName(), MODE_PRIVATE);
+        LeakCanary.install(this);
     }
 
     public static PackageInfo getPackageInfo(){

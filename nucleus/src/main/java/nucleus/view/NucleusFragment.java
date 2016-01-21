@@ -2,6 +2,10 @@ package nucleus.view;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.util.Log;
+
+import com.trello.rxlifecycle.components.support.RxFragment;
 
 import nucleus.factory.PresenterFactory;
 import nucleus.factory.ReflectionPresenterFactory;
@@ -14,9 +18,12 @@ import nucleus.presenter.Presenter;
  *
  * @param <P> a type of presenter to return with {@link #getPresenter}.
  */
-public abstract class NucleusFragment<P extends Presenter> extends Fragment implements ViewWithPresenter<P> {
+public abstract class NucleusFragment<P extends Presenter> extends RxFragment implements ViewWithPresenter<P> {
 
-    private static final String PRESENTER_STATE_KEY = "presenter_state";
+    private static final String PRESENTER_STATE_KEY = "fragment_presenter_state";
+
+    // 在ViewPager中,虽然Fragment被destroy了,再是实例似乎并没有被销毁,重新重新创建的时候并不会初始化这里的参数,而是
+    // 仍然保留成员变量的值
     private PresenterLifecycleDelegate<P> presenterDelegate =
         new PresenterLifecycleDelegate<>(ReflectionPresenterFactory.<P>fromViewClass(getClass()));
 
@@ -50,16 +57,16 @@ public abstract class NucleusFragment<P extends Presenter> extends Fragment impl
     }
 
     @Override
-    public void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        if (bundle != null)
-            presenterDelegate.onRestoreInstanceState(bundle.getBundle(PRESENTER_STATE_KEY));
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null && getPresenter()==null)
+            presenterDelegate.onRestoreInstanceState(savedInstanceState.getBundle(PRESENTER_STATE_KEY));
     }
 
     @Override
-    public void onSaveInstanceState(Bundle bundle) {
-        super.onSaveInstanceState(bundle);
-        bundle.putBundle(PRESENTER_STATE_KEY, presenterDelegate.onSaveInstanceState());
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBundle(PRESENTER_STATE_KEY, presenterDelegate.onSaveInstanceState());
     }
 
     @Override
@@ -69,8 +76,15 @@ public abstract class NucleusFragment<P extends Presenter> extends Fragment impl
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        presenterDelegate.onPause(getActivity().isFinishing());
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenterDelegate.onDestroy(false);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // 强制销毁Presenter,不用管Activity是否真的要销毁
+        presenterDelegate.onDestroy(getActivity().isFinishing());
     }
 }

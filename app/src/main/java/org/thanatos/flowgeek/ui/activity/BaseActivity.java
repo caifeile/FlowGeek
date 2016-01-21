@@ -5,7 +5,10 @@ import android.os.Bundle;
 
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
-public class BaseActivity extends RxAppCompatActivity {
+import nucleus.presenter.Presenter;
+import nucleus.view.NucleusActivity;
+
+public class BaseActivity<P extends Presenter> extends NucleusActivity<P> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

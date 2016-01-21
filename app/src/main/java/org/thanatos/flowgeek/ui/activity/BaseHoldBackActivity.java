@@ -7,8 +7,9 @@ import org.thanatos.flowgeek.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import nucleus.presenter.Presenter;
+import nucleus.presenter.RxPresenter;
 
-public abstract class BaseHoldBackActivity<P extends Presenter> extends ThxActivity<P> {
+public abstract class BaseHoldBackActivity<P extends Presenter> extends BaseActivity<P> {
 
     @Bind(R.id.toolbar) Toolbar mToolbar;
 
