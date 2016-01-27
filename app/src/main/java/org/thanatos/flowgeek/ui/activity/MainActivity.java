@@ -12,9 +12,9 @@ import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.Toast;
 
+import org.thanatos.base.ui.activity.BaseActivity;
 import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.bean.NewsList;
-import org.thanatos.flowgeek.ui.fragment.BaseTabFragment;
 import org.thanatos.flowgeek.ui.fragment.BaseTabMainFragment;
 import org.thanatos.flowgeek.ui.fragment.ListNewsFragment;
 
@@ -101,6 +101,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 break;
             case R.id.menu_setting:
                 if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_setting) break;
+
+                break;
+            case R.id.menu_donate:
+                if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_donate) break;
 
                 break;
             case R.id.menu_new : // 资讯

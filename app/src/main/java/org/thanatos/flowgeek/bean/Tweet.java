@@ -2,6 +2,7 @@ package org.thanatos.flowgeek.bean;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
+import org.thanatos.base.domain.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,10 @@ import java.util.List;
  * Created by thanatos on 15/12/28.
  */
 @Root(name = "tweet")
-public class Tweet extends Entity{
+public class Tweet extends Entity {
+
+    @Element(name = "id", required = false)
+    private Long id;
 
     @Element(name = "portrait")
     private String portrait;
@@ -53,6 +57,16 @@ public class Tweet extends Entity{
 
     private String imageFilePath;
     private String audioPath;
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getPortrait() {
         return portrait;

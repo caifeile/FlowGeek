@@ -15,8 +15,8 @@ public class StartActivity extends Activity {
         setContentView(R.layout.activity_start);
 
         new Handler().postDelayed(()->{
-            finish();
             startActivity(new Intent(StartActivity.this, MainActivity.class));
+            finish();
         },2000);
     }
 

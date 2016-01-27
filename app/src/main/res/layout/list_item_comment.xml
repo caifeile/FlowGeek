@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:background="@color/item_background"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!--user portrait-->
+    <ImageView
+        android:id="@+id/iv_portrait"
+        android:background="@color/hint"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:contentDescription="@null"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_marginBottom="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_username"
+                android:text="科科"
+                android:textSize="@dimen/item_title"
+                android:textColor="@color/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_time"
+                android:text="21小时前"
+                android:textSize="@dimen/item_time"
+                android:textColor="@color/time"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:text="我是叶良辰我怕谁!!!"
+            android:textColor="@color/item_content"
+            android:textSize="@dimen/item_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</LinearLayout>

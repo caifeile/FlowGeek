@@ -7,13 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.thanatos.base.adapter.BaseListAdapter;
+import org.thanatos.base.ui.fragment.BaseListFragment;
 import org.thanatos.flowgeek.AppManager;
 import org.thanatos.flowgeek.UIManager;
-import org.thanatos.flowgeek.adapter.BaseListAdapter;
 import org.thanatos.flowgeek.adapter.NewsAdapter;
 import org.thanatos.flowgeek.bean.News;
 import org.thanatos.flowgeek.bean.NewsList;
 import org.thanatos.flowgeek.presenter.NewsPresenter;
+import org.thanatos.flowgeek.utils.UIHelper;
 
 import nucleus.factory.RequiresPresenter;
 
@@ -40,6 +42,7 @@ public class ListNewsFragment extends BaseListFragment<News, NewsPresenter> impl
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mListView.setPadding(0, setDividerSize(), 0, 0);
         mAdapter.setOnItemClickListener(this);
     }
 

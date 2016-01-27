@@ -14,6 +14,7 @@
     <dimen name="item_time">12sp</dimen>
     <dimen name="detail_content">15sp</dimen>
     <dimen name="item_type">12sp</dimen>
+    <dimen name="min_divider_height">1px</dimen>
     <item name="standard_alpha" format="float" type="dimen">0.84</item>
     <item name="secondary_alpha" format="float" type="dimen">0.54</item>
 </resources>

@@ -3,6 +3,8 @@ package org.thanatos.flowgeek.bean;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
+import org.thanatos.base.domain.Entity;
+
 import java.util.List;
 
 /**
@@ -10,6 +12,9 @@ import java.util.List;
  */
 @Root(name = "remark")
 public class EventRemark extends Entity {
+
+    @Element(name = "id")
+    private Long id;
 
     @Element(name = "remarkTip", required = false)
     private String remarkTip;
@@ -29,6 +34,16 @@ public class EventRemark extends Entity {
             this.list = list;
         }
 
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getRemarkTip() {

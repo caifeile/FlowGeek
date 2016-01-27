@@ -1,14 +1,11 @@
 package org.thanatos.flowgeek.ui.fragment;
 
 
-import android.os.Bundle;
 import android.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
+import org.thanatos.base.adapter.BaseListAdapter;
+import org.thanatos.base.ui.fragment.BaseListFragment;
 import org.thanatos.flowgeek.R;
-import org.thanatos.flowgeek.adapter.BaseListAdapter;
 import org.thanatos.flowgeek.adapter.CmmAdapter;
 import org.thanatos.flowgeek.bean.Comment;
 import org.thanatos.flowgeek.presenter.CmmPresenter;
@@ -28,5 +25,8 @@ public class CmmFragment extends BaseListFragment<Comment, CmmPresenter> {
         return new CmmAdapter(getContext(), BaseListAdapter.ONLY_FOOTER);
     }
 
-
+    @Override
+    public int setDividerSize() {
+        return getResources().getDimensionPixelSize(R.dimen.min_divider_height);
+    }
 }

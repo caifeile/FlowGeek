@@ -3,6 +3,8 @@ package org.thanatos.flowgeek.bean;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
+import java.io.Serializable;
+
 /**
  * *************************************************
  * <p>
@@ -21,7 +23,7 @@ import org.simpleframework.xml.Root;
  * *************************************************
  */
 @Root(name = "oschina")
-public class RespPostDetail extends Entity{
+public class RespPostDetail implements Serializable{
 
     @Element(name = "post")
     private Post post;

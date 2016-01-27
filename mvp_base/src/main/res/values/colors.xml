@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--base color setting-->
+    <color name="background">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="hint">#EEE</color>
+    <color name="divider">#EEE</color>
+    <color name="loading">#999</color>
+    <color name="toolbar_subtitle">#FFFFFF</color>
+
+    <!-- swipe refresh color -->
+    <color name="swipe_refresh_first">#ff00ddff</color>
+    <color name="swipe_refresh_second">#ffffbb33</color>
+    <color name="swipe_refresh_third">#ffff4444</color>
+    <color name="swipe_refresh_four">#ffaa66cc</color>
+
+   <!--other widget setting-->
+    <color name="dot_selected">#339933</color>
+    <color name="dot_unselected">#FFFFFF</color>
+    <color name="username">#339933</color>
+    <color name="list_view_bgd">#ebfaeb</color>
+
+</resources>

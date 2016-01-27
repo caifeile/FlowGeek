@@ -2,6 +2,7 @@ package org.thanatos.flowgeek.bean;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
+import org.thanatos.base.domain.Entity;
 
 /**
  * @author thanatos
@@ -11,7 +12,10 @@ public class Blog extends Entity {
 	
 	public final static int DOC_TYPE_REPASTE = 0; //转帖
 	public final static int DOC_TYPE_ORIGINAL = 1; //原创
-	
+
+	@Element(name = "id")
+	private Long id;
+
 	@Element(name = "title")
 	private String title;
 
@@ -41,6 +45,16 @@ public class Blog extends Entity {
 
 	@Element(name = "favorite")
 	private int favorite;
+
+	@Override
+	public Long getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getTitle() {
 		return title;

@@ -3,6 +3,8 @@ package org.thanatos.flowgeek.bean;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
+import org.thanatos.base.domain.Entity;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,9 @@ public class News extends Entity {
     public final static int NEWS_TYPE_SOFTWARE = 0x01;//1 软件
     public final static int NEWS_TYPE_POST = 0x02;//2 帖子
     public final static int NEWS_TYPE_BLOG = 0x03;//3 博客
+
+    @Element(name = "id", required = false)
+    private Long id;
 
     @Element(name = "title")
     private String title;
@@ -53,6 +58,16 @@ public class News extends Entity {
 
     @ElementList(name = "relativies", required = false)
     private List<Relative> relatives = new ArrayList<Relative>();
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     private String authorPortrait;
 

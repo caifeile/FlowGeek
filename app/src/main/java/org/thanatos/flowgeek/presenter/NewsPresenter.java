@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewTreeObserver;
 
-import org.thanatos.flowgeek.DeviceManager;
+import org.thanatos.base.presenter.BaseListPresenter;
+import org.thanatos.base.manager.DeviceManager;
 import org.thanatos.flowgeek.ServerAPI;
 import org.thanatos.flowgeek.bean.News;
 import org.thanatos.flowgeek.bean.NewsList;
@@ -12,8 +13,6 @@ import org.thanatos.flowgeek.ui.fragment.ListNewsFragment;
 
 import java.util.List;
 
-import rx.Observable;
-import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -70,7 +69,7 @@ public class NewsPresenter extends BaseListPresenter<ListNewsFragment> {
                 (view) -> {
                     Log.d("thanatos", "------afterTakeView-------");
                     // 读取缓存
-                    Subscription mReadCacheSubscriptor = this.<List<News>>getCacheFile(cache_key)
+                    Subscription mReadCacheSubscriptor = this.<List<News>>getCacheFile(view.getContext(), cache_key)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
@@ -104,7 +103,7 @@ public class NewsPresenter extends BaseListPresenter<ListNewsFragment> {
     @Override
     public void requestData(int mode, int pageNum) {
         // 判读网络情况
-        if (!DeviceManager.hasInternet()) {
+        if (!DeviceManager.hasInternet(getView().getContext())) {
             getView().onNetworkInvalid(mode);
             return;
         }
@@ -123,7 +122,7 @@ public class NewsPresenter extends BaseListPresenter<ListNewsFragment> {
                 },
                 (view, page) -> {
                     if (pageNum == 0 && page != null && page.getList() != null && page.getList().size() > 0) {
-                        this.<News>cacheData(page.getList(), cache_key);
+                        this.<News>cacheData(view.getContext(), page.getList(), cache_key);
                     }
                     view.onLoadResultData(page.getList());
                     view.onLoadFinishState(mode);
@@ -143,7 +142,7 @@ public class NewsPresenter extends BaseListPresenter<ListNewsFragment> {
      */
     public void requestData(ListNewsFragment view, Subscription subscriptor) {
         // 判读网络情况
-        if (!DeviceManager.hasInternet()) return;
+        if (!DeviceManager.hasInternet(view.getContext())) return;
 
         view.onLoadingState();
 
@@ -160,7 +159,7 @@ public class NewsPresenter extends BaseListPresenter<ListNewsFragment> {
                     Log.d("thanatos", "requestData and unsubscribe subscriber");
                     dismissReadCache(v, subscriptor);
                     if (page != null && page.getList() != null && page.getList().size() > 0)
-                        this.<News>cacheData(page.getList(), cache_key);
+                        this.<News>cacheData(view.getContext(), page.getList(), cache_key);
                     v.onLoadResultData(page.getList());
                     v.onLoadFinishState(ListNewsFragment.LOAD_MODE_DEFAULT);
                 },

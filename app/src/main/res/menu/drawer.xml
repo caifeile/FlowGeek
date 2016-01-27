@@ -39,4 +39,11 @@
             android:checkable="true"
             android:icon="@mipmap/icon_setting"/>
     </group>
+    <group>
+        <item
+            android:id="@+id/menu_donate"
+            android:title="@string/donate_me"
+            android:checkable="true"
+            android:icon="@mipmap/icon_donate"/>
+    </group>
 </menu>

@@ -3,6 +3,8 @@ package org.thanatos.flowgeek.bean;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
+import java.io.Serializable;
+
 /**
  * *************************************************
  * <p>
@@ -21,7 +23,7 @@ import org.simpleframework.xml.Root;
  * *************************************************
  */
 @Root(name = "oschina")
-public class RespSoftwareDetail {
+public class RespSoftwareDetail implements Serializable{
 
     @Element(name = "software")
     private Software software;

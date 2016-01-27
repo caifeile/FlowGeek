@@ -63,10 +63,10 @@
             android:textSize="@dimen/item_content"
             android:drawableLeft="@mipmap/icon_comment_mini_not"
             android:drawableStart="@mipmap/icon_comment_mini_not"
-            android:drawablePadding="3dp"
+            android:drawablePadding="5dp"
             android:alpha="@dimen/secondary_alpha"
             android:text="@string/zero"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content" />
     </RelativeLayout>
 

@@ -1,5 +1,7 @@
 package org.thanatos.flowgeek.bean;
 
+import org.thanatos.base.domain.Entity;
+
 /**
  * *************************************************
  * <p>
@@ -17,7 +19,7 @@ package org.thanatos.flowgeek.bean;
  * <p>
  * *************************************************
  */
-public class Article<T> extends Entity{
+public class Article<T> extends Entity {
 
     private String author;
     private String key;

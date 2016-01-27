@@ -1,7 +1,9 @@
 package org.thanatos.flowgeek.bean;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
+import org.thanatos.base.domain.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +13,12 @@ import java.util.List;
  * @create 2016-01-05
  **/
 @Root(name = "comment")
-public class Comment extends Entity{
+public class Comment extends Entity {
 
-    @Element(name = "portrait")
+    @Element(name = "id")
+    private Long id;
+
+    @Element(name = "portrait", required = false)
     private String portrait;
 
     @Element(name = "content")
@@ -31,11 +36,21 @@ public class Comment extends Entity{
     @Element(name = "appclient", required = false)
     private int appClient;
 
-    @Element(name = "replies", required = false)
+    @ElementList(name = "replies", required = false)
     private List<Reply> replies = new ArrayList<>();
 
-    @Element(name = "refers", required = false)
+    @ElementList(name = "refers", required = false)
     private List<Refer> refers = new ArrayList<>();
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getPortrait() {
         return portrait;
@@ -102,7 +117,7 @@ public class Comment extends Entity{
     }
 
     @Root(name = "reply")
-    private class Reply extends Entity{
+    public static class Reply extends Entity{
 
         @Element(name ="rauthor")
         public String author;
@@ -139,7 +154,7 @@ public class Comment extends Entity{
     }
 
     @Root(name = "refer")
-    private class Refer extends Entity{
+    public static class Refer extends Entity{
 
         @Element(name ="refertitle")
         public String title;

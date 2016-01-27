@@ -6,6 +6,7 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 
 import org.thanatos.flowgeek.bean.RespBlogDetail;
+import org.thanatos.flowgeek.bean.RespCmmList;
 import org.thanatos.flowgeek.bean.RespNewsDetail;
 import org.thanatos.flowgeek.bean.NewsList;
 import org.thanatos.flowgeek.bean.RespPostDetail;
@@ -174,6 +175,21 @@ public class ServerAPI {
 
         // -------------- 动弹api ---------------
         // -------------- 评论api ---------------
+        @GET("/action/api/comment_list")
+        Observable<RespCmmList> getCmmList(
+                @Query("catalog") int catalog,
+                @Query("id") long id,
+                @Query("pageIndex") int pageIndex,
+                @Query("pageSize") int pageSize
+        );
+
+        @GET("/action/api/blogcomment_list")
+        Observable<RespCmmList> getBlogCmmList(
+                @Query("id") long id,
+                @Query("pageIndex") int pageIndex,
+                @Query("pageSize") int pageSize
+        );
+
         // -------------- 收藏api ---------------
 
 

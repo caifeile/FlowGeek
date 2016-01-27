@@ -1,1 +1,1 @@
-include ':app', ':nucleus'
+include ':app', ':presenter', ':pay', ':mvp_base'

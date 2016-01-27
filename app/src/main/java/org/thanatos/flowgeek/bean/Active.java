@@ -2,6 +2,8 @@ package org.thanatos.flowgeek.bean;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
+import org.thanatos.base.domain.Entity;
+
 import java.io.Serializable;
 
 /**
@@ -23,7 +25,10 @@ public class Active extends Entity {
 	public final static int CLIENT_ANDROID = 3;
 	public final static int CLIENT_IPHONE = 4;
 	public final static int CLIENT_WINDOWS_PHONE = 5;
-	
+
+    @Element(name = "id", required = false)
+    private Long id;
+
 	@Element(name = "portrait")
 	private String portrait;
 
@@ -75,7 +80,17 @@ public class Active extends Entity {
 	@Element(name = "url", required = false)
 	private String url;
 
-	public String getPortrait() {
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getPortrait() {
 		return portrait;
 	}
 

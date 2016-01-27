@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.thanatos.base.ui.fragment.BaseTabNavFragment;
 import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.bean.EmotionRules;
 import org.thanatos.flowgeek.utils.UIHelper;

@@ -9,10 +9,10 @@
         android:id="@+id/tab_nav"
         android:background="@color/principle"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        app:tabIndicatorHeight="0dp"
+        android:layout_height="40dp"
         app:tabGravity="fill"
         app:tabMode="fixed"
+        app:tabIndicatorColor="@color/tab_indicator"
         app:tabSelectedTextColor="@color/tab_indicator_selected"
         app:tabTextColor="@color/tab_indicator_unselect" />
 

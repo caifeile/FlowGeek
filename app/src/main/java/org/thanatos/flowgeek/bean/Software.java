@@ -3,6 +3,7 @@ package org.thanatos.flowgeek.bean;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
+import org.thanatos.base.domain.Entity;
 
 /**
  * 软件实体类
@@ -10,7 +11,10 @@ import org.simpleframework.xml.Root;
  */
 @Root(name = "software")
 public class Software extends Entity {
-	
+
+	@Element(name = "id", required = false)
+	private Long id;
+
 	@Element(name = "title")
 	private String title;
 	
@@ -61,6 +65,16 @@ public class Software extends Entity {
 
 	@Element(name = "tweetCount")
 	private int tweetCount;
+
+	@Override
+	public Long getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getTitle() {
 		return title;

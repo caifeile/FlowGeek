@@ -3,6 +3,7 @@ package org.thanatos.flowgeek.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +11,17 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.thanatos.base.ui.fragment.BaseTabFragment;
 import org.thanatos.flowgeek.R;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * @author thanatos
  * @create 2016-01-05
  **/
-public abstract class BaseTabMainFragment extends BaseTabFragment{
+public abstract class BaseTabMainFragment extends BaseTabFragment {
 
     @Bind(R.id.tab_nav) TabLayout mTabLayout;
 
@@ -33,10 +36,12 @@ public abstract class BaseTabMainFragment extends BaseTabFragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
+        ViewCompat.setElevation(mTabLayout, 7);
         if (mAdapter==null){
             mTabLayout.setupWithViewPager(viewPager);
 
-            for (int i=0; i<mTabLayout.getTabCount(); i++){
+            /*for (int i=0; i<mTabLayout.getTabCount(); i++){
                 TabLayout.Tab tab = mTabLayout.getTabAt(i);
                 if (tab!=null) tab.setCustomView(setupTabItemView(mTabs.get(i).tag));
             }
@@ -44,7 +49,7 @@ public abstract class BaseTabMainFragment extends BaseTabFragment{
             if (mTabs.size()>0){
                 setCurrentItem(0);
                 mTabLayout.getTabAt(0).getCustomView().setSelected(true);
-            }
+            }*/
         }
     }
 

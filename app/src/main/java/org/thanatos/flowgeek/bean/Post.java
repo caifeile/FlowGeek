@@ -2,6 +2,7 @@ package org.thanatos.flowgeek.bean;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
+import org.thanatos.base.domain.Entity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,6 +19,9 @@ public class Post extends Entity {
 	public final static int CATALOG_OTHER = 3;
 	public final static int CATALOG_JOB = 4;
 	public final static int CATALOG_SITE = 5;
+
+	@Element(name = "id", required = false)
+	private Long id;
 
 	@Element(name = "title")
 	private String title;
@@ -63,6 +67,16 @@ public class Post extends Entity {
 	
 	@Element(name = "event", required = false)
 	private Event event;
+
+	@Override
+	public Long getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Event getEvent() {
 		return event;

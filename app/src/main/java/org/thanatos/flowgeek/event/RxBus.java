@@ -32,9 +32,10 @@ public class RxBus {
         _bus.onNext(o);
     }
 
-    public void send(Events.Type type){
+    public void send(Events.Type sendType, Events.Type receiveType){
         Events<Object> event = new Events<>();
-        event.what = type;
+        event.what = sendType;
+        event.message = receiveType;
         send(event);
     }
 

@@ -3,6 +3,7 @@ package org.thanatos.flowgeek.bean;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
+import org.thanatos.base.domain.Entity;
 
 /**
  * 活动实体类
@@ -22,7 +23,10 @@ public class Event extends Entity {
 	public final static int APPLYSTATUS_ATTEND = 0x02;// 已经出席
 	public final static int APPLYSTATUS_CANCLE = 0x03;// 已取消
 	public final static int APPLYSTATUS_REJECT = 0X04;// 已拒绝
-	
+
+	@Element(name = "id")
+	private Long id;
+
 	@Element(name = "cover", required = false)
 	private String cover;
 	
@@ -64,6 +68,16 @@ public class Event extends Entity {
 
 	@Element(name = "remark", required = false)
 	private EventRemark eventRemark;
+
+	@Override
+	public Long getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public int getCategory() {
 		return category;

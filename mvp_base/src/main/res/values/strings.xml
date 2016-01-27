@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Base</string>
+    <string name="loading">加载中...</string>
+    <string name="load_failed">加载失败</string>
+    <string name="invalid_network">无效的网络</string>
+    <string name="load_no_more">没有更多了</string>
+    <string name="refreshing">刷新中</string>
+</resources>

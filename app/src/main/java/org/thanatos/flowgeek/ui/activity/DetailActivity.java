@@ -17,12 +17,14 @@ import android.widget.Toast;
 import android.widget.ZoomButtonsController;
 
 import com.squareup.picasso.Picasso;
+import com.trello.rxlifecycle.ActivityEvent;
 
+import org.thanatos.base.domain.Entity;
+import org.thanatos.base.ui.activity.BaseHoldBackActivity;
 import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.UIManager;
 import org.thanatos.flowgeek.bean.Article;
 import org.thanatos.flowgeek.bean.Blog;
-import org.thanatos.flowgeek.bean.Entity;
 import org.thanatos.flowgeek.bean.Software;
 import org.thanatos.flowgeek.event.Events;
 import org.thanatos.flowgeek.event.RxBus;
@@ -42,7 +44,7 @@ import nucleus.factory.RequiresPresenter;
  */
 @SuppressWarnings("all")
 @RequiresPresenter(DetailPresenter.class)
-public class DetailActivity extends BaseHoldBackActivity<DetailPresenter>{
+public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
 
     public static final int DISPLAY_NEWS = 0;
     public static final int DISPLAY_BLOG = 1;
@@ -102,11 +104,15 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter>{
         mCatalog = getIntent().getIntExtra(BUNDLE_KEY_DISPLAY_TYPE, DISPLAY_NEWS);
         article = (Article) getIntent().getSerializableExtra(BUNDLE_KEY_NEWS_OBJECT);
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
 
         initView();
         initData();
     }
 
+    /**
+     * init data
+     */
     @SuppressWarnings("all")
     private void initData() {
         switch (mCatalog){
@@ -160,6 +166,9 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter>{
         mAdapter.notifyItemChanged(0);
     }
 
+    /**
+     * init view
+     */
     private void initView() {
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
         mRecycler.addOnScrollListener(new OnScrollerGoDownListener(mBottomLayout));
@@ -185,6 +194,11 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter>{
 
     }
 
+    /**
+     * load html form remote
+     * @param body
+     * @return
+     */
     private String loadHTMLData(String body) {
         return new StringBuilder().append(UIManager.WEB_STYLE)
                 .append(UIManager.WEB_LOAD_IMAGES)
@@ -194,6 +208,11 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter>{
                 .toString();
     }
 
+    /**
+     * 对HTML里的图片做些处理
+     * @param body
+     * @return
+     */
     public static String setupContentImage(String body) {
         // 过滤掉 img标签的width,height属性
         body = body.replaceAll("(<img[^>]*?)\\s+width\\s*=\\s*\\S+", "$1");
@@ -203,6 +222,10 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter>{
         return body;
     }
 
+    /**
+     * 当加载完成, 供presenter调用
+     * @param article
+     */
     public void onLoadFinished(Article article) {
         if (dialog!=null){
             dialog.dismiss();
@@ -212,6 +235,9 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter>{
         initData();
     }
 
+    /**
+     * 当加载失败, 供presenter调用
+     */
     public void onLoadFailure() {
         if (dialog!=null) {
             dialog.dismiss();
@@ -220,33 +246,47 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter>{
         Toast.makeText(DetailActivity.this, R.string.error, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * 当加载中, 显示dialog
+     */
     public void onLoading() {
         dialog = new ProgressDialog(this);
         dialog.setIndeterminate(false);
         dialog.setMessage(getResources().getString(R.string.loading));
-        dialog.setCancelable(true);
+        dialog.setCancelable(false);
         dialog.show();
     }
 
     @OnClick(R.id.btn_comment) void onClickCmm(){
+
+        // 处理请求详情id
         RxBus.getInstance().toObservable()
-                .compose(bindToLifecycle())
-                .filter(events -> {
-                    Log.d("thanatos", "validate");
-                    return events.what == Events.Type.GET_ARTICLE_ID;
-                })
+                .compose(bindUntilEvent(ActivityEvent.DESTROY))
+                .filter(events -> events.what == Events.Type.GET_ARTICLE_ID)
                 .subscribe(events -> {
-                    Log.d("thanatos", "DetailActivity said: someone need id !!");
                     Events<Long> event = new Events<Long>();
-                    event.what = Events.Type.DELIVER_ARTICLE_ID;
+                    event.what = events.getMessage();
                     event.message = article.getId();
                     RxBus.getInstance().send(event);
                 });
+
+        // 处理请求详情类别catalog
+        RxBus.getInstance().toObservable()
+                .compose(bindUntilEvent(ActivityEvent.DESTROY))
+                .filter(events -> events.what == Events.Type.GET_ARTICLE_CATALOG)
+                .subscribe(events -> {
+                    Events<Integer> event = new Events<Integer>();
+                    event.what = events.getMessage();
+                    event.message = mCatalog;
+                    RxBus.getInstance().send(event);
+                });
+
+
         UIManager.showCmmActivity(this);
     }
 
     @OnClick(R.id.btn_like) void onClickLike(){
-        RxBus.getInstance().send(Events.Type.DELIVER_ARTICLE_ID);
+
     }
 
 

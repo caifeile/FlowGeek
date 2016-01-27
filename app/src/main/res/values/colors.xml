@@ -6,12 +6,13 @@
     <color name="divider">#EEE</color>
     <color name="item_title">#666</color>
     <color name="item_content">#999</color>
+    <color name="item_background">#FFF</color>
     <color name="readed">#999</color>
-    <color name="transparent">#00000000</color>
     <color name="background">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
     <color name="title_content">#333</color>
     <color name="detail_content">#666</color>
-    <color name="tab_indicator_selected">#339933</color>
+    <color name="tab_indicator_selected">#ebfaeb</color>
     <color name="tab_indicator_unselect">#FFF</color>
     <color name="hint">#EEE</color>
     <color name="_default">#999</color>
@@ -26,12 +27,12 @@
     <color name="drawer_menu_text">#000000</color>
     <color name="drawer_header_nick">#FFFFFF</color>
     <color name="drawer_header_sign">#FFFFFF</color>
-    <color name="toolbar_subtitle">#FFFFFF</color>
+
     <color name="pager_nav_item_background_selected">#FFFFFF</color>
     <color name="pager_nav_item_background_unselected">#00000000</color>
     <color name="pager_nav_item_text_selected">#339933</color>
     <color name="pager_nav_item_text_unselected">#FFFFFF</color>
-    <color name="loading">#999</color>
+
     <color name="detail_title">#000000</color>
     <color name="time">#999</color>
     <color name="detail_widget_option">#999</color>
@@ -42,5 +43,7 @@
     <color name="emotion_item">#666</color>
     <color name="dot_selected">#339933</color>
     <color name="dot_unselected">#FFFFFF</color>
+    <color name="username">#339933</color>
+    <color name="tab_indicator">#ebfaeb</color>
 
 </resources>

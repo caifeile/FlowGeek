@@ -15,7 +15,8 @@ import android.widget.TextView;
 import com.trello.rxlifecycle.FragmentEvent;
 import com.trello.rxlifecycle.RxLifecycle;
 
-import org.thanatos.flowgeek.DeviceManager;
+import org.thanatos.base.manager.DeviceManager;
+import org.thanatos.base.ui.fragment.BaseTabNavFragment;
 import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.bean.EmotionRules;
 import org.thanatos.flowgeek.event.Events;
@@ -25,6 +26,7 @@ import org.thanatos.flowgeek.utils.Utility;
 import org.thanatos.flowgeek.widget.ThxEditText;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Observable;
 
@@ -34,10 +36,8 @@ import rx.Observable;
  **/
 public class KeyboardFragment extends BaseTabNavFragment implements ThxEditText.DrawableRightListener {
 
-    @Bind(R.id.et_input)
-    ThxEditText mInput;
-    @Bind(R.id.emotion_layout)
-    LinearLayout mEmoLayout;
+    @Bind(R.id.et_input) ThxEditText mInput;
+    @Bind(R.id.emotion_layout) LinearLayout mEmoLayout;
 
     @Nullable
     @Override
@@ -48,6 +48,8 @@ public class KeyboardFragment extends BaseTabNavFragment implements ThxEditText.
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
+
         mInput.setOnDrawableRightListener(this);
 
         // register a listener to receive a event that mean user selected a emotion
@@ -133,7 +135,7 @@ public class KeyboardFragment extends BaseTabNavFragment implements ThxEditText.
      * 隐藏软键盘
      */
     public void hideSoftKeyboard() {
-        DeviceManager.getSoftInputManager().hideSoftInputFromWindow(mInput.getWindowToken(), 0);
+        DeviceManager.getSoftInputManager(getContext()).hideSoftInputFromWindow(mInput.getWindowToken(), 0);
     }
 
     /**
@@ -141,7 +143,7 @@ public class KeyboardFragment extends BaseTabNavFragment implements ThxEditText.
      */
     public void showSoftKeyboard() {
         mInput.requestFocus();
-        DeviceManager.getSoftInputManager().showSoftInput(mInput, InputMethodManager.SHOW_FORCED);
+        DeviceManager.getSoftInputManager(getContext()).showSoftInput(mInput, InputMethodManager.SHOW_FORCED);
     }
 
     @Override

@@ -2,12 +2,13 @@ package org.thanatos.flowgeek.bean;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
+import org.thanatos.base.domain.Entity;
 
 /**
  * Created by thanatos on 15/12/28.
  */
 @Root(name = "user")
-public class User extends Entity{
+public class User extends Entity {
 
     public final static int RELATION_ACTION_DELETE = 0x00;// 取消关注
     public final static int RELATION_ACTION_ADD = 0x01;// 加关注
@@ -15,6 +16,9 @@ public class User extends Entity{
     public final static int RELATION_TYPE_FANS_HIM = 0x02;// 你单方面关注他
     public final static int RELATION_TYPE_NULL = 0x03;// 互不关注
     public final static int RELATION_TYPE_FANS_ME = 0x04;// 只有他关注我
+
+    @Element(name = "id", required = false)
+    private Long id;
 
     @Element(name = "uid")
     private long uid;
@@ -74,6 +78,16 @@ public class User extends Entity{
     public void setUid(long uid) {
         setId(uid);
         this.uid = uid;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getLocation() {

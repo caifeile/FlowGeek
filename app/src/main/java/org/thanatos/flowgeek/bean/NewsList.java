@@ -3,6 +3,7 @@ package org.thanatos.flowgeek.bean;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
+import org.thanatos.base.domain.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  * 资讯列表封装数据对象
  */
 @Root(name = "oschina")
-public class NewsList extends Entity{
+public class NewsList extends Entity {
 
     public final static String PREF_READED_NEWS_LIST = "readed_news_list.pref";
 
