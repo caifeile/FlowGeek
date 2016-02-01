@@ -2,6 +2,7 @@
 <resources>
     <!--base color setting-->
     <color name="background">#FFFFFF</color>
+    <color name="toolbar_bgd">#339933</color>
     <color name="transparent">#00000000</color>
     <color name="hint">#EEE</color>
     <color name="divider">#EEE</color>
@@ -16,8 +17,10 @@
 
    <!--other widget setting-->
     <color name="dot_selected">#339933</color>
-    <color name="dot_unselected">#FFFFFF</color>
-    <color name="username">#339933</color>
+    <color name="dot_unselected">#ebfaeb</color>
     <color name="list_view_bgd">#ebfaeb</color>
+
+    <color name="normal_text">#585858</color>
+    <color name="white">#FFFFFF</color>
 
 </resources>

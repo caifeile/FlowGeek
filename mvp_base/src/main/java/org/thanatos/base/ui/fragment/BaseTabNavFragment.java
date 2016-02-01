@@ -34,7 +34,7 @@ public abstract class BaseTabNavFragment extends BaseTabFragment implements View
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mNavLayout = (LinearLayout) view.findViewById(R.id.tab_nav);
         super.onViewCreated(view, savedInstanceState);
-        viewPager.addOnPageChangeListener(this);
+        mViewPager.addOnPageChangeListener(this);
     }
 
     @Override
@@ -59,6 +59,11 @@ public abstract class BaseTabNavFragment extends BaseTabFragment implements View
         View view = setupTabItemView(title);
         mNavLayout.addView(view);
         mTabs.get(mTabs.size()-1).view = view;
+    }
+
+    public void setCurrentItem(int index){
+        mViewPager.setCurrentItem(index);
+        mTabs.get(index).view.setSelected(true);
     }
 
     @Override

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_turn_to_gay"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:src="@mipmap/icon_logo_wechat"
+        android:padding="5dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="@string/wechat_pay" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:layout_width="0dp"
+        android:layout_weight="8"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_pay_method"
+            android:text="@string/wechat_pay"
+            android:textSize="18sp"
+            android:textColor="@color/normal_text"
+            android:drawablePadding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_pay_describe"
+            android:textColor="@color/describe"
+            android:text="@string/wechat_pay_subscribe"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_chooser"
+        android:src="@drawable/selector_chooser"
+        android:layout_gravity="center_vertical"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:contentDescription="@null" />
+
+</LinearLayout>

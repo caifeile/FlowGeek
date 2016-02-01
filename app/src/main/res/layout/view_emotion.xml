@@ -8,6 +8,7 @@
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="130dp"/>
 
@@ -18,26 +19,56 @@
         android:id="@+id/tab_nav"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="30dp">
         <TextView
-            android:id="@+id/tv_qq"
-            android:text="@string/emotion_qq"
-            android:background="@drawable/selector_emotion_item"
             android:gravity="center"
+            android:text="开"
+            android:background="@drawable/selector_emotion_item"
+            android:textColor="@android:color/black"
             android:padding="5dp"
-            android:textColor="@color/emotion_item"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:contentDescription="@null" />
+        <TextView
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="源"
+            android:background="@drawable/selector_emotion_item"
+            android:textColor="@android:color/black"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:contentDescription="@null" />
+        <TextView
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="中"
+            android:background="@drawable/selector_emotion_item"
+            android:textColor="@android:color/black"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:contentDescription="@null" />
+        <TextView
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="国"
+            android:background="@drawable/selector_emotion_item"
+            android:textColor="@android:color/black"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:contentDescription="@null" />
         <ImageView
             android:id="@+id/iv_backspace"
             android:background="@drawable/selector_backspace"
             android:src="@mipmap/icon_emotion_backspace"
             android:gravity="center"
-            android:padding="5dp"
+            android:padding="8dp"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:contentDescription="@null" />
     </LinearLayout>
 

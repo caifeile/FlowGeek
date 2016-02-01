@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pay_background"
+    tools:context="org.thanatos.pay.ui.activity.ChoosePayMethodActivity">
+
+    <include layout="@layout/view_toolbar"/>
+
+    <LinearLayout
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_order_detail"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/normal_text"
+            android:text="@string/order_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_order_cast"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/normal_text"
+            android:text="@string/order_cast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <TextView
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="@string/pay_method"
+        android:textColor="@color/normal_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/btn_chooser"
+        android:text="@string/sure"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/selector_shape_button"
+        android:layout_width="300dp"
+        android:padding="10dp"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>

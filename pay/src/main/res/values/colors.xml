@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="button_bgd_pressed">#33a464</color>
+    <color name="button_bgd_normal">#4ab779</color>
+    <color name="white">#FFF</color>
+    <color name="pay_background">#E0E0E0</color>
+    <color name="describe">#999</color>
+</resources>

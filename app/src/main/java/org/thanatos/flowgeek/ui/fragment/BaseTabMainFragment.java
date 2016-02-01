@@ -39,7 +39,7 @@ public abstract class BaseTabMainFragment extends BaseTabFragment {
         ButterKnife.bind(this, view);
         ViewCompat.setElevation(mTabLayout, 7);
         if (mAdapter==null){
-            mTabLayout.setupWithViewPager(viewPager);
+            mTabLayout.setupWithViewPager(mViewPager);
 
             /*for (int i=0; i<mTabLayout.getTabCount(); i++){
                 TabLayout.Tab tab = mTabLayout.getTabAt(i);

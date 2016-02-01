@@ -4,11 +4,13 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.thanatos.base.ui.fragment.BaseFragment;
+import org.thanatos.flowgeek.R;
 
 /**
  * 一个简单的Fragment，专门显示一个View，特别服务于轮番、ViewPager
@@ -20,7 +22,6 @@ public class ViewFragment extends BaseFragment {
 
     private View view;
 
-    @SuppressLint("ValidFragment")
     public ViewFragment(View view) {
         this.view = view;
     }

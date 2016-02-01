@@ -1,9 +1,14 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat">
+    <style name="AppTheme.Base" parent="Theme.AppCompat">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/principle</item>
+        <item name="colorPrimaryDark">@color/principle</item>
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+        <item name="android:listDivider">@color/divider</item>
+        <!-- 避免控件都会顶到状态栏上 -->
     </style>
 
     <style name="Theme.AppStart" parent="android:Theme.Black.NoTitleBar.Fullscreen">
@@ -11,11 +16,8 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.Base" parent="AppTheme">
-        <item name="colorPrimary">@color/principle</item>
-        <item name="colorPrimaryDark">@color/state</item>
-        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
-        <item name="android:listDivider">@color/divider</item>
+    <style name="AppTheme" parent="AppTheme.Base">
+
     </style>
 
     <style name="AnimationActivity" parent="@android:style/Animation.Activity">

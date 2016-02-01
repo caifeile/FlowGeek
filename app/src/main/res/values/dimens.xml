@@ -8,7 +8,7 @@
     <dimen name="drawer_nav_width">250dp</dimen>
     <dimen name="drawer_height">150dp</dimen>
     <dimen name="pager_nav_item_text">14sp</dimen>
-    <dimen name="item_title">18sp</dimen>
+    <dimen name="item_title">16sp</dimen>
     <dimen name="item_content">14sp</dimen>
     <dimen name="divider_height">5dp</dimen>
     <dimen name="item_time">12sp</dimen>

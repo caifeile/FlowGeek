@@ -1,5 +1,7 @@
 package org.thanatos.flowgeek.utils;
 
+import org.thanatos.base.utils.Utilities;
+
 import java.io.Serializable;
 import java.net.URL;
 import java.net.URLDecoder;
@@ -90,7 +92,7 @@ public class URLUtils implements Serializable {
      * @return 不能转化的链接返回null
      */
     public final static URLUtils parseURL(String path) {
-        if (Utility.isEmpty(path))
+        if (Utilities.isEmpty(path))
             return null;
         path = formatURL(path);
         URLUtils urls = null;
@@ -116,7 +118,7 @@ public class URLUtils implements Serializable {
                     // www.oschina.net/news/27259/mobile-internet-market-is-small
                     if (path.contains(URL_TYPE_NEWS)) {
                         objId = parseObjId(path, URL_TYPE_NEWS);
-                        urls.setObjId(Utility.toInt(objId, 0));
+                        urls.setObjId(Utilities.toInt(objId, 0));
                         urls.setObjType(URL_OBJ_TYPE_NEWS);
                     }
                     // 软件 www.oschina.net/p/jx
@@ -136,7 +138,7 @@ public class URLUtils implements Serializable {
                         else {
                             objId = parseObjId(path, URL_TYPE_QUESTION);
                             String[] _tmp = objId.split(URL_UNDERLINE);
-                            urls.setObjId(Utility.toInt(_tmp[1], 0));
+                            urls.setObjId(Utilities.toInt(_tmp[1], 0));
                             urls.setObjType(URL_OBJ_TYPE_QUESTION);
                         }
                     }
@@ -151,19 +153,19 @@ public class URLUtils implements Serializable {
                     // 博客 my.oschina.net/szpengvictor/blog/50879
                     if (path.contains(URL_TYPE_BLOG)) {
                         objId = parseObjId(path, URL_TYPE_BLOG);
-                        urls.setObjId(Utility.toInt(objId, 0));
+                        urls.setObjId(Utilities.toInt(objId, 0));
                         urls.setObjType(URL_OBJ_TYPE_BLOG);
                     }
                     // 动弹 my.oschina.net/dong706/tweet/612947
                     else if (path.contains(URL_TYPE_TWEET)) {
                         objId = parseObjId(path, URL_TYPE_TWEET);
-                        urls.setObjId(Utility.toInt(objId, 0));
+                        urls.setObjId(Utilities.toInt(objId, 0));
                         urls.setObjType(URL_OBJ_TYPE_TWEET);
                     }
                     // 个人专页 my.oschina.net/u/12
                     else if (path.contains(URL_TYPE_ZONE)) {
                         objId = parseObjId(path, URL_TYPE_ZONE);
-                        urls.setObjId(Utility.toInt(objId, 0));
+                        urls.setObjId(Utilities.toInt(objId, 0));
                         urls.setObjType(URL_OBJ_TYPE_ZONE);
                     } else {
                         // 另一种个人专页 my.oschina.net/dong706

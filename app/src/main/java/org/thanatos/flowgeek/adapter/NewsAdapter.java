@@ -10,7 +10,7 @@ import android.widget.TextView;
 import org.thanatos.base.adapter.BaseListAdapter;
 import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.bean.News;
-import org.thanatos.flowgeek.utils.Utility;
+import org.thanatos.base.utils.Utilities;
 
 import java.text.ParseException;
 
@@ -40,7 +40,7 @@ public class NewsAdapter extends BaseListAdapter<News> {
         holder.author.setText(item.getAuthor());
         holder.comment_count.setText(String.valueOf(item.getCommentCount()));
         try {
-            holder.time.setText(Utility.dateFormat(item.getPubDate()));
+            holder.time.setText(Utilities.dateFormat(item.getPubDate()));
         } catch (ParseException e) {
             e.printStackTrace();
             holder.time.setText(item.getPubDate());

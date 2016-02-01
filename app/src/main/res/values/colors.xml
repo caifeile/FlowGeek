@@ -3,18 +3,15 @@
     <!--base color setting-->
     <color name="principle">#339933</color>
     <color name="state">#337733</color>
-    <color name="divider">#EEE</color>
     <color name="item_title">#666</color>
     <color name="item_content">#999</color>
     <color name="item_background">#FFF</color>
     <color name="readed">#999</color>
     <color name="background">#FFFFFF</color>
-    <color name="transparent">#00000000</color>
     <color name="title_content">#333</color>
     <color name="detail_content">#666</color>
     <color name="tab_indicator_selected">#ebfaeb</color>
     <color name="tab_indicator_unselect">#FFF</color>
-    <color name="hint">#EEE</color>
     <color name="_default">#999</color>
 
     <!-- swipe refresh color -->
@@ -39,10 +36,8 @@
     <color name="item_type_bgc">#999</color>
     <color name="item_type_text">#FFFFFF</color>
     <color name="input_text">#666</color>
-    <color name="emotion_item_selected">#EEE</color>
+    <color name="emotion_item_selected">#d2d1d1</color>
     <color name="emotion_item">#666</color>
-    <color name="dot_selected">#339933</color>
-    <color name="dot_unselected">#FFFFFF</color>
     <color name="username">#339933</color>
     <color name="tab_indicator">#ebfaeb</color>
 

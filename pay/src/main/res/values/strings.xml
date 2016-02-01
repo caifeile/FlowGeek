@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Pay</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="please_input_cast">请输入金额</string>
+    <string name="beg">如果你觉得我现在做的事情对你有帮助\n不妨捐助我\n你的鼓励是我工作最大的动力\n#^_^#</string>
+    <string name="sure">确定</string>
+    <string name="donate_me">捐助我</string>
+    <string name="order_detail">捐助详情:</string>
+    <string name="order_cast">捐助金额:</string>
+    <string name="pay_method">支付方式</string>
+    <string name="wechat_pay">微信支付</string>
+    <string name="wechat_pay_subscribe">亿万用户的选择, 更安全更可靠</string>
 </resources>

@@ -1,6 +1,7 @@
 package org.thanatos.flowgeek.adapter;
 
 import android.content.Context;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,7 @@ import com.squareup.picasso.Picasso;
 import org.thanatos.base.adapter.BaseListAdapter;
 import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.bean.Comment;
-import org.thanatos.flowgeek.utils.Utility;
+import org.thanatos.base.utils.Utilities;
 
 import java.text.ParseException;
 
@@ -43,7 +44,7 @@ public class CmmAdapter extends BaseListAdapter<Comment> {
         Picasso.with(mContext).load(item.getPortrait()).into(hold.ivPortrait);
         hold.tvUsername.setText(item.getAuthor());
         try {
-            hold.tvTime.setText(Utility.dateFormat(item.getPubDate()));
+            hold.tvTime.setText(Utilities.dateFormat(item.getPubDate()));
         } catch (ParseException e) {
             hold.tvTime.setText(item.getPubDate());
         }
@@ -58,6 +59,7 @@ public class CmmAdapter extends BaseListAdapter<Comment> {
 
         public CmmHoldView(View view) {
             super(view);
+            ViewCompat.setElevation(view, 1.0f);
             ButterKnife.bind(this, view);
         }
     }

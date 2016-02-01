@@ -10,6 +10,8 @@ import org.thanatos.flowgeek.adapter.CmmAdapter;
 import org.thanatos.flowgeek.bean.Comment;
 import org.thanatos.flowgeek.presenter.CmmPresenter;
 
+import java.math.BigInteger;
+
 import nucleus.factory.RequiresPresenter;
 
 /**

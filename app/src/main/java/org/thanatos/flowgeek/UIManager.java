@@ -3,20 +3,16 @@ package org.thanatos.flowgeek;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.thanatos.flowgeek.bean.Article;
 import org.thanatos.flowgeek.bean.News;
-import org.thanatos.flowgeek.bean.Tweet;
 import org.thanatos.flowgeek.ui.activity.CmmActivity;
 import org.thanatos.flowgeek.ui.activity.DetailActivity;
 import org.thanatos.flowgeek.utils.URLUtils;
-import org.thanatos.flowgeek.utils.Utility;
-
-import java.net.URLDecoder;
+import org.thanatos.base.utils.Utilities;
 
 /**
  * Created by aoyolo on 15/12/28.
@@ -57,13 +53,13 @@ public class UIManager {
 
         // 如果是活动详情
         String eventUrl = news.getNewType().getEventUrl();
-        if (!Utility.isEmpty(eventUrl)) {
-            article.setId(Utility.toLong(news.getNewType().getAttachment(), 0L));
+        if (!Utilities.isEmpty(eventUrl)) {
+            article.setId(Utilities.toLong(news.getNewType().getAttachment(), 0L));
             showEventDetail(context, article);
             return;
         }
         // 如果不需要使用网页打开
-        if (Utility.isEmpty(url)) {
+        if (Utilities.isEmpty(url)) {
             int newsType = news.getNewType().getType();
             String attchId = news.getNewType().getAttachment();
             switch (newsType) {
@@ -78,12 +74,12 @@ public class UIManager {
                     break;
                 // 技术问答里面的帖子详情
                 case News.NEWS_TYPE_POST:
-                    article.setId(Utility.toLong(attchId, 1L));
+                    article.setId(Utilities.toLong(attchId, 1L));
                     showPostDetail(context, article);
                     break;
                 // 博客详情
                 case News.NEWS_TYPE_BLOG:
-                    article.setId(Utility.toLong(attchId, 1L));
+                    article.setId(Utilities.toLong(attchId, 1L));
                     showBlogDetail(context, article);
                     break;
                 default:
@@ -105,7 +101,7 @@ public class UIManager {
 
         // 这是什么鬼? 城市活动?
         if (url.contains("city.oschina.net/")) {
-            article.setId(Utility.toLong(url.substring(url.lastIndexOf('/') + 1), 1));
+            article.setId(Utilities.toLong(url.substring(url.lastIndexOf('/') + 1), 1));
             showEventDetail(context, article);
             return;
         }
@@ -171,7 +167,7 @@ public class UIManager {
 
     public static void openBrowser(Context context, String url) {
         Toast.makeText(context, "打开浏览器", Toast.LENGTH_SHORT).show();
-        if (Utility.isImgUrl(url)) {
+        if (Utilities.isImgUrl(url)) {
             showImagePreview(context, 0, new String[]{url});
             return;
         }

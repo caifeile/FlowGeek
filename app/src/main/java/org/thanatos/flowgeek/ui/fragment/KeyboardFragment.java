@@ -1,19 +1,22 @@
 package org.thanatos.flowgeek.ui.fragment;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.text.Spannable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.trello.rxlifecycle.FragmentEvent;
-import com.trello.rxlifecycle.RxLifecycle;
 
 import org.thanatos.base.manager.DeviceManager;
 import org.thanatos.base.ui.fragment.BaseTabNavFragment;
@@ -22,22 +25,25 @@ import org.thanatos.flowgeek.bean.EmotionRules;
 import org.thanatos.flowgeek.event.Events;
 import org.thanatos.flowgeek.event.RxBus;
 import org.thanatos.flowgeek.utils.UIHelper;
-import org.thanatos.flowgeek.utils.Utility;
-import org.thanatos.flowgeek.widget.ThxEditText;
+import org.thanatos.base.utils.Utilities;
+import org.thanatos.flowgeek.widget.EmotionPickerEditText;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import rx.Observable;
 
 /**
  * @author thanatos
  * @create 2016-01-05
  **/
-public class KeyboardFragment extends BaseTabNavFragment implements ThxEditText.DrawableRightListener {
+public class KeyboardFragment extends BaseTabNavFragment implements EmotionPickerEditText.DrawableRightListener {
 
-    @Bind(R.id.et_input) ThxEditText mInput;
+    @Bind(R.id.et_input) EditText mInput;
     @Bind(R.id.emotion_layout) LinearLayout mEmoLayout;
+    @Bind(R.id.iv_emotion) ImageView mIvEmotion;
+
+    private Drawable mEmotionUnselect;
+    private Drawable mEmotionSelected;
 
     @Nullable
     @Override
@@ -50,11 +56,11 @@ public class KeyboardFragment extends BaseTabNavFragment implements ThxEditText.
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
-        mInput.setOnDrawableRightListener(this);
+//        mInput.setOnDrawableRightListener(this);
 
         // register a listener to receive a event that mean user selected a emotion
         RxBus.getInstance().toObservable()
-                .compose(RxLifecycle.bindFragment(Observable.just(FragmentEvent.RESUME)))
+                .compose(bindUntilEvent(FragmentEvent.DESTROY))
                 .filter(events -> events.what == Events.Type.DELIVER_SELECT_EMOTION)
                 .subscribe(events -> {
                     EmotionRules emotion = events.<EmotionRules>getMessage();
@@ -72,11 +78,25 @@ public class KeyboardFragment extends BaseTabNavFragment implements ThxEditText.
                         mInput.getText().replace(Math.min(start, end), Math.max(start, end), str, 0, str.length());
                     }
                 });
+        mViewPager.setCurrentItem(0);
+
+        mEmotionSelected = getResources().getDrawable(R.mipmap.icon_emotion_selected);
+        mEmotionUnselect = getResources().getDrawable(R.mipmap.icon_emotion);
     }
 
     @Override
     public View setupTabItemView(String title) {
-        TextView view = new TextView(getContext());
+
+        ImageView view = new ImageView(mContext);
+        view.setImageResource(R.mipmap.icon_emotion_color);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                0, ViewGroup.LayoutParams.MATCH_PARENT
+        );
+        params.weight = 1;
+        view.setLayoutParams(params);
+
+        /*TextView view = new TextView(getContext());
+        view.setGravity(Gravity.CENTER);
         view.setBackgroundResource(R.drawable.selector_emotion_item);
         view.setTextColor(getResources().getColor(R.color.emotion_item));
         view.setPadding(
@@ -84,22 +104,48 @@ public class KeyboardFragment extends BaseTabNavFragment implements ThxEditText.
                 UIHelper.dip2px(mContext, 5f), UIHelper.dip2px(mContext, 5f)
         );
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                0, ViewGroup.LayoutParams.WRAP_CONTENT
+                0, ViewGroup.LayoutParams.MATCH_PARENT
         );
-        params.gravity = Gravity.CENTER;
         params.weight = 1;
         view.setLayoutParams(params);
-        view.setText(title);
+        view.setText(title);*/
         return view;
     }
 
     @Override
     public void onSetupTabs() {
-        addTab(resources.getString(R.string.emotion_qq), EmotionPanelFragment.class);
+        addTab(getResources().getString(R.string.emotion_qq), EmotionPanelFragment.class);
+    }
+
+    /**
+     * 总在前面添加元素,跟默认的基类做法相悖,所以我们复写它
+     * @param title
+     * @param fragment
+     */
+    @Override
+    public void addTab(String title, Class<? extends Fragment> fragment) {
+        mTabs.add(0, new ViewPageInfo(title, Fragment.instantiate(getActivity(), fragment.getName())));
+        View view = setupTabItemView(title);
+        mNavLayout.addView(view, 0);
+        mTabs.get(0).view = view;
     }
 
     private boolean isShowingEmoLayout() {
         return mEmoLayout.getVisibility() == View.VISIBLE;
+    }
+
+    /**
+     * 显示\关闭表情面板
+     */
+    @OnClick(R.id.iv_emotion)
+    public void showEmotionPanel(){
+        if (mEmoLayout.getVisibility() == View.VISIBLE){
+            mIvEmotion.setImageDrawable(mEmotionUnselect);
+            mEmoLayout.setVisibility(View.GONE);
+        }else {
+            mIvEmotion.setImageDrawable(mEmotionSelected);
+            mEmoLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     /**
@@ -116,7 +162,7 @@ public class KeyboardFragment extends BaseTabNavFragment implements ThxEditText.
     @OnClick(R.id.iv_send)
     public void send() {
         // send a event to the presenter of CmmActivity
-        if (Utility.isEmpty(mInput.getText().toString())) return;
+        if (Utilities.isEmpty(mInput.getText().toString())) return;
         Events<String> events = new Events<>();
         events.what = Events.Type.DELIVER_SEND_CMM;
         events.message = mInput.getText().toString();

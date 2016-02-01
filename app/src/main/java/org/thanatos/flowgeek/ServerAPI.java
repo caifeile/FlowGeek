@@ -5,6 +5,8 @@ import android.util.Log;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 
+import org.simpleframework.xml.convert.AnnotationStrategy;
+import org.simpleframework.xml.core.Persister;
 import org.thanatos.flowgeek.bean.RespBlogDetail;
 import org.thanatos.flowgeek.bean.RespCmmList;
 import org.thanatos.flowgeek.bean.RespNewsDetail;
@@ -51,7 +53,7 @@ public class ServerAPI {
 
             osChinaAPI = new Retrofit.Builder()
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                    .addConverterFactory(SimpleXmlConverterFactory.create())
+                    .addConverterFactory(SimpleXmlConverterFactory.create(new Persister(new AnnotationStrategy())))
                     .baseUrl("http://www.oschina.net/")
                     .client(httpClient)
                     .build()

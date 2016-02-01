@@ -17,6 +17,7 @@ import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.bean.NewsList;
 import org.thanatos.flowgeek.ui.fragment.BaseTabMainFragment;
 import org.thanatos.flowgeek.ui.fragment.ListNewsFragment;
+import org.thanatos.pay.ui.fragment.EntryFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -103,8 +104,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_setting) break;
 
                 break;
-            case R.id.menu_donate:
+            case R.id.menu_donate: // 捐助我
                 if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_donate) break;
+
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame_container,
+                                Fragment.instantiate(this, EntryFragment.class.getName()))
+                        .commit();
 
                 break;
             case R.id.menu_new : // 资讯

@@ -15,6 +15,9 @@ import org.thanatos.flowgeek.event.RxBus;
 import org.thanatos.flowgeek.ui.activity.DetailActivity;
 import org.thanatos.flowgeek.ui.fragment.CmmFragment;
 
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -81,7 +84,12 @@ public class CmmPresenter extends BaseListPresenter<CmmFragment> {
                             },
                             (error) -> {
                                 error.printStackTrace();
-                                view.onLoadErrorState(mode);
+
+                                if (error instanceof UnknownHostException || error instanceof SocketTimeoutException){
+                                    view.onNetworkInvalid(mode);
+                                }else{
+                                    view.onLoadErrorState(mode);
+                                }
                             });
             RxBus.getInstance().send(Events.Type.GET_ARTICLE_ID, Events.Type.DELIVER_ARTICLE_ID_FROM_LIST);
             RxBus.getInstance().send(Events.Type.GET_ARTICLE_CATALOG, Events.Type.DELIVER_ARTICLE_CATALOG_FROM_LIST);

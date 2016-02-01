@@ -11,19 +11,38 @@
         android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <org.thanatos.flowgeek.widget.ThxEditText
-            android:id="@+id/et_input"
-            android:layout_weight="1"
+
+        <RelativeLayout
             android:layout_width="0dp"
-            android:textColor="@color/input_text"
-            android:textSize="18sp"
-            android:padding="8dp"
-            android:drawableRight="@mipmap/icon_emotion"
-            android:drawableEnd="@mipmap/icon_emotion"
-            android:background="@drawable/selector_shape_input"
-            android:textColorHint="@color/hint"
-            android:hint="@string/say_something"
-            android:layout_height="wrap_content" />
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:focusable="true"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/et_input"
+                android:layout_width="match_parent"
+                android:textColor="@color/input_text"
+                android:background="@drawable/selector_shape_input"
+                android:textSize="18sp"
+                android:padding="8dp"
+                android:textColorHint="@color/hint"
+                android:hint="@string/say_something"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/iv_emotion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_emotion"
+                android:layout_alignBottom="@id/et_input"
+                android:paddingBottom="8dp"
+                android:paddingRight="8dp"
+                android:paddingLeft="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="@null" />
+        </RelativeLayout>
+
+
         <ImageView
             android:id="@+id/iv_send"
             android:src="@mipmap/icon_send"
@@ -35,6 +54,6 @@
             android:contentDescription="@null" />
     </LinearLayout>
 
-    <include layout="@layout/view_emotion"/>
+    <include layout="@layout/view_emotion" />
 
 </LinearLayout>

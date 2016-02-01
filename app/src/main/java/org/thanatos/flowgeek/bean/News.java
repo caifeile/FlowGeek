@@ -3,7 +3,9 @@ package org.thanatos.flowgeek.bean;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
+import org.simpleframework.xml.convert.Convert;
 import org.thanatos.base.domain.Entity;
+import org.thanatos.flowgeek.convert.IntegerConvert;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -187,7 +189,8 @@ public class News extends Entity {
         private String attachment;
 
         @Element(name = "authoruid2", required = false)
-        private int authorUid;
+        @Convert(IntegerConvert.class)
+        private Integer authorUid;
 
         @Element(name = "eventurl", required = false)
         private String eventUrl;
@@ -195,25 +198,32 @@ public class News extends Entity {
         public String getEventUrl() {
             return eventUrl;
         }
+
         public void setEventUrl(String eventUrl) {
             this.eventUrl = eventUrl;
         }
+
         public int getType() {
             return type;
         }
+
         public void setType(int type) {
             this.type = type;
         }
+
         public String getAttachment() {
             return attachment;
         }
+
         public void setAttachment(String attachment) {
             this.attachment = attachment;
         }
-        public int getAuthorUid() {
+
+        public Integer getAuthorUid() {
             return authorUid;
         }
-        public void setAuthorUid(int authorUid) {
+
+        public void setAuthorUid(Integer authorUid) {
             this.authorUid = authorUid;
         }
     }

@@ -5,7 +5,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
@@ -30,7 +29,7 @@ import org.thanatos.flowgeek.event.Events;
 import org.thanatos.flowgeek.event.RxBus;
 import org.thanatos.flowgeek.listener.OnScrollerGoDownListener;
 import org.thanatos.flowgeek.presenter.DetailPresenter;
-import org.thanatos.flowgeek.utils.Utility;
+import org.thanatos.base.utils.Utilities;
 
 import java.text.ParseException;
 
@@ -122,7 +121,6 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
                 if (software==null) break;
                 tvTitle.setText(software.getTitle());
                 tvName.setText("开发语言：" + software.getLanguage());
-                tvName.setTextSize(tvCreateOn.getTextSize());
                 tvName.setTextColor(tvCreateOn.getCurrentTextColor());
                 tvCreateOn.setText("收录时间：" + software.getRecordTime());
                 tvType.setText("开源协议：" + software.getLicense());
@@ -144,15 +142,15 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
             case DISPLAY_POST:
                 tvTitle.setText(article.getTitle());
                 tvName.setText(article.getAuthor());
-                if (!Utility.isEmpty(article.getPubDate())){
+                if (!Utilities.isEmpty(article.getPubDate())){
                     try {
-                        tvCreateOn.setText(getResources().getText(R.string.publish_on) + Utility.dateFormat(article.getPubDate()));
+                        tvCreateOn.setText(getResources().getText(R.string.publish_on) + Utilities.dateFormat(article.getPubDate()));
                     } catch (ParseException e) {
                         e.printStackTrace();
                         tvCreateOn.setText(article.getPubDate());
                     }
                 }
-                if (!Utility.isEmpty(article.getPortrait())){
+                if (!Utilities.isEmpty(article.getPortrait())){
                     Picasso.with(this).load(article.getPortrait()).into(ivPortrait);
                 }
                 break;

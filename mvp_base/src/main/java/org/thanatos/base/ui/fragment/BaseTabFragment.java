@@ -3,6 +3,7 @@ package org.thanatos.base.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  */
 public abstract class BaseTabFragment extends BaseFragment{
 
-    protected ViewPager viewPager;
+    protected ViewPager mViewPager;
 
     protected FragmentStatePagerAdapter mAdapter;
     protected ArrayList<ViewPageInfo> mTabs;
@@ -26,13 +27,13 @@ public abstract class BaseTabFragment extends BaseFragment{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        viewPager = (ViewPager) view.findViewById(R.id.view_pager);
+        mViewPager = (ViewPager) view.findViewById(R.id.view_pager);
 
         if (mAdapter==null){
             mTabs = new ArrayList<>();
             onSetupTabs();
 
-            viewPager.setAdapter(new FragmentStatePagerAdapter(getFragmentManager()) {
+            mViewPager.setAdapter(new FragmentStatePagerAdapter(getGenuineFragmentManager()) {
                 @Override
                 public Fragment getItem(int position) {
                     return mTabs.get(position).fragment;
@@ -48,7 +49,7 @@ public abstract class BaseTabFragment extends BaseFragment{
             });
 
         }else{
-            viewPager.setAdapter(mAdapter);
+            mViewPager.setAdapter(mAdapter);
         }
     }
 
@@ -63,6 +64,10 @@ public abstract class BaseTabFragment extends BaseFragment{
      * 设置Fragment
      */
     public abstract void onSetupTabs();
+
+    public FragmentManager getGenuineFragmentManager(){
+        return getFragmentManager();
+    }
 
     /**
      * 添加Fragment对象到ViewPager
@@ -82,11 +87,11 @@ public abstract class BaseTabFragment extends BaseFragment{
     }
 
     public void setCurrentItem(int index){
-        viewPager.setCurrentItem(index);
+        mViewPager.setCurrentItem(index);
     }
 
     public int getCurrentItem(){
-        return viewPager.getCurrentItem();
+        return mViewPager.getCurrentItem();
     }
 
     public int getPageCount(){

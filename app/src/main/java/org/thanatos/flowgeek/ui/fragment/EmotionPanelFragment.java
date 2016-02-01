@@ -1,7 +1,11 @@
 package org.thanatos.flowgeek.ui.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,10 +31,10 @@ public class EmotionPanelFragment extends BaseTabNavFragment {
     public static final int COLUMN = 7;
     public static final int ROW = 3;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_dot_nav, container, false);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setCurrentItem(0);
     }
 
     @Override
@@ -71,9 +75,18 @@ public class EmotionPanelFragment extends BaseTabNavFragment {
     private View initView(int start, int end) {
         final EmotionRules[] rules = Arrays.copyOfRange(EmotionRules.values(), start, end + 1);
         GridView view = new GridView(mContext);
+        GridView.LayoutParams params = new GridView.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
+        );
+        view.setLayoutParams(params);
         view.setNumColumns(COLUMN);
         view.setAdapter(new EmotionAdapter(rules));
         return view;
+    }
+
+    @Override
+    public FragmentManager getGenuineFragmentManager() {
+        return getChildFragmentManager();
     }
 
     public static class EmotionAdapter extends BaseAdapter {

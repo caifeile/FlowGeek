@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_selected="true">
-        <color android:color="@color/emotion_item_selected"/>
-    </item>
+    <item android:state_pressed="true" android:drawable="@color/emotion_item_selected"/>
+    <item android:state_selected="true" android:drawable="@color/emotion_item_selected"/>
+    <item android:state_focused="true" android:drawable="@color/emotion_item_selected"/>
     <item>
-        <color android:color="@color/transparent"/>
+        <shape>
+            <stroke
+                android:color="@color/emotion_item_selected"
+                android:width="1px"
+                android:dashWidth="0dp"/>
+        </shape>
     </item>
 </selector>
