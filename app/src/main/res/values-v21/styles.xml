@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="AppTheme.Base">
-        <!-- 设置导航栏和状态栏成半透明的 -->
-        <item name="android:windowTranslucentStatus">true</item>
-    </style>
+
+
 </resources>

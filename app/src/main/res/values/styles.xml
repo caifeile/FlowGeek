@@ -1,38 +1,9 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme.Base" parent="Theme.AppCompat">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">@color/principle</item>
-        <item name="colorPrimaryDark">@color/principle</item>
-        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
-        <item name="android:listDivider">@color/divider</item>
-        <!-- 避免控件都会顶到状态栏上 -->
-    </style>
-
+    <!--app start theme that has not title bar and state bar-->
     <style name="Theme.AppStart" parent="android:Theme.Black.NoTitleBar.Fullscreen">
         <item name="android:windowBackground">@mipmap/welcome</item>
         <item name="android:windowNoTitle">true</item>
     </style>
-
-    <style name="AppTheme" parent="AppTheme.Base">
-
-    </style>
-
-    <style name="AnimationActivity" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/anim_activity_in</item>
-        <item name="android:activityCloseExitAnimation">@anim/anim_activity_over</item>
-        <item name="android:activityOpenExitAnimation">@anim/anim_activity_open_exit</item>
-    </style>
-
-    <!-- 加载滚动条样式 -->
-    <style name="loading">
-        <item name="android:indeterminate">true</item>
-        <item name="android:indeterminateDrawable">@drawable/progress_loading</item>
-        <item name="android:indeterminateDuration">1000</item>
-        <item name="android:indeterminateOnly">true</item>
-    </style>
-
 
 </resources>

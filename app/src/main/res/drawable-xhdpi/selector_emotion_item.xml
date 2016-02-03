@@ -6,9 +6,10 @@
     <item>
         <shape>
             <stroke
-                android:color="@color/emotion_item_selected"
+                android:color="?attr/horizontal_divider"
                 android:width="1px"
                 android:dashWidth="0dp"/>
+            <solid android:color="?attr/keyboard_emotion_tab_item_unselected"/>
         </shape>
     </item>
 </selector>

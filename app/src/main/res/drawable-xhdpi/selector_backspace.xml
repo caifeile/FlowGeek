@@ -2,9 +2,9 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:state_pressed="true">
-        <color android:color="@color/emotion_item_selected"/>
+        <color android:color="?attr/keyboard_emotion_tab_item_selected"/>
     </item>
     <item>
-        <color android:color="@color/transparent"/>
+        <color android:color="?attr/keyboard_emotion_tab_item_unselected"/>
     </item>
 </selector>

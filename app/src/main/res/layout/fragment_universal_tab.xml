@@ -7,14 +7,14 @@
     <!--tab navigation-->
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_nav"
-        android:background="@color/principle"
+        android:background="?attr/principle"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         app:tabGravity="fill"
         app:tabMode="fixed"
-        app:tabIndicatorColor="@color/tab_indicator"
-        app:tabSelectedTextColor="@color/tab_indicator_selected"
-        app:tabTextColor="@color/tab_indicator_unselect" />
+        app:tabIndicatorColor="?attr/tab_item_underline"
+        app:tabSelectedTextColor="?attr/tab_item_selected"
+        app:tabTextColor="?attr/tab_item_unselected" />
 
     <!--view pager-->
     <android.support.v4.view.ViewPager

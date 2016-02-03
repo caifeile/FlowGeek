@@ -3,7 +3,7 @@
     android:id="@+id/layout_bottom_panel"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background"
+    android:background="?attr/detail_footer_background"
     android:orientation="vertical">
     <!--horizontal line-->
     <include layout="@layout/view_horizontal_line" />
@@ -24,7 +24,7 @@
             android:drawableTop="@mipmap/icon_share_mid_not"
             android:gravity="center"
             android:text="@string/share"
-            android:textColor="@color/detail_widget_option"
+            android:textColor="?attr/detail_footer_text"
             android:textSize="11sp" />
         <!--like-->
         <TextView
@@ -36,7 +36,7 @@
             android:drawableTop="@mipmap/icon_like_mid_not"
             android:gravity="center"
             android:text="@string/like"
-            android:textColor="@color/detail_widget_option"
+            android:textColor="?attr/detail_footer_text"
             android:textSize="11sp" />
         <!--bookmark-->
         <TextView
@@ -48,7 +48,7 @@
             android:drawableTop="@mipmap/icon_star_mid_not"
             android:gravity="center"
             android:text="@string/collection"
-            android:textColor="@color/detail_widget_option"
+            android:textColor="?attr/detail_footer_text"
             android:textSize="11sp" />
         <!--comments-->
         <TextView
@@ -60,7 +60,7 @@
             android:drawableTop="@mipmap/icon_comment_mid_not"
             android:gravity="center"
             android:text="@string/comment"
-            android:textColor="@color/detail_widget_option"
+            android:textColor="?attr/detail_footer_text"
             android:textSize="11sp" />
     </LinearLayout>
 </LinearLayout>

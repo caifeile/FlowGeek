@@ -56,7 +56,7 @@ public class NewsAdapter extends BaseListAdapter<News> {
 
         public NewsViewHolder(View view) {
             super(view);
-            ViewCompat.setElevation(view, 5);
+            ViewCompat.setElevation(view, 3);
             ButterKnife.bind(this, view);
         }
     }

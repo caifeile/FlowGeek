@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Spannable;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.trello.rxlifecycle.FragmentEvent;
 
@@ -24,8 +22,8 @@ import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.bean.EmotionRules;
 import org.thanatos.flowgeek.event.Events;
 import org.thanatos.flowgeek.event.RxBus;
-import org.thanatos.flowgeek.utils.UIHelper;
 import org.thanatos.base.utils.Utilities;
+import org.thanatos.flowgeek.utils.InputHelper;
 import org.thanatos.flowgeek.widget.EmotionPickerEditText;
 
 import butterknife.Bind;
@@ -42,7 +40,7 @@ public class KeyboardFragment extends BaseTabNavFragment implements EmotionPicke
     @Bind(R.id.emotion_layout) LinearLayout mEmoLayout;
     @Bind(R.id.iv_emotion) ImageView mIvEmotion;
 
-    private Drawable mEmotionUnselect;
+    private Drawable mEmotionUnselected;
     private Drawable mEmotionSelected;
 
     @Nullable
@@ -71,17 +69,17 @@ public class KeyboardFragment extends BaseTabNavFragment implements EmotionPicke
                     int end = mInput.getSelectionEnd();
                     if (start == end) {
                         // 没有多选时，直接在当前光标处添加
-                        mInput.append(UIHelper.display(mInput.getResources(), emotion));
+                        mInput.append(InputHelper.display(mInput.getResources(), emotion));
                     } else {
                         // 将已选中的部分替换为表情(当长按文字时会多选刷中很多文字)
-                        Spannable str = UIHelper.display(mInput.getResources(), emotion);
+                        Spannable str = InputHelper.display(mInput.getResources(), emotion);
                         mInput.getText().replace(Math.min(start, end), Math.max(start, end), str, 0, str.length());
                     }
                 });
         mViewPager.setCurrentItem(0);
 
         mEmotionSelected = getResources().getDrawable(R.mipmap.icon_emotion_selected);
-        mEmotionUnselect = getResources().getDrawable(R.mipmap.icon_emotion);
+        mEmotionUnselected = getResources().getDrawable(R.mipmap.icon_emotion);
     }
 
     @Override
@@ -140,7 +138,7 @@ public class KeyboardFragment extends BaseTabNavFragment implements EmotionPicke
     @OnClick(R.id.iv_emotion)
     public void showEmotionPanel(){
         if (mEmoLayout.getVisibility() == View.VISIBLE){
-            mIvEmotion.setImageDrawable(mEmotionUnselect);
+            mIvEmotion.setImageDrawable(mEmotionUnselected);
             mEmoLayout.setVisibility(View.GONE);
         }else {
             mIvEmotion.setImageDrawable(mEmotionSelected);
@@ -153,7 +151,7 @@ public class KeyboardFragment extends BaseTabNavFragment implements EmotionPicke
      */
     @OnClick(R.id.iv_backspace)
     public void rmEmo() {
-        UIHelper.backspace(mInput);
+        InputHelper.backspace(mInput);
     }
 
     /**

@@ -22,7 +22,7 @@
         android:text="@string/loading"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
-        android:textColor="@color/loading"
+        android:textColor="?attr/func_loading_text"
         android:textSize="16sp" />
 
 </LinearLayout>

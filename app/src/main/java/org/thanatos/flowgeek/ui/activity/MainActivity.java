@@ -1,9 +1,14 @@
 package org.thanatos.flowgeek.ui.activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.internal.ScrimInsetsFrameLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -12,6 +17,9 @@ import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.Toast;
 
+import org.thanatos.base.model.SharePreferenceManager;
+import org.thanatos.base.model.SharePreferenceManager.ApplicationSetting;
+import org.thanatos.base.model.SharePreferenceManager.ApplicationSetting.ApplicationTheme;
 import org.thanatos.base.ui.activity.BaseActivity;
 import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.bean.NewsList;
@@ -25,9 +33,10 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String CHANGE_THEME = "change_theme";
     @Bind(R.id.toolbar) Toolbar mToolbar;
     @Bind(R.id.layout_drawer) DrawerLayout mDrawerLayout;
-    @Bind(R.id.nav_view) NavigationView mDrawerNav;
+    @Bind(R.id.nav_view) NavigationView mDrawerNavView;
 
     private MenuItem mPreMenuItem;
 
@@ -36,27 +45,35 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ButterKnife.bind(this);
 
         initView();
     }
 
     private void initView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.transparent));
+        }
 
         mToolbar.setTitle("");
         mToolbar.setSubtitle(getResources().getString(R.string.app_name));
 
         setSupportActionBar(mToolbar);
 
-        mDrawerNav.setItemIconTintList(null);
+        mDrawerNavView.setItemIconTintList(null);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.open_drawer, R.string.close_drawer);
         mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
-        mDrawerNav.setNavigationItemSelectedListener(this);
+        if (getIntent().getBooleanExtra(CHANGE_THEME, false)){
+            mDrawerLayout.openDrawer(mDrawerNavView);
+        }
+
+        mDrawerNavView.setNavigationItemSelectedListener(this);
 
         setDefaultMenuItem();
-        mDrawerNav.setCheckedItem(R.id.menu_new);
+        mDrawerNavView.setCheckedItem(R.id.menu_new);
     }
 
     /**
@@ -92,27 +109,42 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_tweets) break;
 
                 break;
+
             case R.id.menu_technology_question_answer:
                 if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_technology_question_answer) break;
 
                 break;
+
             case R.id.menu_theme:
                 if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_theme) break;
-
-                break;
+                SharedPreferences preferences = SharePreferenceManager.getApplicationSetting(this);
+                int theme = preferences.getInt(ApplicationSetting.KEY_THEME, ApplicationTheme.LIGHT.getKey());
+                SharedPreferences.Editor editor = preferences.edit();
+                if (theme == ApplicationTheme.LIGHT.getKey()){
+                    editor.putInt(ApplicationSetting.KEY_THEME, ApplicationTheme.DARK.getKey());
+                }else{
+                    editor.putInt(ApplicationSetting.KEY_THEME, ApplicationTheme.LIGHT.getKey());
+                }
+                editor.apply();
+                finish();
+                Intent intent = getIntent();
+                intent.putExtra(CHANGE_THEME, true);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                overridePendingTransition(R.anim.enter, R.anim.exit);
+                return true;
             case R.id.menu_setting:
                 if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_setting) break;
 
                 break;
             case R.id.menu_donate: // 捐助我
                 if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_donate) break;
-
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_container,
                                 Fragment.instantiate(this, EntryFragment.class.getName()))
                         .commit();
-
                 break;
+
             case R.id.menu_new : // 资讯
                 if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_new) break;
                 setDefaultMenuItem();
@@ -121,7 +153,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         item.setChecked(true);
         if (mPreMenuItem!=null) mPreMenuItem.setChecked(false);
         mPreMenuItem = item;
-        mDrawerLayout.closeDrawer(mDrawerNav);
+        mDrawerLayout.closeDrawer(mDrawerNavView);
         return true;
     }
 

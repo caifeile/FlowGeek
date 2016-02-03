@@ -1,6 +1,7 @@
 package org.thanatos.flowgeek.ui.activity;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,7 +20,11 @@ import com.squareup.picasso.Picasso;
 import com.trello.rxlifecycle.ActivityEvent;
 
 import org.thanatos.base.domain.Entity;
+import org.thanatos.base.model.SharePreferenceManager;
+import org.thanatos.base.model.SharePreferenceManager.ApplicationSetting;
+import org.thanatos.base.model.SharePreferenceManager.ApplicationSetting.ApplicationTheme;
 import org.thanatos.base.ui.activity.BaseHoldBackActivity;
+import org.thanatos.base.utils.UIHelper;
 import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.UIManager;
 import org.thanatos.flowgeek.bean.Article;
@@ -80,6 +85,7 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
         @Bind(R.id.tv_content) WebView mWebView;
         public TextViewHold(View view) {
             super(view);
+
             ButterKnife.bind(this, view);
 
             // init WebView
@@ -198,10 +204,18 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
      * @return
      */
     private String loadHTMLData(String body) {
-        return new StringBuilder().append(UIManager.WEB_STYLE)
-                .append(UIManager.WEB_LOAD_IMAGES)
-                .append("<body ><div class='contentstyle' id='article_body'>")
-                .append(setupContentImage(body))
+        StringBuilder builder = new StringBuilder().append(UIManager.WEB_STYLE)
+                .append(UIManager.WEB_LOAD_IMAGES);
+
+        SharedPreferences preferences = SharePreferenceManager.getApplicationSetting(this);
+        int theme = preferences.getInt(ApplicationSetting.KEY_THEME, ApplicationTheme.LIGHT.getKey());
+        if(theme == SharePreferenceManager.ApplicationSetting.ApplicationTheme.DARK.getKey()){
+            builder.append("<body class='night'><div class='contentstyle' id='article_body'>");
+        }else{
+            builder.append("<body><div class='contentstyle' id='article_body'>");
+        }
+
+        return builder.append(setupContentImage(body))
                 .append("</div></body>")
                 .toString();
     }

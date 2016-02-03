@@ -143,7 +143,7 @@ a{
 }
 
 body.night .contentstyle {
-	color: #FFF;
+	color: #181E21;
 }
 
 .contentstyle p {
@@ -156,19 +156,19 @@ body.night {
 }
 
 body.night {
-	background: #222222;
+	background: #181E21;
 }
 
 body.night .about {
-	color: #999999
+	color: #83898C
 }
 
 body.night .oschina_software {
-	color: #999999
+	color: #83898C
 }
 
 body.night p {
-	color: #999999
+	color: #83898C
 }
 
 body.night a {
@@ -176,7 +176,7 @@ body.night a {
 }
 
 body.night .title {
-	color: #a8a8a8;
+	color: #FFFFFF;
 }
 
 body.night .authortime {
@@ -200,5 +200,5 @@ body.night .software_urls li a {
 }
 
 body.night pre {
-	background: #222222
+	background: #181E21
 }

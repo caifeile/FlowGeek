@@ -1,56 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <!--universal container-->
-    <android.support.design.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent">
 
         <!--app bar layout-->
         <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar"
-            app:elevation="0dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:elevation="0dp">
             <!--toolbar-->
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/principle"
+                android:background="?attr/colorPrimary"
                 android:popupTheme="@android:style/Widget.Material.PopupMenu"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:layout_scrollFlags="scroll"/>
+                app:layout_scrollFlags="scroll" />
             <!--post's title-->
             <TextView
                 android:id="@+id/tv_title"
-                android:background="@color/background"
-                android:textColor="@color/detail_title"
-                android:alpha="@dimen/standard_alpha"
-                android:textSize="18sp"
-                android:padding="10dp"
-                app:layout_scrollFlags="scroll"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:background="?attr/detail_title_background"
+                android:padding="10dp"
+                android:textColor="?attr/detail_title_text"
+                android:textSize="18sp"
+                app:layout_scrollFlags="scroll" />
             <!--the person info layout-->
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
                 <!--horizontal line-->
-                <include layout="@layout/view_horizontal_line"/>
+                <include layout="@layout/view_horizontal_line" />
                 <!--the person info-->
                 <RelativeLayout
-                    android:padding="10dp"
-                    android:background="@color/background"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="?attr/detail_header_background"
+                    android:padding="10dp">
                     <!--person portrait-->
                     <ImageView
                         android:id="@+id/img_portrait"
@@ -59,7 +56,7 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
                         android:background="@color/_default"
-                        android:contentDescription="@null"/>
+                        android:contentDescription="@null" />
                     <!--person name-->
                     <TextView
                         android:id="@+id/tv_person_name"
@@ -68,19 +65,19 @@
                         android:layout_toEndOf="@id/img_portrait"
                         android:layout_toRightOf="@id/img_portrait"
                         android:paddingTop="4dp"
-                        android:textColor="@color/principle"
-                        android:textSize="16sp"/>
+                        android:textColor="?attr/principle"
+                        android:textSize="16sp" />
                     <!--user's summary-->
                     <TextView
                         android:id="@+id/tv_publish_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/img_portrait"
-                        android:layout_toRightOf="@id/img_portrait"
                         android:layout_below="@id/tv_person_name"
                         android:layout_marginTop="3dp"
+                        android:layout_toEndOf="@id/img_portrait"
+                        android:layout_toRightOf="@id/img_portrait"
                         android:textColor="@color/time"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                     <!--belong to topic-->
                     <TextView
                         android:id="@+id/tv_type"
@@ -90,23 +87,23 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="6dp"
                         android:textColor="@color/time"
-                        android:visibility="gone"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp"
+                        android:visibility="gone" />
                     <!--the post's published time-->
                     <TextView
                         android:id="@+id/tv_extend"
-                        android:layout_below="@id/tv_type"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
+                        android:layout_below="@id/tv_type"
                         android:layout_marginTop="6dp"
-                        android:visibility="gone"
                         android:textColor="@color/time"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp"
+                        android:visibility="gone" />
                 </RelativeLayout>
                 <!--horizontal line-->
-                <include layout="@layout/view_horizontal_line"/>
+                <include layout="@layout/view_horizontal_line" />
             </LinearLayout>
 
         </android.support.design.widget.AppBarLayout>
@@ -114,18 +111,18 @@
         <!--Frame Container-->
         <android.support.v7.widget.RecyclerView
             android:id="@+id/list_view"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/background"
-            android:cacheColorHint="@color/transparent"/>
+            android:background="?attr/detail_content_background"
+            android:cacheColorHint="@color/transparent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </android.support.design.widget.CoordinatorLayout>
 
     <!--bottom panel-->
     <include
+        layout="@layout/view_detail_bottom_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/view_detail_bottom_widget"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

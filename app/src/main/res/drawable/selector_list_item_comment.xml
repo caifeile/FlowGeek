@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true">
+        <color android:color="?attr/comment_list_view_selected"/>
+    </item>
+    <item android:state_selected="true">
+        <color android:color="?attr/comment_list_view_selected"/>
+    </item>
+    <item>
+        <color android:color="?attr/comment_list_view_unselected"/>
+    </item>
+
+</selector>

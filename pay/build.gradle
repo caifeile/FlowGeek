@@ -29,6 +29,8 @@ dependencies {
 
     // Json Converter
     compile 'org.immutables:gson:2.1.4'
+    compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
+    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
 
     compile project(':mvp_base')
 }

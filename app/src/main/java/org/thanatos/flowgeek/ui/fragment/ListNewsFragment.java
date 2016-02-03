@@ -1,11 +1,7 @@
 package org.thanatos.flowgeek.ui.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import org.thanatos.base.adapter.BaseListAdapter;
 import org.thanatos.base.ui.fragment.BaseListFragment;
@@ -15,7 +11,6 @@ import org.thanatos.flowgeek.adapter.NewsAdapter;
 import org.thanatos.flowgeek.bean.News;
 import org.thanatos.flowgeek.bean.NewsList;
 import org.thanatos.flowgeek.presenter.NewsPresenter;
-import org.thanatos.flowgeek.utils.UIHelper;
 
 import nucleus.factory.RequiresPresenter;
 

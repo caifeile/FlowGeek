@@ -16,6 +16,7 @@ import org.thanatos.base.domain.Entity;
 import org.thanatos.base.domain.Page;
 import org.thanatos.base.manager.DeviceManager;
 import org.thanatos.base.presenter.BaseListPresenter;
+import org.thanatos.base.utils.UIHelper;
 import org.thanatos.base.widget.ErrorLayout;
 
 import java.util.Iterator;
@@ -61,7 +62,11 @@ public abstract class BaseListFragment<T extends Entity, P extends BaseListPrese
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mSwipeRefreshLayout.setColorSchemeResources(
                 R.color.swipe_refresh_first, R.color.swipe_refresh_second,
-                R.color.swipe_refresh_third, R.color.swipe_refresh_four);
+                R.color.swipe_refresh_third, R.color.swipe_refresh_four
+        );
+        mSwipeRefreshLayout.setProgressBackgroundColorSchemeResource(
+                UIHelper.getAttrResourceFromTheme(R.attr.refresh_progress_background, getActivity().getTheme())
+        );
 
         mErrorLayout.setOnActiveClickListener(this);
 

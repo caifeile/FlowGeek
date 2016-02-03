@@ -1,29 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--base color setting-->
-    <color name="principle">#339933</color>
-    <color name="state">#337733</color>
-    <color name="item_title">#666</color>
-    <color name="item_content">#999</color>
-    <color name="item_background">#FFF</color>
     <color name="readed">#999</color>
     <color name="background">#FFFFFF</color>
-    <color name="title_content">#333</color>
     <color name="detail_content">#666</color>
-    <color name="tab_indicator_selected">#ebfaeb</color>
-    <color name="tab_indicator_unselect">#FFF</color>
     <color name="_default">#999</color>
-
-    <!-- swipe refresh color -->
-    <color name="swipe_refresh_first">#ff00ddff</color>
-    <color name="swipe_refresh_second">#ffffbb33</color>
-    <color name="swipe_refresh_third">#ffff4444</color>
-    <color name="swipe_refresh_four">#ffaa66cc</color>
-
-   <!--other widget setting-->
-    <color name="drawer_menu_text">#000000</color>
-    <color name="drawer_header_nick">#FFFFFF</color>
-    <color name="drawer_header_sign">#FFFFFF</color>
 
     <color name="pager_nav_item_background_selected">#FFFFFF</color>
     <color name="pager_nav_item_background_unselected">#00000000</color>
@@ -38,7 +19,6 @@
     <color name="input_text">#666</color>
     <color name="emotion_item_selected">#d2d1d1</color>
     <color name="emotion_item">#666</color>
-    <color name="username">#339933</color>
     <color name="tab_indicator">#ebfaeb</color>
 
 </resources>

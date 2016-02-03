@@ -1,5 +1,160 @@
 <resources>
 
+    <!--=================Base Theme====================-->
+    <!--坑!请在application设置这个主题,否则在运行时设置,windowActionBar和windowNotTitle将会无效-->
+    <style name="AppTheme.Base" parent="Theme.AppCompat">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimaryDark">@color/light_state_bar</item>
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+    </style>
+
+    <!--==================light theme==================-->
+    <style name="LightTheme.Base" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/light_principle</item>
+        <item name="colorPrimaryDark">@color/light_state_bar</item>
+        <item name="android:textColorPrimary">#FFF</item>
+        <item name="android:listDivider">@color/light_divider</item>
+        <item name="principle">@color/light_principle</item>
+        <item name="state_bar">@color/light_state_bar</item>
+        <item name="action_bar_text">@color/light_action_bar_text</item>
+        <item name="hint">@color/light_hint</item>
+        <item name="horizontal_divider">@color/light_divider</item>
+        
+        <item name="tab_item_selected">@color/light_tab_item_selected</item>
+        <item name="tab_item_unselected">@color/light_tab_item_unselected</item>
+        <item name="tab_item_underline">@color/light_tab_item_underline</item>
+        
+        <item name="list_view_background">@color/light_list_view_background</item>
+        
+        <item name="main_list_view_title">@color/light_main_list_view_title</item>
+        <item name="main_list_view_content">@color/light_main_list_view_title</item>
+        <item name="main_list_view_username">@color/light_main_list_view_username</item>
+        <item name="main_list_view_time">@color/light_main_list_view_title</item>
+        <item name="main_list_view_selected">@color/light_main_list_view_selected</item>
+        <item name="main_list_view_unselected">@color/light_main_list_view_unselected</item>
+        <item name="main_list_view_ripple">@color/light_main_list_view_ripple</item>
+        <item name="main_list_view_comment_count">@color/light_main_list_view_title</item>
+        
+        <item name="drawer_header_background">@color/light_drawer_header_background</item>
+        <item name="drawer_header_username">@color/light_drawer_header_username</item>
+        <item name="drawer_header_abilities">@color/light_drawer_header_abilities</item>
+        <item name="drawer_header_abilities_background">@color/light_drawer_header_abilities_background</item>
+        <item name="drawer_header_skill_score">@color/light_drawer_header_skill_score</item>
+
+        <item name="drawer_container_background">@color/light_drawer_container_background</item>
+        <item name="drawer_container_menu_text">@color/light_drawer_container_menu_text</item>
+
+        <item name="func_loading_text">@color/light_func_loading_text</item>
+        
+        <item name="refresh_progress_background">@color/light_refresh_progress_background</item>
+
+        <item name="detail_title_background">@color/light_detail_title_background</item>
+        <item name="detail_title_text">@color/light_detail_title_text</item>
+        <item name="detail_header_username">@color/light_detail_header_username</item>
+        <item name="detail_header_other">@color/light_detail_header_other</item>
+        <item name="detail_header_background">@color/light_detail_header_background</item>
+        <item name="detail_content_text">@color/light_detail_content_text</item>
+        <item name="detail_content_background">@color/light_detail_content_background</item>
+        <item name="detail_footer_text">@color/light_detail_footer_text</item>
+        <item name="detail_footer_background">@color/light_detail_footer_background</item>
+
+        <item name="comment_list_view_username">@color/light_comment_list_view_username</item>
+        <item name="comment_list_view_time">@color/light_comment_list_view_time</item>
+        <item name="comment_list_view_content">@color/light_comment_list_view_content</item>
+        <item name="comment_list_view_selected">@color/light_comment_list_view_selected</item>
+        <item name="comment_list_view_unselected">@color/light_comment_list_view_unselected</item>
+        <item name="comment_list_view_ripple">@color/light_comment_list_view_ripple</item>
+
+        <item name="keyboard_panel_background">@color/light_keyboard_panel_background</item>
+        <item name="keyboard_emotion_tab_item_selected">@color/light_keyboard_emotion_tab_item_selected</item>
+        <item name="keyboard_emotion_tab_item_unselected">@color/light_keyboard_emotion_tab_item_unselected</item>
+        <item name="keyboard_emotion_card_tab_item_selected">@color/light_keyboard_emotion_card_tab_item_selected</item>
+        <item name="keyboard_emotion_card_tab_item_unselected">@color/light_keyboard_emotion_card_tab_item_unselected</item>
+        <item name="keyboard_input_text">@color/light_keyboard_input_text</item>
+    </style>
+
+    <!--======================Dark Theme========================-->
+    <style name="DarkTheme.Base" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/dark_principle</item>
+        <item name="colorPrimaryDark">@color/dark_state_bar</item>
+        <item name="android:textColorPrimary">#FFF</item>
+        <item name="android:listDivider">@color/dark_divider</item>
+
+        <item name="principle">@color/dark_principle</item>
+        <item name="state_bar">@color/dark_state_bar</item>
+        <item name="action_bar_text">@color/dark_action_bar_text</item>
+        <item name="hint">@color/dark_hint</item>
+        <item name="horizontal_divider">@color/dark_divider</item>
+
+        <item name="tab_item_selected">@color/dark_tab_item_selected</item>
+        <item name="tab_item_unselected">@color/dark_tab_item_unselected</item>
+        <item name="tab_item_underline">@color/dark_tab_item_underline</item>
+
+        <item name="list_view_background">@color/dark_list_view_background</item>
+
+        <item name="main_list_view_title">@color/dark_main_list_view_title</item>
+        <item name="main_list_view_content">@color/dark_main_list_view_content</item>
+        <item name="main_list_view_username">@color/dark_main_list_view_username</item>
+        <item name="main_list_view_time">@color/dark_main_list_view_time</item>
+        <item name="main_list_view_selected">@color/dark_main_list_view_selected</item>
+        <item name="main_list_view_unselected">@color/dark_main_list_view_unselected</item>
+        <item name="main_list_view_ripple">@color/dark_main_list_view_ripple</item>
+        <item name="main_list_view_comment_count">@color/dark_main_list_view_comment_count</item>
+
+        <item name="drawer_header_background">@color/dark_drawer_header_background</item>
+        <item name="drawer_header_username">@color/dark_drawer_header_username</item>
+        <item name="drawer_header_abilities">@color/dark_drawer_header_abilities</item>
+        <item name="drawer_header_abilities_background">@color/dark_drawer_header_abilities_background</item>
+        <item name="drawer_header_skill_score">@color/dark_drawer_header_skill_score</item>
+
+        <item name="drawer_container_background">@color/dark_drawer_container_background</item>
+        <item name="drawer_container_menu_text">@color/dark_drawer_container_menu_text</item>
+
+        <item name="func_loading_text">@color/dark_func_loading_text</item>
+
+        <item name="refresh_progress_background">@color/dark_refresh_progress_background</item>
+
+        <item name="detail_title_background">@color/dark_detail_title_background</item>
+        <item name="detail_title_text">@color/dark_detail_title_text</item>
+        <item name="detail_header_username">@color/dark_detail_header_username</item>
+        <item name="detail_header_other">@color/dark_detail_header_other</item>
+        <item name="detail_header_background">@color/dark_detail_header_background</item>
+        <item name="detail_content_text">@color/dark_detail_content_text</item>
+        <item name="detail_content_background">@color/dark_detail_content_background</item>
+        <item name="detail_footer_text">@color/dark_detail_footer_text</item>
+        <item name="detail_footer_background">@color/dark_detail_footer_background</item>
+
+        <item name="comment_list_view_username">@color/dark_comment_list_view_username</item>
+        <item name="comment_list_view_time">@color/dark_comment_list_view_time</item>
+        <item name="comment_list_view_content">@color/dark_comment_list_view_content</item>
+        <item name="comment_list_view_selected">@color/dark_comment_list_view_selected</item>
+        <item name="comment_list_view_unselected">@color/dark_comment_list_view_unselected</item>
+        <item name="comment_list_view_ripple">@color/dark_comment_list_view_ripple</item>
+
+        <item name="keyboard_panel_background">@color/dark_keyboard_panel_background</item>
+        <item name="keyboard_emotion_tab_item_selected">@color/dark_keyboard_emotion_tab_item_selected</item>
+        <item name="keyboard_emotion_tab_item_unselected">@color/dark_keyboard_emotion_tab_item_unselected</item>
+        <item name="keyboard_emotion_card_tab_item_selected">@color/dark_keyboard_emotion_card_tab_item_selected</item>
+        <item name="keyboard_emotion_card_tab_item_unselected">@color/dark_keyboard_emotion_card_tab_item_unselected</item>
+        <item name="keyboard_input_text">@color/dark_keyboard_input_text</item>
+    </style>
+
+    <style name="LightTheme" parent="LightTheme.Base">
+
+    </style>
+
+    <style name="DarkTheme" parent="DarkTheme.Base">
+
+    </style>
+
+    <!--activity动画-->
+    <style name="AnimationActivity" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/anim_activity_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/anim_activity_over</item>
+        <item name="android:activityOpenExitAnimation">@anim/anim_activity_open_exit</item>
+    </style>
+
     <!-- 加载滚动条样式 -->
     <style name="loading">
         <item name="android:indeterminate">true</item>

@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--base color setting-->
-    <color name="background">#FFFFFF</color>
-    <color name="toolbar_bgd">#339933</color>
     <color name="transparent">#00000000</color>
-    <color name="hint">#EEE</color>
-    <color name="divider">#EEE</color>
-    <color name="loading">#999</color>
-    <color name="toolbar_subtitle">#FFFFFF</color>
 
     <!-- swipe refresh color -->
     <color name="swipe_refresh_first">#ff00ddff</color>
@@ -15,12 +9,129 @@
     <color name="swipe_refresh_third">#ffff4444</color>
     <color name="swipe_refresh_four">#ffaa66cc</color>
 
-   <!--other widget setting-->
+    <!--other widget setting-->
     <color name="dot_selected">#339933</color>
     <color name="dot_unselected">#ebfaeb</color>
-    <color name="list_view_bgd">#ebfaeb</color>
 
     <color name="normal_text">#585858</color>
     <color name="white">#FFFFFF</color>
+
+    <!--====================the light theme color set=======================-->
+    <color name="light_principle">#339933</color>
+    <color name="light_state_bar">#339933</color>
+    <color name="light_action_bar_text">#FFFFFF</color>
+    <color name="light_hint">#EEE</color>
+    <color name="light_divider">#EEE</color>
+
+    <color name="light_tab_item_selected">#EBFAEB</color>
+    <color name="light_tab_item_unselected">#FFFFFF</color>
+    <color name="light_tab_item_underline">#EBFAEB</color>
+
+    <color name="light_list_view_background">#EBFAEB</color>
+
+    <color name="light_main_list_view_title">#666</color>
+    <color name="light_main_list_view_content">#999</color>
+    <color name="light_main_list_view_username">#339933</color>
+    <color name="light_main_list_view_time">#999</color>
+    <color name="light_main_list_view_unselected">#FFFFFF</color>
+    <color name="light_main_list_view_selected">#EEE</color>
+    <color name="light_main_list_view_ripple">#E4E4E4</color>
+    <color name="light_main_list_view_comment_count">#999</color>
+
+    <color name="light_drawer_header_background">#339933</color>
+    <color name="light_drawer_header_username">#FFFFFF</color>
+    <color name="light_drawer_header_abilities">#FFFFFF</color>
+    <color name="light_drawer_header_abilities_background">#EEE</color>
+    <color name="light_drawer_header_skill_score">#FFFFFF</color>
+
+    <color name="light_drawer_container_background">#FFFFFF</color>
+    <color name="light_drawer_container_menu_text">#000000</color>
+
+    <color name="light_func_loading_text">#EEE</color>
+
+    <color name="light_refresh_progress_background">#FFFFFF</color>
+
+    <color name="light_detail_title_background">#EBFAEB</color>
+    <color name="light_detail_title_text">#000000</color>
+    <color name="light_detail_header_username">#339933</color>
+    <color name="light_detail_header_other">#999</color>
+    <color name="light_detail_header_background">#FFF</color>
+    <color name="light_detail_content_text">#000</color>
+    <color name="light_detail_content_background">#F6F6F6</color>
+    <color name="light_detail_footer_text">#999</color>
+    <color name="light_detail_footer_background">#FFF</color>
+
+    <color name="light_comment_list_view_username">#339933</color>
+    <color name="light_comment_list_view_time">#999</color>
+    <color name="light_comment_list_view_content">#999</color>
+    <color name="light_comment_list_view_unselected">#FFF</color>
+    <color name="light_comment_list_view_selected">#EEE</color>
+    <color name="light_comment_list_view_ripple">#E4E4E4</color>
+
+    <color name="light_keyboard_panel_background">#FFF</color>
+    <color name="light_keyboard_emotion_tab_item_selected">#FFF</color>
+    <color name="light_keyboard_emotion_tab_item_unselected">#EEE</color>
+    <color name="light_keyboard_emotion_card_tab_item_selected">#339933</color>
+    <color name="light_keyboard_emotion_card_tab_item_unselected">#EBFAEB</color>
+    <color name="light_keyboard_input_text">#000</color>
+
+    <!--====================the dark theme color set=======================-->
+    <color name="dark_principle">#1D2428</color>
+    <color name="dark_state_bar">#1D2428</color>
+    <color name="dark_action_bar_text">#FFFFFF</color>
+    <color name="dark_hint">#293339</color>
+    <color name="dark_divider">#293339</color>
+
+    <color name="dark_tab_item_selected">#EBFAEB</color>
+    <color name="dark_tab_item_unselected">#FFFFFF</color>
+    <color name="dark_tab_item_underline">#EBFAEB</color>
+
+    <color name="dark_list_view_background">#181E21</color>
+
+    <color name="dark_main_list_view_title">#C7C9C9</color>
+    <color name="dark_main_list_view_content">#83898C</color>
+    <color name="dark_main_list_view_username">#339933</color>
+    <color name="dark_main_list_view_time">#83898C</color>
+    <color name="dark_main_list_view_unselected">#293339</color>
+    <color name="dark_main_list_view_selected">#242e35</color>
+    <color name="dark_main_list_view_ripple">#1f282e</color>
+    <color name="dark_main_list_view_comment_count">#83898C</color>
+
+    <color name="dark_drawer_header_background">#181E21</color>
+    <color name="dark_drawer_header_username">#FFFFFF</color>
+    <color name="dark_drawer_header_abilities">#FFFFFF</color>
+    <color name="dark_drawer_header_abilities_background">#EEE</color>
+    <color name="dark_drawer_header_skill_score">#FFFFFF</color>
+
+    <color name="dark_drawer_container_background">#252c2e</color>
+    <color name="dark_drawer_container_menu_text">#FFFFFF</color>
+
+    <color name="dark_func_loading_text">#FFF</color>
+
+    <color name="dark_refresh_progress_background">#181E21</color>
+
+    <color name="dark_detail_title_background">#181E21</color>
+    <color name="dark_detail_title_text">#FFF</color>
+    <color name="dark_detail_header_username">#339933</color>
+    <color name="dark_detail_header_other">#83898C</color>
+    <color name="dark_detail_header_background">#1D2428</color>
+    <color name="dark_detail_content_text">#83898C</color>
+    <color name="dark_detail_content_background">#181E21</color>
+    <color name="dark_detail_footer_text">#83898C</color>
+    <color name="dark_detail_footer_background">#1D2428</color>
+
+    <color name="dark_comment_list_view_username">#339933</color>
+    <color name="dark_comment_list_view_time">#83898C</color>
+    <color name="dark_comment_list_view_content">#83898C</color>
+    <color name="dark_comment_list_view_unselected">#293339</color>
+    <color name="dark_comment_list_view_selected">#242e35</color>
+    <color name="dark_comment_list_view_ripple">#1f282e</color>
+
+    <color name="dark_keyboard_panel_background">#293339</color>
+    <color name="dark_keyboard_emotion_tab_item_selected">#293339</color>
+    <color name="dark_keyboard_emotion_tab_item_unselected">#1D2428</color>
+    <color name="dark_keyboard_emotion_card_tab_item_selected">#339933</color>
+    <color name="dark_keyboard_emotion_card_tab_item_unselected">#EBFAEB</color>
+    <color name="dark_keyboard_input_text">#FFF</color>
 
 </resources>

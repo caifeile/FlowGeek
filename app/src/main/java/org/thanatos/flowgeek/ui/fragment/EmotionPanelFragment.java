@@ -1,12 +1,8 @@
 package org.thanatos.flowgeek.ui.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -18,7 +14,7 @@ import android.widget.TextView;
 import org.thanatos.base.ui.fragment.BaseTabNavFragment;
 import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.bean.EmotionRules;
-import org.thanatos.flowgeek.utils.UIHelper;
+import org.thanatos.base.utils.UIHelper;
 
 import java.util.Arrays;
 
