@@ -40,16 +40,6 @@ public abstract class BaseTabMainFragment extends BaseTabFragment {
         ViewCompat.setElevation(mTabLayout, 7);
         if (mAdapter==null){
             mTabLayout.setupWithViewPager(mViewPager);
-
-            /*for (int i=0; i<mTabLayout.getTabCount(); i++){
-                TabLayout.Tab tab = mTabLayout.getTabAt(i);
-                if (tab!=null) tab.setCustomView(setupTabItemView(mTabs.get(i).tag));
-            }
-
-            if (mTabs.size()>0){
-                setCurrentItem(0);
-                mTabLayout.getTabAt(0).getCustomView().setSelected(true);
-            }*/
         }
     }
 
