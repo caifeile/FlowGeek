@@ -6,15 +6,19 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.internal.ScrimInsetsFrameLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import org.thanatos.base.model.SharePreferenceManager;
@@ -25,6 +29,8 @@ import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.bean.NewsList;
 import org.thanatos.flowgeek.ui.fragment.BaseTabMainFragment;
 import org.thanatos.flowgeek.ui.fragment.ListNewsFragment;
+import org.thanatos.flowgeek.ui.fragment.ListTweetFragment;
+import org.thanatos.flowgeek.ui.fragment.TabTweetFragment;
 import org.thanatos.pay.ui.fragment.EntryFragment;
 
 import butterknife.Bind;
@@ -37,6 +43,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Bind(R.id.toolbar) Toolbar mToolbar;
     @Bind(R.id.layout_drawer) DrawerLayout mDrawerLayout;
     @Bind(R.id.nav_view) NavigationView mDrawerNavView;
+    @Bind(R.id.layout_coordinator) CoordinatorLayout mLayoutCoordinator;
 
     private MenuItem mPreMenuItem;
 
@@ -97,25 +104,28 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.menu_explore:
+            case R.id.menu_explore: // 发现探索
                 if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_explore) break;
+                CoordinatorLayout layout;
 
                 break;
-            case R.id.menu_blog:
+            case R.id.menu_blog: // 博客
                 if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_blog) break;
 
                 break;
-            case R.id.menu_tweets:
+            case R.id.menu_tweets: // 动弹
                 if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_tweets) break;
-
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame_container, Fragment.instantiate(this, TabTweetFragment.class.getName()))
+                        .commit();
                 break;
 
-            case R.id.menu_technology_question_answer:
+            case R.id.menu_technology_question_answer: // 技术问答
                 if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_technology_question_answer) break;
 
                 break;
 
-            case R.id.menu_theme:
+            case R.id.menu_theme: // 更改主题
                 if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_theme) break;
                 SharedPreferences preferences = SharePreferenceManager.getApplicationSetting(this);
                 int theme = preferences.getInt(ApplicationSetting.KEY_THEME, ApplicationTheme.LIGHT.getKey());
@@ -133,7 +143,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 startActivity(intent);
                 overridePendingTransition(R.anim.enter, R.anim.exit);
                 return true;
-            case R.id.menu_setting:
+            case R.id.menu_setting: // 设置
                 if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_setting) break;
 
                 break;
@@ -161,6 +171,18 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public void addToCoordinatorLayout(View view){
+        mLayoutCoordinator.addView(view);
+    }
+
+    public void removeFormCoordinatorLayout(View view){
+        mLayoutCoordinator.removeView(view);
+    }
+
+    public CoordinatorLayout getCoordinatorLayout(){
+        return mLayoutCoordinator;
     }
 
     private boolean isBacking = false;

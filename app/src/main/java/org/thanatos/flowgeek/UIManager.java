@@ -3,6 +3,7 @@ package org.thanatos.flowgeek;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.view.View;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -11,6 +12,7 @@ import org.thanatos.flowgeek.bean.Article;
 import org.thanatos.flowgeek.bean.News;
 import org.thanatos.flowgeek.ui.activity.CmmActivity;
 import org.thanatos.flowgeek.ui.activity.DetailActivity;
+import org.thanatos.flowgeek.ui.fragment.ListTweetFragment;
 import org.thanatos.flowgeek.utils.URLUtils;
 import org.thanatos.base.utils.Utilities;
 
@@ -251,5 +253,9 @@ public class UIManager {
     public static void showCmmActivity(Context context) {
         Intent intent = new Intent(context, CmmActivity.class);
         context.startActivity(intent);
+    }
+
+    public static void jump2login(Context context) {
+
     }
 }

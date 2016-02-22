@@ -1,1 +1,1 @@
-include ':app', ':presenter', ':pay', ':mvp_base'
+include ':app', ':presenter', ':pay', ':mvp_base', ':floating_action_button'

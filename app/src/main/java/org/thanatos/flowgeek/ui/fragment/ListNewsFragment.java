@@ -10,7 +10,7 @@ import org.thanatos.flowgeek.UIManager;
 import org.thanatos.flowgeek.adapter.NewsAdapter;
 import org.thanatos.flowgeek.bean.News;
 import org.thanatos.flowgeek.bean.NewsList;
-import org.thanatos.flowgeek.presenter.NewsPresenter;
+import org.thanatos.flowgeek.presenter.ListNewsPresenter;
 
 import nucleus.factory.RequiresPresenter;
 
@@ -18,8 +18,8 @@ import nucleus.factory.RequiresPresenter;
 /**
  * Created by thanatos on 15/12/22.
  */
-@RequiresPresenter(NewsPresenter.class)
-public class ListNewsFragment extends BaseListFragment<News, NewsPresenter> implements BaseListAdapter.OnItemClickListener {
+@RequiresPresenter(ListNewsPresenter.class)
+public class ListNewsFragment extends BaseListFragment<News, ListNewsPresenter> implements BaseListAdapter.OnItemClickListener {
 
     public int mCatalog;
 

@@ -1,6 +1,7 @@
 package org.thanatos.flowgeek.bean;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 import org.thanatos.base.domain.Entity;
 
@@ -16,43 +17,43 @@ public class Tweet extends Entity {
     @Element(name = "id", required = false)
     private Long id;
 
-    @Element(name = "portrait")
+    @Element(name = "portrait", required = false)
     private String portrait;
 
-    @Element(name = "author")
+    @Element(name = "author", required = false)
     private String author;
 
-    @Element(name = "authorid")
+    @Element(name = "authorid", required = false)
     private int authorId;
 
-    @Element(name = "body")
+    @Element(name = "body", required = false)
     private String body;
 
-    @Element(name = "appclient")
+    @Element(name = "appclient", required = false)
     private int appClient;
 
-    @Element(name = "commentCount")
+    @Element(name = "commentCount", required = false)
     private String cmmCount;
 
-    @Element(name = "pubDate")
+    @Element(name = "pubDate", required = false)
     private String pubDate;
 
-    @Element(name = "imgSmall")
+    @Element(name = "imgSmall", required = false)
     private String imgSmall;
 
-    @Element(name = "imgBig")
+    @Element(name = "imgBig", required = false)
     private String imgBig;
 
-    @Element(name = "attach")
+    @Element(name = "attach", required = false)
     private String attach;
 
-    @Element(name = "likeCount")
+    @Element(name = "likeCount", required = false)
     private int likeCount;
 
-    @Element(name = "isLike")
+    @Element(name = "isLike", required = false)
     private int isLike;
 
-    @Element(name = "likeList")
+    @ElementList(name = "likeList", required = false)
     private List<User> likeUser = new ArrayList<User>();
 
     private String imageFilePath;

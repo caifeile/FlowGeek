@@ -13,6 +13,7 @@ import org.thanatos.flowgeek.bean.RespNewsDetail;
 import org.thanatos.flowgeek.bean.NewsList;
 import org.thanatos.flowgeek.bean.RespPostDetail;
 import org.thanatos.flowgeek.bean.RespSoftwareDetail;
+import org.thanatos.flowgeek.bean.RespTweetList;
 import org.thanatos.flowgeek.bean.RespUserInfo;
 import org.thanatos.flowgeek.bean.User;
 
@@ -176,6 +177,14 @@ public class ServerAPI {
 
 
         // -------------- 动弹api ---------------
+        @GET("/action/api/tweet_list")
+        Observable<RespTweetList> getTweetList(
+                @Query("uid") int uid,
+                @Query("pageIndex") int pageIndex,
+                @Query("pageSize") int pageSize
+        );
+
+
         // -------------- 评论api ---------------
         @GET("/action/api/comment_list")
         Observable<RespCmmList> getCmmList(

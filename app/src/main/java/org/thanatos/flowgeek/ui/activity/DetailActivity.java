@@ -113,6 +113,34 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
 
         initView();
         initData();
+        initSubscribers();
+    }
+
+    /**
+     * 初始化订阅者
+     */
+    private void initSubscribers() {
+        // 处理请求详情id
+        RxBus.getInstance().toObservable()
+                .compose(bindUntilEvent(ActivityEvent.DESTROY))
+                .filter(events -> events.what == Events.Type.GET_ARTICLE_ID)
+                .subscribe(events -> {
+                    Events<Long> event = new Events<Long>();
+                    event.what = events.getMessage();
+                    event.message = article.getId();
+                    RxBus.getInstance().send(event);
+                });
+
+        // 处理请求详情类别catalog
+        RxBus.getInstance().toObservable()
+                .compose(bindUntilEvent(ActivityEvent.DESTROY))
+                .filter(events -> events.what == Events.Type.GET_ARTICLE_CATALOG)
+                .subscribe(events -> {
+                    Events<Integer> event = new Events<Integer>();
+                    event.what = events.getMessage();
+                    event.message = mCatalog;
+                    RxBus.getInstance().send(event);
+                });
     }
 
     /**
@@ -270,30 +298,6 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
     }
 
     @OnClick(R.id.btn_comment) void onClickCmm(){
-
-        // 处理请求详情id
-        RxBus.getInstance().toObservable()
-                .compose(bindUntilEvent(ActivityEvent.DESTROY))
-                .filter(events -> events.what == Events.Type.GET_ARTICLE_ID)
-                .subscribe(events -> {
-                    Events<Long> event = new Events<Long>();
-                    event.what = events.getMessage();
-                    event.message = article.getId();
-                    RxBus.getInstance().send(event);
-                });
-
-        // 处理请求详情类别catalog
-        RxBus.getInstance().toObservable()
-                .compose(bindUntilEvent(ActivityEvent.DESTROY))
-                .filter(events -> events.what == Events.Type.GET_ARTICLE_CATALOG)
-                .subscribe(events -> {
-                    Events<Integer> event = new Events<Integer>();
-                    event.what = events.getMessage();
-                    event.message = mCatalog;
-                    RxBus.getInstance().send(event);
-                });
-
-
         UIManager.showCmmActivity(this);
     }
 

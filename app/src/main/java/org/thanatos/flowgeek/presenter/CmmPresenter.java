@@ -13,7 +13,6 @@ import org.thanatos.flowgeek.bean.RespCmmList;
 import org.thanatos.flowgeek.event.Events;
 import org.thanatos.flowgeek.event.RxBus;
 import org.thanatos.flowgeek.ui.activity.DetailActivity;
-import org.thanatos.flowgeek.ui.fragment.CmmFragment;
 
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -27,7 +26,7 @@ import rx.schedulers.Schedulers;
  * @author thanatos
  * @create 2016-01-05
  **/
-public class CmmPresenter extends BaseListPresenter<CmmFragment> {
+public class CmmPresenter extends BaseListPresenter<BaseListFragment> {
 
     private static final int RESTART_REQUEST_REMOTE = 1;
 
@@ -39,7 +38,7 @@ public class CmmPresenter extends BaseListPresenter<CmmFragment> {
 
     }
 
-    private void init(CmmFragment view) {
+    private void init(BaseListFragment view) {
 
         Log.d("thanatosx", "CmmPresenter init()");
 

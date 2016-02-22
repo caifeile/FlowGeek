@@ -1,0 +1,57 @@
+<org.thanatos.component.FloatingActionsMenu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:fab_addButtonColorNormal="?attr/tweet_floating_action_button_background_unselected"
+    app:fab_addButtonColorPressed="?attr/tweet_floating_action_button_background_selected"
+    app:fab_expandDirection="up"
+    app:fab_labelsPosition="left"
+    android:layout_gravity="right|bottom"
+    app:layout_behavior="org.thanatos.flowgeek.behavior.FloatingAutoHideDownBehavior"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <org.thanatos.component.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fab_colorNormal="?attr/tweet_floating_action_button_item_background_unselected"
+        app:fab_colorPressed="?attr/tweet_floating_action_button_item_background_selected"
+        app:fab_title="@string/scan"
+        app:fab_icon="@mipmap/icon_barcode"
+        app:fab_size="mini" />
+
+    <org.thanatos.component.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fab_colorNormal="?attr/tweet_floating_action_button_item_background_unselected"
+        app:fab_colorPressed="?attr/tweet_floating_action_button_item_background_selected"
+        app:fab_title="@string/voice"
+        app:fab_icon="@mipmap/icon_voice"
+        app:fab_size="mini" />
+
+    <org.thanatos.component.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fab_colorNormal="?attr/tweet_floating_action_button_item_background_unselected"
+        app:fab_colorPressed="?attr/tweet_floating_action_button_item_background_selected"
+        app:fab_title="@string/photograph"
+        app:fab_icon="@mipmap/icon_photograph"
+        app:fab_size="mini" />
+
+    <org.thanatos.component.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fab_colorNormal="?attr/tweet_floating_action_button_item_background_unselected"
+        app:fab_colorPressed="?attr/tweet_floating_action_button_item_background_selected"
+        app:fab_title="@string/image"
+        app:fab_icon="@mipmap/icon_image"
+        app:fab_size="mini" />
+
+    <org.thanatos.component.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fab_colorNormal="?attr/tweet_floating_action_button_item_background_unselected"
+        app:fab_colorPressed="?attr/tweet_floating_action_button_item_background_selected"
+        app:fab_title="@string/text"
+        app:fab_icon="@mipmap/icon_text"
+        app:fab_size="mini" />
+</org.thanatos.component.FloatingActionsMenu>

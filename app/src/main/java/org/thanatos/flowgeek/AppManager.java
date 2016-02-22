@@ -9,6 +9,8 @@ import android.content.res.Resources;
 
 import com.squareup.leakcanary.LeakCanary;
 
+import org.thanatos.flowgeek.bean.User;
+
 /**
  * Created by thanatos on 15-9-22.
  */
@@ -17,6 +19,7 @@ public class AppManager extends Application{
     public static Context context;
     public static Resources resources;
     public static SharedPreferences preferences;
+    public static User LOCAL_LOGINED_USER;
 
     public static final String BUNDLE_TYPE = "BUNDLE_TYPE";
 

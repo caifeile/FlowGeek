@@ -363,8 +363,10 @@ public class RxPresenter<View> extends Presenter<View> {
     protected void onDestroy() {
         views.onCompleted();
         subscriptions.unsubscribe();
-        for (Map.Entry<Integer, Subscription> entry : workingSubscribers.entrySet())
-            entry.getValue().unsubscribe();
+        for (Map.Entry<Integer, Subscription> entry : workingSubscribers.entrySet()){
+            if (entry.getValue()!=null)
+                entry.getValue().unsubscribe();
+        }
         workingSubscribers.clear();
     }
 

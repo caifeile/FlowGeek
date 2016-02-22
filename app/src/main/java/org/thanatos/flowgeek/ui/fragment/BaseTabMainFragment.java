@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import org.thanatos.base.ui.fragment.BaseTabFragment;
 import org.thanatos.flowgeek.R;
 

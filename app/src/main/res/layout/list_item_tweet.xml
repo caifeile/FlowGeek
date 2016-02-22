@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_list_item_comment"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <!--user portrait-->
+    <ImageView
+        android:id="@+id/iv_portrait"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="?attr/hint"
+        android:contentDescription="@null" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="科科"
+            android:textColor="?attr/tweet_list_item_username"
+            android:textSize="@dimen/item_title" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="我是叶良辰我怕谁!!!"
+            android:textColor="?attr/tweet_list_item_content"
+            android:textSize="@dimen/item_content" />
+
+        <LinearLayout
+            android:id="@+id/layout_image_list"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_liker_list"
+            android:visibility="gone"
+            android:background="?attr/tweet_list_item_like_list_background"
+            android:layout_marginTop="10dp"
+            android:textColor="?attr/tweet_list_item_other"
+            android:textSize="@dimen/tweet_list_item_other"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:textColor="?attr/main_list_view_time"
+                android:layout_marginTop="2dp"
+                android:textSize="@dimen/item_time"
+                android:alpha="@dimen/secondary_alpha"
+                android:drawableLeft="@mipmap/icon_clock_mini_not"
+                android:drawableStart="@mipmap/icon_clock_mini_not"
+                android:drawablePadding="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_comment_count"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textColor="?attr/main_list_view_comment_count"
+                android:textSize="@dimen/item_content"
+                android:drawableLeft="@mipmap/icon_comment_mini_not"
+                android:drawableStart="@mipmap/icon_comment_mini_not"
+                android:drawablePadding="5dp"
+                android:alpha="@dimen/secondary_alpha"
+                android:text="@string/zero"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/iv_like"
+                android:src="@mipmap/icon_like_mini_not"
+                android:layout_marginRight="7dp"
+                android:layout_marginEnd="7dp"
+                android:layout_toLeftOf="@id/tv_comment_count"
+                android:layout_toStartOf="@id/tv_comment_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@null" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

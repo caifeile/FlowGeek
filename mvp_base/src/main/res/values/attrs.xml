@@ -59,4 +59,30 @@
     <attr name="keyboard_emotion_card_tab_item_unselected" format="reference|color"/>
     <attr name="keyboard_input_text" format="reference|color"/>
 
+    <attr name="tweet_list_item_username" format="reference|color"/>
+    <attr name="tweet_list_item_content" format="reference|color"/>
+    <attr name="tweet_list_item_highlight" format="reference|color"/>
+    <attr name="tweet_list_item_other" format="reference|color"/>
+    <attr name="tweet_list_item_background_selected" format="reference|color"/>
+    <attr name="tweet_list_item_background_unselected" format="reference|color"/>
+    <attr name="tweet_list_item_background_ripple" format="reference|color"/>
+    <attr name="tweet_list_item_like_list_background" format="reference|color"/>
+
+    <attr name="tweet_comment_list_item_username" format="reference|color"/>
+    <attr name="tweet_comment_list_item_content" format="reference|color"/>
+    <attr name="tweet_comment_list_item_time" format="reference|color"/>
+    <attr name="tweet_comment_list_item_background_selected" format="reference|color"/>
+    <attr name="tweet_comment_list_item_background_unselected" format="reference|color"/>
+    <attr name="tweet_comment_list_item_background_ripple" format="reference|color"/>
+
+    <attr name="tweet_floating_action_button_background_unselected" format="color"/>
+    <attr name="tweet_floating_action_button_background_selected" format="color"/>
+    <attr name="tweet_floating_action_button_plus" format="color"/>
+
+    <attr name="tweet_floating_action_button_item_background_unselected" format="color"/>
+    <attr name="tweet_floating_action_button_item_background_selected" format="color"/>
+
+    <attr name="tweet_floating_cover" format="color"/>
+
+
 </resources>

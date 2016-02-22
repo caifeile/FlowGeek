@@ -72,6 +72,31 @@
         <item name="keyboard_emotion_card_tab_item_selected">@color/light_keyboard_emotion_card_tab_item_selected</item>
         <item name="keyboard_emotion_card_tab_item_unselected">@color/light_keyboard_emotion_card_tab_item_unselected</item>
         <item name="keyboard_input_text">@color/light_keyboard_input_text</item>
+
+        <item name="tweet_list_item_username">@color/light_tweet_list_item_username</item>
+        <item name="tweet_list_item_content">@color/light_tweet_list_item_content</item>
+        <item name="tweet_list_item_highlight">@color/light_tweet_list_item_highlight</item>
+        <item name="tweet_list_item_other">@color/light_tweet_list_item_other</item>
+        <item name="tweet_list_item_background_selected">@color/light_tweet_list_item_background_selected</item>
+        <item name="tweet_list_item_background_unselected">@color/light_tweet_list_item_background_unselected</item>
+        <item name="tweet_list_item_background_ripple">@color/light_tweet_list_item_background_ripple</item>
+        <item name="tweet_list_item_like_list_background">@color/light_tweet_list_item_like_list_background</item>
+
+        <item name="tweet_comment_list_item_username">@color/light_tweet_comment_list_item_username</item>
+        <item name="tweet_comment_list_item_content">@color/light_tweet_comment_list_item_content</item>
+        <item name="tweet_comment_list_item_time">@color/light_tweet_comment_list_item_time</item>
+        <item name="tweet_comment_list_item_background_selected">@color/light_tweet_comment_list_item_background_selected</item>
+        <item name="tweet_comment_list_item_background_unselected">@color/light_tweet_comment_list_item_background_unselected</item>
+        <item name="tweet_comment_list_item_background_ripple">@color/light_tweet_comment_list_item_background_ripple</item>
+
+        <item name="tweet_floating_action_button_background_unselected">@color/light_tweet_floating_action_button_background_unselected</item>
+        <item name="tweet_floating_action_button_background_selected">@color/light_tweet_floating_action_button_background_selected</item>
+        <item name="tweet_floating_action_button_plus">@color/light_tweet_floating_action_button_plus</item>
+
+        <item name="tweet_floating_action_button_item_background_unselected">@color/light_tweet_floating_action_button_item_background_unselected</item>
+        <item name="tweet_floating_action_button_item_background_selected">@color/light_tweet_floating_action_button_item_background_selected</item>
+
+        <item name="tweet_floating_cover">@color/light_tweet_floating_cover</item>
     </style>
 
     <!--======================Dark Theme========================-->
@@ -138,6 +163,30 @@
         <item name="keyboard_emotion_card_tab_item_selected">@color/dark_keyboard_emotion_card_tab_item_selected</item>
         <item name="keyboard_emotion_card_tab_item_unselected">@color/dark_keyboard_emotion_card_tab_item_unselected</item>
         <item name="keyboard_input_text">@color/dark_keyboard_input_text</item>
+
+        <item name="tweet_list_item_username">@color/dark_tweet_list_item_username</item>
+        <item name="tweet_list_item_content">@color/dark_tweet_list_item_content</item>
+        <item name="tweet_list_item_highlight">@color/dark_tweet_list_item_highlight</item>
+        <item name="tweet_list_item_other">@color/dark_tweet_list_item_other</item>
+        <item name="tweet_list_item_background_selected">@color/dark_tweet_list_item_background_selected</item>
+        <item name="tweet_list_item_background_unselected">@color/dark_tweet_list_item_background_unselected</item>
+        <item name="tweet_list_item_background_ripple">@color/dark_tweet_list_item_background_ripple</item>
+        <item name="tweet_list_item_like_list_background">@color/dark_tweet_list_item_like_list_background</item>
+
+        <item name="tweet_comment_list_item_username">@color/dark_tweet_comment_list_item_username</item>
+        <item name="tweet_comment_list_item_content">@color/dark_tweet_comment_list_item_content</item>
+        <item name="tweet_comment_list_item_time">@color/dark_tweet_comment_list_item_time</item>
+        <item name="tweet_comment_list_item_background_selected">@color/dark_tweet_comment_list_item_background_selected</item>
+        <item name="tweet_comment_list_item_background_ripple">@color/dark_tweet_comment_list_item_background_ripple</item>
+
+        <item name="tweet_floating_action_button_background_unselected">@color/dark_tweet_floating_action_button_background_unselected</item>
+        <item name="tweet_floating_action_button_background_selected">@color/dark_tweet_floating_action_button_background_selected</item>
+        <item name="tweet_floating_action_button_plus">@color/dark_tweet_floating_action_button_plus</item>
+
+        <item name="tweet_floating_action_button_item_background_unselected">@color/dark_tweet_floating_action_button_item_background_unselected</item>
+        <item name="tweet_floating_action_button_item_background_selected">@color/dark_tweet_floating_action_button_item_background_selected</item>
+
+        <item name="tweet_floating_cover">@color/dark_tweet_floating_cover</item>
     </style>
 
     <style name="LightTheme" parent="LightTheme.Base">
@@ -162,6 +211,7 @@
         <item name="android:indeterminateDuration">1000</item>
         <item name="android:indeterminateOnly">true</item>
     </style>
+
 
 
 </resources>

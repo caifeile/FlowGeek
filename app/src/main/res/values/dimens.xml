@@ -17,4 +17,9 @@
     <dimen name="min_divider_height">1px</dimen>
     <item name="standard_alpha" format="float" type="dimen">0.84</item>
     <item name="secondary_alpha" format="float" type="dimen">0.54</item>
+
+    <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
+         https://developer.android.com/design/patterns/navigation-drawer.html -->
+    <dimen name="navigation_drawer_width">240dp</dimen>
+    <dimen name="tweet_list_item_other">12sp</dimen>
 </resources>

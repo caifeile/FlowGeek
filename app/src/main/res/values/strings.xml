@@ -51,4 +51,16 @@
     <string name="say_something">说点什么吧</string>
     <string name="emotion_qq">QQ表情</string>
     <string name="donate_me">捐助我</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="action_example">Example action</string>
+    <string name="text">文字</string>
+    <string name="image">相册</string>
+    <string name="photograph">拍照</string>
+    <string name="voice">语音</string>
+    <string name="scan">扫一扫</string>
 </resources>

@@ -21,7 +21,7 @@ import rx.schedulers.Schedulers;
  * Created by thanatos on 15/12/22.
  */
 @SuppressWarnings("all")
-public class NewsPresenter extends BaseListPresenter<ListNewsFragment> {
+public class ListNewsPresenter extends BaseListPresenter<ListNewsFragment> {
 
     public static final String CACHE_KEY_All = "AllNewsListData";
     public static final String CACHE_KEY_WEEK = "WeekNewsListData";
@@ -63,7 +63,7 @@ public class NewsPresenter extends BaseListPresenter<ListNewsFragment> {
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
-        Log.d("thanatos", "NewsPresenter created");
+        Log.d("thanatos", "ListNewsPresenter created");
 
         add(afterTakeView().subscribe(
                 (view) -> {
@@ -113,6 +113,7 @@ public class NewsPresenter extends BaseListPresenter<ListNewsFragment> {
         // 一个操作导致重复添加,造成内存溢出,所以最好使用restartable
 
         // 还是不能缓存函数,因为参数每次都不一样,除非使用可以传参的方式
+        // 在CmmPresenter中已经解决
 
         restartableFirst(START_REQUEST_PAGE_DATA,
                 () -> {
