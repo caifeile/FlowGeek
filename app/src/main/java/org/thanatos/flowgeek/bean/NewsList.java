@@ -34,6 +34,17 @@ public class NewsList extends Entity {
     @ElementList(name = "newslist")
     private ArrayList<News> list = new ArrayList<News>();
 
+    @Element(name = "notice", required = false)
+    private Notice notice;
+
+    public Notice getNotice() {
+        return notice;
+    }
+
+    public void setNotice(Notice notice) {
+        this.notice = notice;
+    }
+
     public int getCatalog() {
         return catalog;
     }

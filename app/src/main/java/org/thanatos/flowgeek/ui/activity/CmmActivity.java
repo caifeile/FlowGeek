@@ -2,23 +2,18 @@ package org.thanatos.flowgeek.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.view.KeyEvent;
 
 import com.trello.rxlifecycle.ActivityEvent;
-import com.trello.rxlifecycle.RxLifecycle;
 
 import org.thanatos.base.ui.activity.BaseHoldBackActivity;
 import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.event.Events;
 import org.thanatos.flowgeek.event.RxBus;
-import org.thanatos.flowgeek.presenter.CmmPresenter;
 import org.thanatos.flowgeek.ui.fragment.CmmFragment;
 import org.thanatos.flowgeek.ui.fragment.KeyboardFragment;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
-import nucleus.factory.RequiresPresenter;
-import rx.Observable;
 
 /**
  *  评论列表
@@ -37,6 +32,13 @@ public class CmmActivity extends BaseHoldBackActivity {
                 .replace(R.id.frame_keyboard, Fragment.instantiate(this, KeyboardFragment.class.getName()))
                 .commit();
 
+        RxBus.getInstance().toObservable()
+                .compose(bindUntilEvent(ActivityEvent.DESTROY))
+                .filter(events -> events.what == Events.EventEnum.WE_HIDE_ALL)
+                .subscribe(events -> {
+                    finish();
+                });
+
     }
 
     @Override
@@ -47,5 +49,15 @@ public class CmmActivity extends BaseHoldBackActivity {
     @Override
     protected int onBindLayout() {
         return R.layout.activity_cmm;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                RxBus.getInstance().send(Events.EventEnum.DELIVER_GO_BACK, null);
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

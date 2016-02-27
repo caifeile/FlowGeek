@@ -48,7 +48,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="say_something">说点什么吧</string>
+    <string name="please_say_something">说点什么吧</string>
     <string name="emotion_qq">QQ表情</string>
     <string name="donate_me">捐助我</string>
     <string name="title_activity_main2">Main2Activity</string>
@@ -63,4 +63,14 @@
     <string name="photograph">拍照</string>
     <string name="voice">语音</string>
     <string name="scan">扫一扫</string>
+    <string name="please_input_your_email_or_nick">邮箱/昵称</string>
+    <string name="login">登录</string>
+    <string name="please_input_password">密码</string>
+    <string name="are_you_sure_logout">确认注销账号?</string>
+    <string name="cancel">取消</string>
+    <string name="publishing_comment"><![CDATA[正在发表哦o(>﹏<)o]]></string>
+    <string name="copy">复制</string>
+    <string name="delete">删除</string>
+    <string name="are_you_sure_delete_the_comment">你确定删除该评论?</string>
+    <string name="deleting_comment">正在删除该评论</string>
 </resources>

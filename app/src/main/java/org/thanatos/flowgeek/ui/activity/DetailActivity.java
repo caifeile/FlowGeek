@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
@@ -24,7 +25,6 @@ import org.thanatos.base.model.SharePreferenceManager;
 import org.thanatos.base.model.SharePreferenceManager.ApplicationSetting;
 import org.thanatos.base.model.SharePreferenceManager.ApplicationSetting.ApplicationTheme;
 import org.thanatos.base.ui.activity.BaseHoldBackActivity;
-import org.thanatos.base.utils.UIHelper;
 import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.UIManager;
 import org.thanatos.flowgeek.bean.Article;
@@ -35,6 +35,7 @@ import org.thanatos.flowgeek.event.RxBus;
 import org.thanatos.flowgeek.listener.OnScrollerGoDownListener;
 import org.thanatos.flowgeek.presenter.DetailPresenter;
 import org.thanatos.base.utils.Utilities;
+import org.thanatos.flowgeek.utils.DialogFactory;
 
 import java.text.ParseException;
 
@@ -120,10 +121,10 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
      * 初始化订阅者
      */
     private void initSubscribers() {
-        // 处理请求详情id
+        // 处理请求文章id
         RxBus.getInstance().toObservable()
                 .compose(bindUntilEvent(ActivityEvent.DESTROY))
-                .filter(events -> events.what == Events.Type.GET_ARTICLE_ID)
+                .filter(events -> events.what == Events.EventEnum.GET_ARTICLE_ID)
                 .subscribe(events -> {
                     Events<Long> event = new Events<Long>();
                     event.what = events.getMessage();
@@ -131,10 +132,21 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
                     RxBus.getInstance().send(event);
                 });
 
+        // 文章所属人id
+        RxBus.with(this)
+                .setEvent(Events.EventEnum.GET_ARTICLE_OWNER_ID)
+                .setEndEvent(ActivityEvent.DESTROY)
+                .onNext((events) -> {
+                    Events<Long> event = new Events<Long>();
+                    event.what = events.getMessage();
+                    event.message = article.getAuthorId();
+                    RxBus.getInstance().send(event);
+                }).create();
+
         // 处理请求详情类别catalog
         RxBus.getInstance().toObservable()
                 .compose(bindUntilEvent(ActivityEvent.DESTROY))
-                .filter(events -> events.what == Events.Type.GET_ARTICLE_CATALOG)
+                .filter(events -> events.what == Events.EventEnum.GET_ARTICLE_CATALOG)
                 .subscribe(events -> {
                     Events<Integer> event = new Events<Integer>();
                     event.what = events.getMessage();
@@ -202,6 +214,7 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
      * init view
      */
     private void initView() {
+        btnComment.setClickable(false);
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
         mRecycler.addOnScrollListener(new OnScrollerGoDownListener(mBottomLayout));
         mRecycler.setAdapter(mAdapter = new RecyclerView.Adapter<TextViewHold>() {
@@ -273,6 +286,7 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
         }
         this.article = article;
         initData();
+        btnComment.setClickable(true);
     }
 
     /**
@@ -290,11 +304,7 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
      * 当加载中, 显示dialog
      */
     public void onLoading() {
-        dialog = new ProgressDialog(this);
-        dialog.setIndeterminate(false);
-        dialog.setMessage(getResources().getString(R.string.loading));
-        dialog.setCancelable(false);
-        dialog.show();
+        dialog = DialogFactory.getFactory().getLoadingDialog(this);
     }
 
     @OnClick(R.id.btn_comment) void onClickCmm(){

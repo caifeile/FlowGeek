@@ -21,12 +21,12 @@
             <EditText
                 android:id="@+id/et_input"
                 android:layout_width="match_parent"
-                android:textColor="@color/input_text"
+                android:textColor="?attr/keyboard_input_text"
                 android:background="@drawable/selector_shape_input"
                 android:textSize="18sp"
                 android:padding="8dp"
                 android:textColorHint="?attr/hint"
-                android:hint="@string/say_something"
+                android:hint="@string/please_say_something"
                 android:layout_height="wrap_content" />
             <ImageView
                 android:id="@+id/iv_emotion"

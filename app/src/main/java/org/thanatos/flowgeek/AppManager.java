@@ -40,4 +40,8 @@ public class AppManager extends Application{
         }
     }
 
+    public static boolean isLogined(){
+        return LOCAL_LOGINED_USER != null;
+    }
+
 }

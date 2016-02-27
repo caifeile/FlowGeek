@@ -1,19 +1,26 @@
 package org.thanatos.flowgeek;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+import com.squareup.picasso.Picasso;
 
 import org.simpleframework.xml.convert.AnnotationStrategy;
 import org.simpleframework.xml.core.Persister;
+import org.thanatos.base.model.SharePreferenceManager;
+import org.thanatos.base.model.SharePreferenceManager.LocalUser;
 import org.thanatos.flowgeek.bean.RespBlogDetail;
 import org.thanatos.flowgeek.bean.RespCmmList;
 import org.thanatos.flowgeek.bean.RespNewsDetail;
 import org.thanatos.flowgeek.bean.NewsList;
 import org.thanatos.flowgeek.bean.RespPostDetail;
+import org.thanatos.flowgeek.bean.RespResult;
 import org.thanatos.flowgeek.bean.RespSoftwareDetail;
 import org.thanatos.flowgeek.bean.RespTweetList;
+import org.thanatos.flowgeek.bean.RespUser;
 import org.thanatos.flowgeek.bean.RespUserInfo;
 import org.thanatos.flowgeek.bean.User;
 
@@ -23,6 +30,7 @@ import retrofit.Retrofit;
 import retrofit.RxJavaCallAdapterFactory;
 import retrofit.SimpleXmlConverterFactory;
 import retrofit.http.Field;
+import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Query;
@@ -34,21 +42,39 @@ import rx.Observable;
 public class ServerAPI {
 
     private static OSChinaAPI osChinaAPI;
+    private static String cookies;
 
     public static OSChinaAPI getOSChinaAPI() {
         if (osChinaAPI == null) {
             OkHttpClient httpClient = new OkHttpClient();
+
+            httpClient.interceptors().add(chain -> {
+                if (chain.request().url().getPath().equals("/action/api/login_validate")){
+                    Response response = chain.proceed(chain.request());
+                    String cookies = response.header("Set-Cookie");
+                    Log.d("thanatos", "Cookie is " + cookies);
+                    SharedPreferences.Editor editor = SharePreferenceManager
+                            .getLocalUser(AppManager.context).edit();
+                    editor.putString(LocalUser.KEY_COOKIES, cookies);
+                    editor.apply();
+                    clearCookies();
+                    return response;
+                }else{
+                    return chain.proceed(chain.request());
+                }
+            });
+
             httpClient.interceptors().add(chain -> {
                 Request original = chain.request();
                 Request request = original.newBuilder()
                         .header("Accept-Language", Locale.getDefault().toString())
                         .header("Host", "www.oschina.net")
                         .header("Connection", "Keep-Alive")
+                        .header("Cookie", cookies == null ? getCookies() : cookies)
                         .header("User-Agent", getUserAgent())
                         .build();
-
+                Log.d("thanatos", "The Cookie is " + request.header("Cookie"));
                 Log.d("thanatos", "访问网络地址: " + request.urlString());
-
                 return chain.proceed(request);
             });
 
@@ -61,6 +87,18 @@ public class ServerAPI {
                     .create(OSChinaAPI.class);
         }
         return osChinaAPI;
+    }
+
+    private static String getCookies(){
+        if (cookies == null) {
+            SharedPreferences preferences = SharePreferenceManager.getLocalUser(AppManager.context);
+            return cookies = preferences.getString(LocalUser.KEY_COOKIES, "");
+        }
+        return cookies;
+    }
+
+    public static void clearCookies(){
+        cookies = null;
     }
 
     public static String getUserAgent() {
@@ -86,10 +124,10 @@ public class ServerAPI {
          * @return
          */
         @POST("/action/api/login_validate")
-        Observable<Object> login(
-                @Field("username") String username,
-                @Field("pwd") String password,
-                @Field("keep_login") int keepLogin
+        Observable<RespUser> login(
+                @Query("username") String username,
+                @Query("pwd") String password,
+                @Query("keep_login") int keepLogin
         );
 
         /**
@@ -199,6 +237,64 @@ public class ServerAPI {
                 @Query("id") long id,
                 @Query("pageIndex") int pageIndex,
                 @Query("pageSize") int pageSize
+        );
+
+        @FormUrlEncoded
+        @POST("/action/api/comment_pub")
+        Observable<RespResult> publicNormalComment(
+                @Field("catalog") int catalog,
+                @Field("id") long aid,
+                @Field("uid") long uid,
+                @Field("content") String content,
+                @Field("isPostToMyZone") int sure
+        );
+
+        @FormUrlEncoded
+        @POST("/action/api/comment_reply")
+        Observable<RespResult> replyNormalComment(
+                @Field("catalog") int catalog,
+                @Field("id") long aid,
+                @Field("uid") long uid,
+                @Field("content") String content,
+                @Field("replyid") int rid,
+                @Field("authorid") int auid
+        );
+
+        @FormUrlEncoded
+        @POST("/action/api/blogcomment_pub")
+        Observable<RespResult> publicBlogComment(
+                @Field("blog") long aid,
+                @Field("uid") long uid,
+                @Field("content") String content
+        );
+
+        @FormUrlEncoded
+        @POST("/action/api/blogcomment_pub")
+        Observable<RespResult> replyBlogComment(
+                @Field("blog") long aid,
+                @Field("uid") long uid,
+                @Field("content") String content,
+                @Field("reply_id") int rid,
+                @Field("objuid") int auid
+        );
+
+        @FormUrlEncoded
+        @POST("/action/api/comment_delete")
+        Observable<RespResult> deleteNormalComment(
+                @Field("id") long aid,
+                @Field("catalog") int catalog,
+                @Field("replyid") long rid,
+                @Field("authorid") long auid
+        );
+
+        @FormUrlEncoded
+        @POST("/action/api/blogcomment_delete")
+        Observable<RespResult> deleteBlogComment(
+                @Field("uid") long uid,
+                @Field("blogid") long bid,
+                @Field("replyid") long rid,
+                @Field("authorid") long auid,
+                @Field("owneruid") long oid
         );
 
         // -------------- 收藏api ---------------

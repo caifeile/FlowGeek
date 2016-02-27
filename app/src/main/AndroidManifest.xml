@@ -43,6 +43,9 @@
             android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity android:name=".ui.activity.ListLikeUserActivity"/>
         <activity android:name=".ui.activity.UserHomeActivity"/>
+        <activity
+            android:name=".ui.activity.LoginActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
     </application>
 
 </manifest>

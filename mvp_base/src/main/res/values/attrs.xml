@@ -23,6 +23,7 @@
     <attr name="main_list_view_comment_count" format="reference|color"/>
 
     <attr name="drawer_header_background" format="reference|color"/>
+    <attr name="drawer_header_background_selected" format="reference|color"/>
     <attr name="drawer_header_username" format="reference|color"/>
     <attr name="drawer_header_abilities" format="reference|color"/>
     <attr name="drawer_header_abilities_background" format="reference|color"/>
@@ -44,6 +45,8 @@
     <attr name="detail_content_background" format="reference|color"/>
     <attr name="detail_footer_text" format="reference|color"/>
     <attr name="detail_footer_background" format="reference|color"/>
+    <attr name="detail_footer_background_selected" format="reference|color"/>
+    <attr name="detail_footer_background_ripple" format="reference|color"/>
 
     <attr name="comment_list_view_username" format="reference|color"/>
     <attr name="comment_list_view_time" format="reference|color"/>
@@ -51,6 +54,10 @@
     <attr name="comment_list_view_selected" format="reference|color"/>
     <attr name="comment_list_view_unselected" format="reference|color"/>
     <attr name="comment_list_view_ripple" format="reference|color"/>
+    <attr name="comment_list_view_refer_background" format="color"/>
+    <attr name="comment_list_view_refer_title" format="color"/>
+    <attr name="comment_list_view_refer_content" format="color"/>
+    <attr name="comment_list_view_refer_border" format="color"/>
 
     <attr name="keyboard_panel_background" format="reference|color"/>
     <attr name="keyboard_emotion_tab_item_selected" format="reference|color"/>
@@ -83,6 +90,18 @@
     <attr name="tweet_floating_action_button_item_background_selected" format="color"/>
 
     <attr name="tweet_floating_cover" format="color"/>
+
+    <attr name="login_background" format="color"/>
+    <attr name="login_form_username" format="color"/>
+    <attr name="login_form_password" format="color"/>
+    <attr name="login_form_hint" format="color"/>
+    <attr name="login_form_error" format="color"/>
+    <attr name="login_text" format="color"/>
+
+    <attr name="dialog_background" format="color"/>
+    <attr name="dialog_background_selected" format="color"/>
+    <attr name="dialog_background_ripple" format="color"/>
+    <attr name="dialog_text" format="color"/>
 
 
 </resources>

@@ -13,18 +13,21 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.trello.rxlifecycle.FragmentEvent;
 
 import org.thanatos.base.manager.DeviceManager;
 import org.thanatos.base.ui.fragment.BaseTabNavFragment;
+import org.thanatos.base.utils.Utilities;
+import org.thanatos.flowgeek.AppManager;
 import org.thanatos.flowgeek.R;
+import org.thanatos.flowgeek.UIManager;
+import org.thanatos.flowgeek.bean.Comment;
 import org.thanatos.flowgeek.bean.EmotionRules;
 import org.thanatos.flowgeek.event.Events;
 import org.thanatos.flowgeek.event.RxBus;
-import org.thanatos.base.utils.Utilities;
 import org.thanatos.flowgeek.utils.InputHelper;
-import org.thanatos.flowgeek.widget.EmotionPickerEditText;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -34,7 +37,7 @@ import butterknife.OnClick;
  * @author thanatos
  * @create 2016-01-05
  **/
-public class KeyboardFragment extends BaseTabNavFragment implements EmotionPickerEditText.DrawableRightListener {
+public class KeyboardFragment extends BaseTabNavFragment {
 
     @Bind(R.id.et_input) EditText mInput;
     @Bind(R.id.emotion_layout) LinearLayout mEmoLayout;
@@ -42,6 +45,11 @@ public class KeyboardFragment extends BaseTabNavFragment implements EmotionPicke
 
     private Drawable mEmotionUnselected;
     private Drawable mEmotionSelected;
+
+    // 真奇怪,判断软键盘是否显示都好麻烦,我只能简单粗暴了
+    private boolean isShowSoftInput = false;
+    // 回复的对象
+    private Comment mReplyCmm;
 
     @Nullable
     @Override
@@ -54,12 +62,20 @@ public class KeyboardFragment extends BaseTabNavFragment implements EmotionPicke
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
-//        mInput.setOnDrawableRightListener(this);
+        initSubscribers();
 
+        mViewPager.setCurrentItem(0);
+
+        mEmotionSelected = getResources().getDrawable(R.mipmap.icon_emotion_selected);
+        mEmotionUnselected = getResources().getDrawable(R.mipmap.icon_emotion);
+
+    }
+
+    private void initSubscribers() {
         // register a listener to receive a event that mean user selected a emotion
         RxBus.getInstance().toObservable()
                 .compose(bindUntilEvent(FragmentEvent.DESTROY))
-                .filter(events -> events.what == Events.Type.DELIVER_SELECT_EMOTION)
+                .filter(events -> events.what == Events.EventEnum.DELIVER_SELECT_EMOTION)
                 .subscribe(events -> {
                     EmotionRules emotion = events.<EmotionRules>getMessage();
                     if (mInput == null || emotion == null) {
@@ -76,10 +92,44 @@ public class KeyboardFragment extends BaseTabNavFragment implements EmotionPicke
                         mInput.getText().replace(Math.min(start, end), Math.max(start, end), str, 0, str.length());
                     }
                 });
-        mViewPager.setCurrentItem(0);
 
-        mEmotionSelected = getResources().getDrawable(R.mipmap.icon_emotion_selected);
-        mEmotionUnselected = getResources().getDrawable(R.mipmap.icon_emotion);
+        // 接受返回事件,如果显示表情面板,隐藏!如果显示软键盘,隐藏!如果显示回复某某某,隐藏!
+        RxBus.getInstance().toObservable()
+                .compose(bindUntilEvent(FragmentEvent.DESTROY))
+                .filter(events -> events.what == Events.EventEnum.DELIVER_GO_BACK)
+                .subscribe(events -> {
+                    if (mReplyCmm!=null){
+                        mInput.setHint(getResources().getString(R.string.please_say_something));
+                        return;
+                    }
+                    if (isShowingEmoLayout()) {
+                        hideEmoLayout();
+                        return;
+                    }
+                    if (isShowSoftInput) {
+                        hideSoftKeyboard();
+                        return;
+                    }
+                    RxBus.getInstance().send(Events.EventEnum.WE_HIDE_ALL, null);
+                });
+
+        // 点击评论,显示回复某某某
+        RxBus.getInstance().toObservable()
+                .compose(bindUntilEvent(FragmentEvent.DESTROY))
+                .filter(events -> events.what == Events.EventEnum.DELIVER_REPLY_SOMEONE)
+                .subscribe(events -> {
+                    mReplyCmm = events.getMessage();
+                    mInput.setHint("回复 @" + mReplyCmm.getAuthor());
+                });
+
+        // 评论成功,清空
+        RxBus.getInstance().toObservable()
+                .compose(bindUntilEvent(FragmentEvent.DESTROY))
+                .filter(events -> events.what == Events.EventEnum.DELIVER_CLEAR_IMPUT)
+                .subscribe(events -> {
+                    mInput.setHint(getResources().getString(R.string.please_say_something));
+                    mInput.setText(null);
+                });
     }
 
     @Override
@@ -93,20 +143,6 @@ public class KeyboardFragment extends BaseTabNavFragment implements EmotionPicke
         params.weight = 1;
         view.setLayoutParams(params);
 
-        /*TextView view = new TextView(getContext());
-        view.setGravity(Gravity.CENTER);
-        view.setBackgroundResource(R.drawable.selector_emotion_item);
-        view.setTextColor(getResources().getColor(R.color.emotion_item));
-        view.setPadding(
-                UIHelper.dip2px(mContext, 5f), UIHelper.dip2px(mContext, 5f),
-                UIHelper.dip2px(mContext, 5f), UIHelper.dip2px(mContext, 5f)
-        );
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                0, ViewGroup.LayoutParams.MATCH_PARENT
-        );
-        params.weight = 1;
-        view.setLayoutParams(params);
-        view.setText(title);*/
         return view;
     }
 
@@ -136,13 +172,18 @@ public class KeyboardFragment extends BaseTabNavFragment implements EmotionPicke
      * 显示\关闭表情面板
      */
     @OnClick(R.id.iv_emotion)
-    public void showEmotionPanel(){
+    public void switchEmotionPanel(){
         if (mEmoLayout.getVisibility() == View.VISIBLE){
-            mIvEmotion.setImageDrawable(mEmotionUnselected);
-            mEmoLayout.setVisibility(View.GONE);
+            hideEmoLayout();
         }else {
             mIvEmotion.setImageDrawable(mEmotionSelected);
-            mEmoLayout.setVisibility(View.VISIBLE);
+            hideSoftKeyboard();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mEmoLayout.setVisibility(View.VISIBLE);
+                }
+            }, 300);
         }
     }
 
@@ -150,7 +191,7 @@ public class KeyboardFragment extends BaseTabNavFragment implements EmotionPicke
      * 删除表情或字符
      */
     @OnClick(R.id.iv_backspace)
-    public void rmEmo() {
+    public void removeEmo() {
         InputHelper.backspace(mInput);
     }
 
@@ -158,13 +199,31 @@ public class KeyboardFragment extends BaseTabNavFragment implements EmotionPicke
      * 发送信息
      */
     @OnClick(R.id.iv_send)
-    public void send() {
-        // send a event to the presenter of CmmActivity
-        if (Utilities.isEmpty(mInput.getText().toString())) return;
-        Events<String> events = new Events<>();
-        events.what = Events.Type.DELIVER_SEND_CMM;
-        events.message = mInput.getText().toString();
+    public void sendComment() {
+        // 是不是欠抽啊?
+        if (Utilities.isEmpty(mInput.getText().toString())){
+            Toast.makeText(mContext, "别闹,写点东西再发╭∩╮（︶︿︶）╭∩╮", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        // 登录有没有啊?
+        if (AppManager.LOCAL_LOGINED_USER == null){
+            UIManager.jump2login(mContext);
+            return;
+        }
+        // 封装实体, 发送消息给相应的presenter
+        Comment comment = new Comment();
+        if (mReplyCmm==null){
+            comment.setId(-1L);
+        }else{
+            comment.setId(mReplyCmm.getId());
+            comment.setAuthorId(mReplyCmm.getAuthorId());
+        }
+        comment.setContent(mInput.getText().toString());
+        Events<Comment> events = Events.just(comment);
+        events.what = Events.EventEnum.DELIVER_SEND_COMMENT;
         RxBus.getInstance().send(events);
+        RxBus.getInstance().send(Events.EventEnum.GET_ARTICLE_ID, Events.EventEnum.DELIVER_ARTICLE_ID_FROM_KEYBOARD);
+        RxBus.getInstance().send(Events.EventEnum.GET_ARTICLE_CATALOG, Events.EventEnum.DELIVER_ARTICLE_CATALOG_FROM_KEYBOARD);
     }
 
     /**
@@ -172,7 +231,9 @@ public class KeyboardFragment extends BaseTabNavFragment implements EmotionPicke
      */
     @OnClick(R.id.et_input)
     public void hideEmoLayout() {
-        if (isShowingEmoLayout()) mEmoLayout.setVisibility(View.GONE);
+        if (mEmoLayout.getVisibility() == View.GONE) return;
+        mIvEmotion.setImageDrawable(mEmotionUnselected);
+        mEmoLayout.setVisibility(View.GONE);
     }
 
     /**
@@ -180,6 +241,7 @@ public class KeyboardFragment extends BaseTabNavFragment implements EmotionPicke
      */
     public void hideSoftKeyboard() {
         DeviceManager.getSoftInputManager(getContext()).hideSoftInputFromWindow(mInput.getWindowToken(), 0);
+        isShowSoftInput = false;
     }
 
     /**
@@ -188,16 +250,6 @@ public class KeyboardFragment extends BaseTabNavFragment implements EmotionPicke
     public void showSoftKeyboard() {
         mInput.requestFocus();
         DeviceManager.getSoftInputManager(getContext()).showSoftInput(mInput, InputMethodManager.SHOW_FORCED);
-    }
-
-    @Override
-    public void onDrawableRightClick() {
-        if (isShowingEmoLayout()) {
-            mEmoLayout.setVisibility(View.GONE);
-            showSoftKeyboard();
-        } else {
-            hideSoftKeyboard();
-            new Handler().postDelayed(() -> mEmoLayout.setVisibility(View.VISIBLE), 500);
-        }
+        isShowSoftInput = true;
     }
 }

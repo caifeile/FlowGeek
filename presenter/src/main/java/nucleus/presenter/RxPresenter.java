@@ -206,6 +206,7 @@ public class RxPresenter<View> extends Presenter<View> {
         });
     }
 
+
     /**
      * This is a shortcut for calling {@link #restartableLatestCache(int, Func0, Action2, Action2)} with the last parameter = null.
      */
@@ -271,6 +272,8 @@ public class RxPresenter<View> extends Presenter<View> {
      * v.subscribe(new ...)
      * <p>
      * only loading the first 'view1' value can emit
+     *
+     * the first T item and the last view item
      *
      * @param <T> the type of source observable emissions
      */
@@ -352,7 +355,7 @@ public class RxPresenter<View> extends Presenter<View> {
      */
     @Override
     public void restore() {
-        subscriptions = new SubscriptionList();
+//        subscriptions = new SubscriptionList();
     }
 
     /**

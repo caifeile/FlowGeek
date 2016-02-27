@@ -1,8 +1,10 @@
 package org.thanatos.base.manager;
 
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 /**
@@ -41,5 +43,18 @@ public class DeviceManager {
         return getCnnManager(context).getActiveNetworkInfo().getType();
     }
 
+    /**
+     * 关闭软键盘
+     * @param context
+     * @param view
+     */
+    public static void hideSoftInput(Context context, View view){
+        if (view == null) return;
+        getSoftInputManager(context).hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 
+
+    public static ClipboardManager getClipboardManager(Context context) {
+        return (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+    }
 }

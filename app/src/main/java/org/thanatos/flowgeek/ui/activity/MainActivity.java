@@ -1,36 +1,46 @@
 package org.thanatos.flowgeek.ui.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.internal.ScrimInsetsFrameLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+import com.trello.rxlifecycle.ActivityEvent;
+
 import org.thanatos.base.model.SharePreferenceManager;
+import org.thanatos.base.model.SharePreferenceManager.LocalUser;
 import org.thanatos.base.model.SharePreferenceManager.ApplicationSetting;
 import org.thanatos.base.model.SharePreferenceManager.ApplicationSetting.ApplicationTheme;
 import org.thanatos.base.ui.activity.BaseActivity;
+import org.thanatos.flowgeek.AppManager;
 import org.thanatos.flowgeek.R;
+import org.thanatos.flowgeek.ServerAPI;
+import org.thanatos.flowgeek.UIManager;
 import org.thanatos.flowgeek.bean.NewsList;
+import org.thanatos.flowgeek.event.Events;
+import org.thanatos.flowgeek.event.RxBus;
 import org.thanatos.flowgeek.ui.fragment.BaseTabMainFragment;
 import org.thanatos.flowgeek.ui.fragment.ListNewsFragment;
-import org.thanatos.flowgeek.ui.fragment.ListTweetFragment;
 import org.thanatos.flowgeek.ui.fragment.TabTweetFragment;
+import org.thanatos.flowgeek.utils.DialogFactory;
 import org.thanatos.pay.ui.fragment.EntryFragment;
 
 import butterknife.Bind;
@@ -39,11 +49,16 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String CHANGE_THEME = "change_theme";
+    private static final String CHANGE_THEME = "CHANGE_THEME";
+
     @Bind(R.id.toolbar) Toolbar mToolbar;
     @Bind(R.id.layout_drawer) DrawerLayout mDrawerLayout;
     @Bind(R.id.nav_view) NavigationView mDrawerNavView;
     @Bind(R.id.layout_coordinator) CoordinatorLayout mLayoutCoordinator;
+    private ImageView ivPortrait;
+    private TextView tvNick;
+    private TextView tvScore;
+    private ImageView ivExit;
 
     private MenuItem mPreMenuItem;
 
@@ -55,7 +70,104 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         ButterKnife.bind(this);
 
+        View mNavHeaderView = mDrawerNavView.getHeaderView(0);
+        ivPortrait = (ImageView) mNavHeaderView.findViewById(R.id.iv_portrait);
+        tvNick = (TextView) mNavHeaderView.findViewById(R.id.tv_nick);
+        tvScore = (TextView) mNavHeaderView.findViewById(R.id.tv_score);
+        ivExit = (ImageView) mNavHeaderView.findViewById(R.id.iv_exit);
+
         initView();
+        initLogin();
+        initSubscribers();
+    }
+
+    private void initSubscribers() {
+        // 接受订阅, 无论在哪里登录, 都能够接收到这个事件, 并且更新侧滑抽屉的View
+        RxBus.getInstance().toObservable()
+                .compose(bindUntilEvent(ActivityEvent.DESTROY))
+                .filter(events -> events.what == Events.EventEnum.DELIVER_LOGIN)
+                .subscribe((events) -> {
+                    initLogin();
+                }, Throwable::printStackTrace);
+    }
+
+    @SuppressWarnings("all")
+    private void initLogin() {
+
+        // 如果未登录
+        if (AppManager.LOCAL_LOGINED_USER == null) {
+            ivPortrait.setImageResource(R.mipmap.icon_default_portrait);
+            ivPortrait.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    UIManager.jump2login(MainActivity.this);
+                }
+            });
+            tvNick.setText("未登录");
+            ivExit.setVisibility(View.GONE);
+            tvScore.setText(null);
+            return;
+        }
+
+        // 已登录
+        // portrait
+        Picasso.with(this).load(AppManager.LOCAL_LOGINED_USER.getPortrait()).into(ivPortrait);
+        ivPortrait.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        // nick
+        tvNick.setText(AppManager.LOCAL_LOGINED_USER.getName());
+
+        // gender
+        if (AppManager.LOCAL_LOGINED_USER.getGender().equals("1")){ // --> 男
+            tvNick.setCompoundDrawables(null, null,
+                    getResources().getDrawable(R.mipmap.icon_male), null);
+        }else if (AppManager.LOCAL_LOGINED_USER.getGender().equals("0")){
+            tvNick.setCompoundDrawables(null, null,
+                    getResources().getDrawable(R.mipmap.icon_female), null);
+        }else{
+            tvNick.setCompoundDrawables(null, null,
+                    getResources().getDrawable(R.mipmap.icon_gender), null);
+        }
+
+        // score
+        tvScore.setText("技能分 : " + AppManager.LOCAL_LOGINED_USER.getScore());
+
+        // exit
+        ivExit.setVisibility(View.VISIBLE);
+        ivExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(MainActivity.this, DialogFactory.getFactory()
+                        .getTheme(MainActivity.this))
+                        .setTitle(getResources().getString(R.string.logout))
+                        .setMessage(getResources().getString(R.string.are_you_sure_logout))
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                SharedPreferences.Editor editor =
+                                        SharePreferenceManager.getLocalUser(MainActivity.this).edit();
+                                editor.putBoolean(LocalUser.KEY_LOGIN_STATE, false);
+                                editor.apply();
+                                AppManager.LOCAL_LOGINED_USER = null;
+                                ServerAPI.clearCookies();
+                                initLogin();
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+
     }
 
     private void initView() {
@@ -106,7 +218,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (item.getItemId()){
             case R.id.menu_explore: // 发现探索
                 if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_explore) break;
-                CoordinatorLayout layout;
 
                 break;
             case R.id.menu_blog: // 博客
@@ -165,6 +276,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         mPreMenuItem = item;
         mDrawerLayout.closeDrawer(mDrawerNavView);
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode){
+            case RESULT_OK:
+                initLogin();
+        }
     }
 
     @Override

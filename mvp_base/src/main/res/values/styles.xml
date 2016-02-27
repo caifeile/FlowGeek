@@ -37,6 +37,7 @@
         <item name="main_list_view_comment_count">@color/light_main_list_view_title</item>
         
         <item name="drawer_header_background">@color/light_drawer_header_background</item>
+        <item name="drawer_header_background_selected">@color/light_drawer_header_background_selected</item>
         <item name="drawer_header_username">@color/light_drawer_header_username</item>
         <item name="drawer_header_abilities">@color/light_drawer_header_abilities</item>
         <item name="drawer_header_abilities_background">@color/light_drawer_header_abilities_background</item>
@@ -58,6 +59,8 @@
         <item name="detail_content_background">@color/light_detail_content_background</item>
         <item name="detail_footer_text">@color/light_detail_footer_text</item>
         <item name="detail_footer_background">@color/light_detail_footer_background</item>
+        <item name="detail_footer_background_selected">@color/light_detail_footer_background_selected</item>
+        <item name="detail_footer_background_ripple">@color/light_detail_footer_background_ripple</item>
 
         <item name="comment_list_view_username">@color/light_comment_list_view_username</item>
         <item name="comment_list_view_time">@color/light_comment_list_view_time</item>
@@ -65,6 +68,10 @@
         <item name="comment_list_view_selected">@color/light_comment_list_view_selected</item>
         <item name="comment_list_view_unselected">@color/light_comment_list_view_unselected</item>
         <item name="comment_list_view_ripple">@color/light_comment_list_view_ripple</item>
+        <item name="comment_list_view_refer_background">@color/light_comment_list_view_refer_background</item>
+        <item name="comment_list_view_refer_title">@color/light_comment_list_view_refer_title</item>
+        <item name="comment_list_view_refer_content">@color/light_comment_list_view_refer_content</item>
+        <item name="comment_list_view_refer_border">@color/light_comment_list_view_refer_border</item>
 
         <item name="keyboard_panel_background">@color/light_keyboard_panel_background</item>
         <item name="keyboard_emotion_tab_item_selected">@color/light_keyboard_emotion_tab_item_selected</item>
@@ -97,6 +104,18 @@
         <item name="tweet_floating_action_button_item_background_selected">@color/light_tweet_floating_action_button_item_background_selected</item>
 
         <item name="tweet_floating_cover">@color/light_tweet_floating_cover</item>
+
+        <item name="login_background">@color/light_login_background</item>
+        <item name="login_form_username">@color/light_login_form_username</item>
+        <item name="login_form_password">@color/light_login_form_password</item>
+        <item name="login_form_hint">@color/light_login_form_hint</item>
+        <item name="login_form_error">@color/light_login_form_error</item>
+        <item name="login_text">@color/light_login_text</item>
+
+        <item name="dialog_background">@color/light_dialog_background</item>
+        <item name="dialog_background_selected">@color/light_dialog_background_selected</item>
+        <item name="dialog_background_ripple">@color/light_dialog_background_ripple</item>
+        <item name="dialog_text">@color/light_dialog_text</item>
     </style>
 
     <!--======================Dark Theme========================-->
@@ -128,6 +147,7 @@
         <item name="main_list_view_comment_count">@color/dark_main_list_view_comment_count</item>
 
         <item name="drawer_header_background">@color/dark_drawer_header_background</item>
+        <item name="drawer_header_background_selected">@color/dark_drawer_header_background_selected</item>
         <item name="drawer_header_username">@color/dark_drawer_header_username</item>
         <item name="drawer_header_abilities">@color/dark_drawer_header_abilities</item>
         <item name="drawer_header_abilities_background">@color/dark_drawer_header_abilities_background</item>
@@ -149,6 +169,8 @@
         <item name="detail_content_background">@color/dark_detail_content_background</item>
         <item name="detail_footer_text">@color/dark_detail_footer_text</item>
         <item name="detail_footer_background">@color/dark_detail_footer_background</item>
+        <item name="detail_footer_background_selected">@color/dark_detail_footer_background_selected</item>
+        <item name="detail_footer_background_ripple">@color/dark_detail_footer_background_ripple</item>
 
         <item name="comment_list_view_username">@color/dark_comment_list_view_username</item>
         <item name="comment_list_view_time">@color/dark_comment_list_view_time</item>
@@ -156,6 +178,10 @@
         <item name="comment_list_view_selected">@color/dark_comment_list_view_selected</item>
         <item name="comment_list_view_unselected">@color/dark_comment_list_view_unselected</item>
         <item name="comment_list_view_ripple">@color/dark_comment_list_view_ripple</item>
+        <item name="comment_list_view_refer_background">@color/dark_comment_list_view_refer_background</item>
+        <item name="comment_list_view_refer_title">@color/dark_comment_list_view_refer_title</item>
+        <item name="comment_list_view_refer_content">@color/dark_comment_list_view_refer_content</item>
+        <item name="comment_list_view_refer_border">@color/dark_comment_list_view_refer_border</item>
 
         <item name="keyboard_panel_background">@color/dark_keyboard_panel_background</item>
         <item name="keyboard_emotion_tab_item_selected">@color/dark_keyboard_emotion_tab_item_selected</item>
@@ -187,6 +213,18 @@
         <item name="tweet_floating_action_button_item_background_selected">@color/dark_tweet_floating_action_button_item_background_selected</item>
 
         <item name="tweet_floating_cover">@color/dark_tweet_floating_cover</item>
+
+        <item name="login_background">@color/dark_login_background</item>
+        <item name="login_form_username">@color/dark_login_form_username</item>
+        <item name="login_form_password">@color/dark_login_form_password</item>
+        <item name="login_form_hint">@color/dark_login_form_hint</item>
+        <item name="login_form_error">@color/dark_login_form_error</item>
+        <item name="login_text">@color/dark_login_text</item>
+
+        <item name="dialog_background">@color/dark_dialog_background</item>
+        <item name="dialog_background_selected">@color/dark_dialog_background_selected</item>
+        <item name="dialog_background_ripple">@color/dark_dialog_background_ripple</item>
+        <item name="dialog_text">@color/dark_dialog_text</item>
     </style>
 
     <style name="LightTheme" parent="LightTheme.Base">
@@ -210,6 +248,13 @@
         <item name="android:indeterminateDrawable">@drawable/progress_loading</item>
         <item name="android:indeterminateDuration">1000</item>
         <item name="android:indeterminateOnly">true</item>
+    </style>
+
+    <style name="BaseDialog" parent="Base.Animation.AppCompat.Dialog">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?attr/dialog_background</item>
+        <item name="android:textColor">?attr/dialog_text</item>
     </style>
 
 

@@ -3,7 +3,6 @@
     android:id="@+id/layout_bottom_panel"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/detail_footer_background"
     android:orientation="vertical">
     <!--horizontal line-->
     <include layout="@layout/view_horizontal_line" />
@@ -11,19 +10,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingTop="10dp">
+        android:orientation="horizontal">
         <!--share-->
         <TextView
             android:id="@+id/btn_share"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingTop="7dp"
+            android:paddingBottom="5dp"
             android:drawablePadding="5dp"
             android:drawableTop="@mipmap/icon_share_mid_not"
             android:gravity="center"
             android:text="@string/share"
+            android:background="@drawable/selector_detail_bottom_widget_item"
             android:textColor="?attr/detail_footer_text"
             android:textSize="11sp" />
         <!--like-->
@@ -32,10 +32,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingTop="7dp"
+            android:paddingBottom="5dp"
             android:drawablePadding="5dp"
             android:drawableTop="@mipmap/icon_like_mid_not"
             android:gravity="center"
             android:text="@string/like"
+            android:background="@drawable/selector_detail_bottom_widget_item"
             android:textColor="?attr/detail_footer_text"
             android:textSize="11sp" />
         <!--bookmark-->
@@ -44,10 +47,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingTop="7dp"
+            android:paddingBottom="5dp"
             android:drawablePadding="5dp"
             android:drawableTop="@mipmap/icon_star_mid_not"
             android:gravity="center"
             android:text="@string/collection"
+            android:background="@drawable/selector_detail_bottom_widget_item"
             android:textColor="?attr/detail_footer_text"
             android:textSize="11sp" />
         <!--comments-->
@@ -56,10 +62,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingTop="7dp"
+            android:paddingBottom="5dp"
             android:drawablePadding="5dp"
             android:drawableTop="@mipmap/icon_comment_mid_not"
             android:gravity="center"
             android:text="@string/comment"
+            android:background="@drawable/selector_detail_bottom_widget_item"
             android:textColor="?attr/detail_footer_text"
             android:textSize="11sp" />
     </LinearLayout>

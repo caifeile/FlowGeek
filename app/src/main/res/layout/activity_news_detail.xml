@@ -55,7 +55,6 @@
                         android:layout_height="46dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
-                        android:background="@color/_default"
                         android:contentDescription="@null" />
                     <!--person name-->
                     <TextView
@@ -65,7 +64,7 @@
                         android:layout_toEndOf="@id/img_portrait"
                         android:layout_toRightOf="@id/img_portrait"
                         android:paddingTop="4dp"
-                        android:textColor="?attr/principle"
+                        android:textColor="?attr/detail_header_username"
                         android:textSize="16sp" />
                     <!--user's summary-->
                     <TextView
@@ -76,7 +75,7 @@
                         android:layout_marginTop="3dp"
                         android:layout_toEndOf="@id/img_portrait"
                         android:layout_toRightOf="@id/img_portrait"
-                        android:textColor="@color/time"
+                        android:textColor="?attr/detail_header_other"
                         android:textSize="12sp" />
                     <!--belong to topic-->
                     <TextView
@@ -86,7 +85,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="6dp"
-                        android:textColor="@color/time"
+                        android:textColor="?attr/detail_header_other"
                         android:textSize="12sp"
                         android:visibility="gone" />
                     <!--the post's published time-->
@@ -98,7 +97,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_below="@id/tv_type"
                         android:layout_marginTop="6dp"
-                        android:textColor="@color/time"
+                        android:textColor="?attr/detail_header_other"
                         android:textSize="12sp"
                         android:visibility="gone" />
                 </RelativeLayout>

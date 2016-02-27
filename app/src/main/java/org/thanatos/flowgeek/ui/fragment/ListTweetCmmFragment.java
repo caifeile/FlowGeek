@@ -17,16 +17,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.trello.rxlifecycle.ActivityEvent;
 import com.trello.rxlifecycle.FragmentEvent;
 
 import org.thanatos.base.adapter.BaseListAdapter;
-import org.thanatos.base.ui.fragment.BaseListFragment;
 import org.thanatos.base.utils.UIHelper;
 import org.thanatos.base.utils.Utilities;
 import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.adapter.CmmAdapter;
-import org.thanatos.flowgeek.adapter.TweetAdapter;
 import org.thanatos.flowgeek.bean.Comment;
 import org.thanatos.flowgeek.bean.Tweet;
 import org.thanatos.flowgeek.bean.User;
@@ -48,7 +45,7 @@ import nucleus.factory.RequiresPresenter;
  * A simple {@link Fragment} subclass.
  */
 @RequiresPresenter(CmmPresenter.class)
-public class ListTweetCmmFragment extends BaseListFragment<Comment, CmmPresenter> 
+public class ListTweetCmmFragment extends BaseCmmFragment<CmmPresenter>
         implements BaseListAdapter.OnLoadingHeaderCallBack {
     
     private Tweet tweet;
@@ -60,12 +57,12 @@ public class ListTweetCmmFragment extends BaseListFragment<Comment, CmmPresenter
         // 处理请求tweet对象
         RxBus.getInstance().toObservable()
                 .compose(bindUntilEvent(FragmentEvent.DESTROY))
-                .filter(events -> events.what == Events.Type.DELIVER_TWEET)
+                .filter(events -> events.what == Events.EventEnum.DELIVER_TWEET)
                 .subscribe(events -> {
                     tweet = events.getMessage();
                 });
         
-        RxBus.getInstance().send(Events.Type.GET_TWEET, Events.Type.DELIVER_TWEET);
+        RxBus.getInstance().send(Events.EventEnum.GET_TWEET, Events.EventEnum.DELIVER_TWEET);
         
     }
 

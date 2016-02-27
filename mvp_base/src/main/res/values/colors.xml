@@ -39,6 +39,7 @@
     <color name="light_main_list_view_comment_count">#999</color>
 
     <color name="light_drawer_header_background">#339933</color>
+    <color name="light_drawer_header_background_selected">#EEE</color>
     <color name="light_drawer_header_username">#FFFFFF</color>
     <color name="light_drawer_header_abilities">#FFFFFF</color>
     <color name="light_drawer_header_abilities_background">#EEE</color>
@@ -60,13 +61,19 @@
     <color name="light_detail_content_background">#F6F6F6</color>
     <color name="light_detail_footer_text">#999</color>
     <color name="light_detail_footer_background">#FFF</color>
+    <color name="light_detail_footer_background_selected">#EEE</color>
+    <color name="light_detail_footer_background_ripple">#E4E4E4</color>
 
     <color name="light_comment_list_view_username">#339933</color>
     <color name="light_comment_list_view_time">#999</color>
-    <color name="light_comment_list_view_content">#999</color>
+    <color name="light_comment_list_view_content">#232323</color>
     <color name="light_comment_list_view_unselected">#FFF</color>
     <color name="light_comment_list_view_selected">#EEE</color>
     <color name="light_comment_list_view_ripple">#E4E4E4</color>
+    <color name="light_comment_list_view_refer_background">#fdfdf6</color>
+    <color name="light_comment_list_view_refer_title">#4d85ff</color>
+    <color name="light_comment_list_view_refer_content">#999</color>
+    <color name="light_comment_list_view_refer_border">#EEE</color>
 
     <color name="light_keyboard_panel_background">#FFF</color>
     <color name="light_keyboard_emotion_tab_item_selected">#FFF</color>
@@ -100,12 +107,24 @@
 
     <color name="light_tweet_floating_cover">#64FDFDFD</color>
 
+    <color name="light_login_background">#FFFFFF</color>
+    <color name="light_login_form_username">#000</color>
+    <color name="light_login_form_password">#000</color>
+    <color name="light_login_form_hint">#EEE</color>
+    <color name="light_login_form_error">#FF0000</color>
+    <color name="light_login_text">#000</color>
+
+    <color name="light_dialog_background">#FFF</color>
+    <color name="light_dialog_background_selected">#EEE</color>
+    <color name="light_dialog_background_ripple">#E4E4E4</color>
+    <color name="light_dialog_text">#000</color>
+
 
     <!--====================the dark theme color set=======================-->
-    <color name="dark_principle">#1D2428</color>
-    <color name="dark_state_bar">#1D2428</color>
+    <color name="dark_principle">#293339</color>
+    <color name="dark_state_bar">#293339</color>
     <color name="dark_action_bar_text">#FFFFFF</color>
-    <color name="dark_hint">#293339</color>
+    <color name="dark_hint">#565a5c</color>
     <color name="dark_divider">#1D2428</color>
 
     <color name="dark_tab_item_selected">#EBFAEB</color>
@@ -124,6 +143,7 @@
     <color name="dark_main_list_view_comment_count">#83898C</color>
 
     <color name="dark_drawer_header_background">#181E21</color>
+    <color name="dark_drawer_header_background_selected">#293339</color>
     <color name="dark_drawer_header_username">#FFFFFF</color>
     <color name="dark_drawer_header_abilities">#FFFFFF</color>
     <color name="dark_drawer_header_abilities_background">#EEE</color>
@@ -144,7 +164,9 @@
     <color name="dark_detail_content_text">#83898C</color>
     <color name="dark_detail_content_background">#181E21</color>
     <color name="dark_detail_footer_text">#83898C</color>
-    <color name="dark_detail_footer_background">#1D2428</color>
+    <color name="dark_detail_footer_background">#293339</color>
+    <color name="dark_detail_footer_background_selected">#242e35</color>
+    <color name="dark_detail_footer_background_ripple">#1f282e</color>
 
     <color name="dark_comment_list_view_username">#339933</color>
     <color name="dark_comment_list_view_time">#83898C</color>
@@ -152,6 +174,10 @@
     <color name="dark_comment_list_view_unselected">#293339</color>
     <color name="dark_comment_list_view_selected">#242e35</color>
     <color name="dark_comment_list_view_ripple">#1f282e</color>
+    <color name="dark_comment_list_view_refer_background">#1d252b</color>
+    <color name="dark_comment_list_view_refer_title">#4d85ff</color>
+    <color name="dark_comment_list_view_refer_content">#757a7c</color>
+    <color name="dark_comment_list_view_refer_border">#83898C</color>
 
     <color name="dark_keyboard_panel_background">#293339</color>
     <color name="dark_keyboard_emotion_tab_item_selected">#293339</color>
@@ -184,5 +210,17 @@
     <color name="dark_tweet_floating_action_button_item_background_selected">#EEE</color>
 
     <color name="dark_tweet_floating_cover">#64000000</color>
+
+    <color name="dark_login_background">#293339</color>
+    <color name="dark_login_form_username">#FFF</color>
+    <color name="dark_login_form_password">#FFF</color>
+    <color name="dark_login_form_hint">#EEE</color>
+    <color name="dark_login_form_error">#FF0000</color>
+    <color name="dark_login_text">#FFF</color>
+
+    <color name="dark_dialog_background">#293339</color>
+    <color name="dark_dialog_background_selected">#242e35</color>
+    <color name="dark_dialog_background_ripple">#1f282e</color>
+    <color name="dark_dialog_text">#FFF</color>
 
 </resources>

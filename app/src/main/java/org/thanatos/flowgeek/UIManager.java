@@ -12,6 +12,7 @@ import org.thanatos.flowgeek.bean.Article;
 import org.thanatos.flowgeek.bean.News;
 import org.thanatos.flowgeek.ui.activity.CmmActivity;
 import org.thanatos.flowgeek.ui.activity.DetailActivity;
+import org.thanatos.flowgeek.ui.activity.LoginActivity;
 import org.thanatos.flowgeek.ui.fragment.ListTweetFragment;
 import org.thanatos.flowgeek.utils.URLUtils;
 import org.thanatos.base.utils.Utilities;
@@ -168,7 +169,6 @@ public class UIManager {
     }
 
     public static void openBrowser(Context context, String url) {
-        Toast.makeText(context, "打开浏览器", Toast.LENGTH_SHORT).show();
         if (Utilities.isImgUrl(url)) {
             showImagePreview(context, 0, new String[]{url});
             return;
@@ -182,7 +182,6 @@ public class UIManager {
     }
 
     public static void openSysBrowser(Context context, String url) {
-        Toast.makeText(context, "打开系统浏览器", Toast.LENGTH_SHORT).show();
         Uri uri = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         if (intent.resolveActivity(context.getPackageManager()) != null)
@@ -213,7 +212,6 @@ public class UIManager {
     }
 
     public static void showBlogDetail(Context context, Article blog) {
-        Toast.makeText(context, "博客", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(context, DetailActivity.class);
         intent.putExtra(DetailActivity.BUNDLE_KEY_DISPLAY_TYPE, DetailActivity.DISPLAY_BLOG);
         intent.putExtra(DetailActivity.BUNDLE_KEY_NEWS_OBJECT, blog);
@@ -221,7 +219,6 @@ public class UIManager {
     }
 
     public static void showPostDetail(Context context, Article post) {
-        Toast.makeText(context, "问答", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(context, DetailActivity.class);
         intent.putExtra(DetailActivity.BUNDLE_KEY_DISPLAY_TYPE, DetailActivity.DISPLAY_POST);
         intent.putExtra(DetailActivity.BUNDLE_KEY_NEWS_OBJECT, post);
@@ -255,7 +252,12 @@ public class UIManager {
         context.startActivity(intent);
     }
 
+    /**
+     * 跳到登录页面
+     * @param context
+     */
     public static void jump2login(Context context) {
-
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
     }
 }

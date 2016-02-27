@@ -66,6 +66,11 @@ public abstract class BaseListAdapter<T extends Entity> extends RecyclerView.Ada
         notifyDataSetChanged();
     }
 
+    public final void addItem(int position, T obj){
+        items.add(position, obj);
+        notifyDataSetChanged();
+    }
+
     public final void addItems(List<T> objs) {
         items.addAll(objs);
         notifyDataSetChanged();

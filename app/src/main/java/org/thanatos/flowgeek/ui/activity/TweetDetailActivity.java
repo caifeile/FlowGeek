@@ -2,6 +2,8 @@ package org.thanatos.flowgeek.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
+
 import com.trello.rxlifecycle.ActivityEvent;
 import org.thanatos.base.ui.activity.BaseHoldBackActivity;
 import org.thanatos.flowgeek.R;
@@ -32,7 +34,7 @@ public class TweetDetailActivity extends BaseHoldBackActivity{
         // 处理请求article类型
         RxBus.getInstance().toObservable()
                 .compose(bindUntilEvent(ActivityEvent.DESTROY))
-                .filter(events -> events.what == Events.Type.GET_ARTICLE_CATALOG)
+                .filter(events -> events.what == Events.EventEnum.GET_ARTICLE_CATALOG)
                 .subscribe(events -> {
                     Events<Integer> event = new Events<Integer>();
                     event.what = events.getMessage();
@@ -43,7 +45,7 @@ public class TweetDetailActivity extends BaseHoldBackActivity{
         // 处理请求动弹对象的id
         RxBus.getInstance().toObservable()
                 .compose(bindUntilEvent(ActivityEvent.DESTROY))
-                .filter(events -> events.what == Events.Type.GET_ARTICLE_ID)
+                .filter(events -> events.what == Events.EventEnum.GET_ARTICLE_ID)
                 .subscribe(events -> {
                     Events<Long> event = new Events<Long>();
                     event.what = events.getMessage();
@@ -54,12 +56,19 @@ public class TweetDetailActivity extends BaseHoldBackActivity{
         // 处理请求tweet对象
         RxBus.getInstance().toObservable()
                 .compose(bindUntilEvent(ActivityEvent.DESTROY))
-                .filter(events -> events.what == Events.Type.GET_TWEET)
+                .filter(events -> events.what == Events.EventEnum.GET_TWEET)
                 .subscribe(events -> {
                     Events<Tweet> event = new Events<Tweet>();
                     event.what = events.getMessage();
                     event.message = tweet;
                     RxBus.getInstance().send(event);
+                });
+
+        RxBus.getInstance().toObservable()
+                .compose(bindUntilEvent(ActivityEvent.DESTROY))
+                .filter(events -> events.what == Events.EventEnum.WE_HIDE_ALL)
+                .subscribe(events -> {
+                    finish();
                 });
 
         getSupportFragmentManager()
@@ -68,6 +77,16 @@ public class TweetDetailActivity extends BaseHoldBackActivity{
                 .replace(R.id.frame_keyboard, Fragment.instantiate(this, KeyboardFragment.class.getName()))
                 .commit();
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                RxBus.getInstance().send(Events.EventEnum.DELIVER_GO_BACK, null);
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
