@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
-        <color android:color="?attr/detail_footer_background_selected"/>
+        <color android:color="@color/dark_main_list_item_selected"/>
     </item>
     <item>
-        <color android:color="?attr/detail_footer_background"/>
+        <color android:color="@color/dark_main_list_item_unselected"/>
     </item>
 </selector>

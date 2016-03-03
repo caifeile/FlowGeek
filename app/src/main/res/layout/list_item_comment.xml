@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:padding="10dp"
-    android:background="@drawable/selector_list_item_comment"
+    android:background="?attr/comment_list_item_background"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -29,13 +29,13 @@
             <TextView
                 android:id="@+id/tv_username"
                 android:textSize="@dimen/item_title"
-                android:textColor="?attr/comment_list_view_username"
+                android:textColor="?attr/comment_list_item_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/tv_time"
                 android:textSize="@dimen/item_time"
-                android:textColor="?attr/comment_list_view_time"
+                android:textColor="?attr/comment_list_item_time"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
 
         <TextView
             android:id="@+id/tv_content"
-            android:textColor="?attr/comment_list_view_content"
+            android:textColor="?attr/comment_list_item_content"
             android:textSize="@dimen/item_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

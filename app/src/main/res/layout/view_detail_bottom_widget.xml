@@ -23,7 +23,7 @@
             android:drawableTop="@mipmap/icon_share_mid_not"
             android:gravity="center"
             android:text="@string/share"
-            android:background="@drawable/selector_detail_bottom_widget_item"
+            android:background="?attr/detail_footer_background"
             android:textColor="?attr/detail_footer_text"
             android:textSize="11sp" />
         <!--like-->
@@ -38,7 +38,7 @@
             android:drawableTop="@mipmap/icon_like_mid_not"
             android:gravity="center"
             android:text="@string/like"
-            android:background="@drawable/selector_detail_bottom_widget_item"
+            android:background="?attr/detail_footer_background"
             android:textColor="?attr/detail_footer_text"
             android:textSize="11sp" />
         <!--bookmark-->
@@ -53,7 +53,7 @@
             android:drawableTop="@mipmap/icon_star_mid_not"
             android:gravity="center"
             android:text="@string/collection"
-            android:background="@drawable/selector_detail_bottom_widget_item"
+            android:background="?attr/detail_footer_background"
             android:textColor="?attr/detail_footer_text"
             android:textSize="11sp" />
         <!--comments-->
@@ -68,7 +68,7 @@
             android:drawableTop="@mipmap/icon_comment_mid_not"
             android:gravity="center"
             android:text="@string/comment"
-            android:background="@drawable/selector_detail_bottom_widget_item"
+            android:background="?attr/detail_footer_background"
             android:textColor="?attr/detail_footer_text"
             android:textSize="11sp" />
     </LinearLayout>

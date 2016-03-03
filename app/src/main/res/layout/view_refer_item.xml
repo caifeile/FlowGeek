@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="@drawable/shape_refer_item"
+    android:background="?attr/comment_list_item_refer_background"
     android:padding="7dp"
     android:layout_margin="3dp"
     android:layout_width="match_parent"
@@ -12,14 +12,14 @@
         android:textSize="12sp"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
-        android:textColor="?attr/comment_list_view_refer_title"
+        android:textColor="?attr/comment_list_item_refer_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tv_refer_content"
         android:textSize="12sp"
-        android:textColor="?attr/comment_list_view_refer_content"
+        android:textColor="?attr/comment_list_item_refer_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

@@ -13,7 +13,7 @@
         <!--tab navigation-->
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_nav"
-            android:background="?attr/principle"
+            android:background="?attr/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             app:tabGravity="fill"

@@ -5,7 +5,7 @@
     app:fab_addButtonColorPressed="?attr/tweet_floating_action_button_background_selected"
     app:fab_expandDirection="up"
     app:fab_labelsPosition="left"
-    android:layout_gravity="right|bottom"
+    android:layout_gravity="end|bottom"
     app:layout_behavior="org.thanatos.flowgeek.behavior.FloatingAutoHideDownBehavior"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">

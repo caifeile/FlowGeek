@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -83,12 +84,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private void initSubscribers() {
         // 接受订阅, 无论在哪里登录, 都能够接收到这个事件, 并且更新侧滑抽屉的View
-        RxBus.getInstance().toObservable()
-                .compose(bindUntilEvent(ActivityEvent.DESTROY))
-                .filter(events -> events.what == Events.EventEnum.DELIVER_LOGIN)
-                .subscribe((events) -> {
+        RxBus.with(this)
+                .setEvent(Events.EventEnum.DELIVER_LOGIN)
+                .setEndEvent(ActivityEvent.DESTROY)
+                .onNext((events)->{
                     initLogin();
-                }, Throwable::printStackTrace);
+                }).create();
     }
 
     @SuppressWarnings("all")

@@ -45,7 +45,7 @@
         android:layout_gravity="start"
         android:background="?attr/drawer_container_background"
         app:headerLayout="@layout/view_header_drawer"
-        app:itemBackground="@drawable/selector_drawer_menu"
+        app:itemBackground="?attr/drawer_container_menu"
         app:itemIconTint="@color/transparent"
         app:itemTextColor="?attr/drawer_container_menu_text"
         app:menu="@menu/drawer" />

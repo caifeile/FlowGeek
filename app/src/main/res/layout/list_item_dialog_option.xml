@@ -3,7 +3,7 @@
     android:padding="10dp"
     android:gravity="center"
     android:textColor="?attr/dialog_text"
-    android:background="@drawable/selector_dialog_option"
+    android:background="?attr/dialog_opinion_background"
     android:textSize="15sp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">

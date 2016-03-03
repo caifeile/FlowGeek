@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/light_detail_footer_background_ripple">
+    <item android:state_pressed="true">
+        <color android:color="@color/light_detail_footer_background_selected"/>
+    </item>
+    <item>
+        <color android:color="@color/light_detail_footer_background"/>
+    </item>
+
+</ripple>

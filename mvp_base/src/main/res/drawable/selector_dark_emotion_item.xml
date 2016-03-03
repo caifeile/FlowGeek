@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <color android:color="@color/light_keyboard_emotion_tab_item_selected"/>
+    </item>
+    <item android:state_selected="true">
+        <color android:color="@color/light_keyboard_emotion_tab_item_selected"/>
+    </item>
+    <item>
+        <shape>
+            <stroke
+                android:color="@color/light_keyboard_emotion_tab_item_border"
+                android:width="1px"
+                android:dashWidth="0dp"/>
+            <solid android:color="@color/light_keyboard_emotion_tab_item_unselected"/>
+        </shape>
+    </item>
+</selector>

@@ -7,8 +7,6 @@
         android:id="@+id/pager_nav_item"
         android:layout_centerInParent="true"
         android:textSize="@dimen/pager_nav_item_text"
-        android:background="@drawable/selector_tab_item"
-        android:textColor="@drawable/selector_tab_item_text_color"
         android:paddingRight="15dp"
         android:paddingLeft="15dp"
         android:paddingTop="1dp"

@@ -5,7 +5,9 @@
     <style name="AppTheme.Base" parent="Theme.AppCompat">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorPrimaryDark">@color/light_state_bar</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:colorBackground">@color/transparent</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
         <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
     </style>
 
@@ -13,11 +15,7 @@
     <style name="LightTheme.Base" parent="AppTheme.Base">
         <item name="colorPrimary">@color/light_principle</item>
         <item name="colorPrimaryDark">@color/light_state_bar</item>
-        <item name="android:textColorPrimary">#FFF</item>
         <item name="android:listDivider">@color/light_divider</item>
-        <item name="principle">@color/light_principle</item>
-        <item name="state_bar">@color/light_state_bar</item>
-        <item name="action_bar_text">@color/light_action_bar_text</item>
         <item name="hint">@color/light_hint</item>
         <item name="horizontal_divider">@color/light_divider</item>
         
@@ -25,19 +23,16 @@
         <item name="tab_item_unselected">@color/light_tab_item_unselected</item>
         <item name="tab_item_underline">@color/light_tab_item_underline</item>
         
-        <item name="list_view_background">@color/light_list_view_background</item>
+        <item name="list_view_background">@color/light_list_item_background</item>
         
-        <item name="main_list_view_title">@color/light_main_list_view_title</item>
-        <item name="main_list_view_content">@color/light_main_list_view_title</item>
-        <item name="main_list_view_username">@color/light_main_list_view_username</item>
-        <item name="main_list_view_time">@color/light_main_list_view_title</item>
-        <item name="main_list_view_selected">@color/light_main_list_view_selected</item>
-        <item name="main_list_view_unselected">@color/light_main_list_view_unselected</item>
-        <item name="main_list_view_ripple">@color/light_main_list_view_ripple</item>
-        <item name="main_list_view_comment_count">@color/light_main_list_view_title</item>
+        <item name="main_list_item_title">@color/light_main_list_item_title</item>
+        <item name="main_list_item_content">@color/light_main_list_item_title</item>
+        <item name="main_list_item_username">@color/light_main_list_item_username</item>
+        <item name="main_list_item_time">@color/light_main_list_item_title</item>
+        <item name="main_list_item_background">@drawable/selector_light_list_item</item>
+        <item name="main_list_item_comment_count">@color/light_main_list_item_title</item>
         
         <item name="drawer_header_background">@color/light_drawer_header_background</item>
-        <item name="drawer_header_background_selected">@color/light_drawer_header_background_selected</item>
         <item name="drawer_header_username">@color/light_drawer_header_username</item>
         <item name="drawer_header_abilities">@color/light_drawer_header_abilities</item>
         <item name="drawer_header_abilities_background">@color/light_drawer_header_abilities_background</item>
@@ -45,6 +40,7 @@
 
         <item name="drawer_container_background">@color/light_drawer_container_background</item>
         <item name="drawer_container_menu_text">@color/light_drawer_container_menu_text</item>
+        <item name="drawer_container_menu">@drawable/selector_light_drawer_menu</item>
 
         <item name="func_loading_text">@color/light_func_loading_text</item>
         
@@ -58,43 +54,33 @@
         <item name="detail_content_text">@color/light_detail_content_text</item>
         <item name="detail_content_background">@color/light_detail_content_background</item>
         <item name="detail_footer_text">@color/light_detail_footer_text</item>
-        <item name="detail_footer_background">@color/light_detail_footer_background</item>
-        <item name="detail_footer_background_selected">@color/light_detail_footer_background_selected</item>
-        <item name="detail_footer_background_ripple">@color/light_detail_footer_background_ripple</item>
+        <item name="detail_footer_background">@drawable/selector_light_detail_footer_item</item>
 
-        <item name="comment_list_view_username">@color/light_comment_list_view_username</item>
-        <item name="comment_list_view_time">@color/light_comment_list_view_time</item>
-        <item name="comment_list_view_content">@color/light_comment_list_view_content</item>
-        <item name="comment_list_view_selected">@color/light_comment_list_view_selected</item>
-        <item name="comment_list_view_unselected">@color/light_comment_list_view_unselected</item>
-        <item name="comment_list_view_ripple">@color/light_comment_list_view_ripple</item>
-        <item name="comment_list_view_refer_background">@color/light_comment_list_view_refer_background</item>
-        <item name="comment_list_view_refer_title">@color/light_comment_list_view_refer_title</item>
-        <item name="comment_list_view_refer_content">@color/light_comment_list_view_refer_content</item>
-        <item name="comment_list_view_refer_border">@color/light_comment_list_view_refer_border</item>
+        <item name="comment_list_item_username">@color/light_comment_list_item_username</item>
+        <item name="comment_list_item_time">@color/light_comment_list_item_time</item>
+        <item name="comment_list_item_content">@color/light_comment_list_item_content</item>
+        <item name="comment_list_item_background">@drawable/selector_light_list_item</item>
+        <item name="comment_list_item_refer_background">@drawable/shape_light_refer_item</item>
+        <item name="comment_list_item_refer_title">@color/light_comment_list_item_refer_title</item>
+        <item name="comment_list_item_refer_content">@color/light_comment_list_item_refer_content</item>
+        <item name="comment_list_item_refer_border">@color/light_comment_list_item_refer_border</item>
 
         <item name="keyboard_panel_background">@color/light_keyboard_panel_background</item>
-        <item name="keyboard_emotion_tab_item_selected">@color/light_keyboard_emotion_tab_item_selected</item>
-        <item name="keyboard_emotion_tab_item_unselected">@color/light_keyboard_emotion_tab_item_unselected</item>
-        <item name="keyboard_emotion_card_tab_item_selected">@color/light_keyboard_emotion_card_tab_item_selected</item>
-        <item name="keyboard_emotion_card_tab_item_unselected">@color/light_keyboard_emotion_card_tab_item_unselected</item>
+        <item name="keyboard_emotion_tab_item_background">@drawable/selector_light_emotion_item</item>
+        <item name="keyboard_emotion_tab_item_text">@color/light_keyboard_emotion_tab_item_text</item>
         <item name="keyboard_input_text">@color/light_keyboard_input_text</item>
 
         <item name="tweet_list_item_username">@color/light_tweet_list_item_username</item>
         <item name="tweet_list_item_content">@color/light_tweet_list_item_content</item>
         <item name="tweet_list_item_highlight">@color/light_tweet_list_item_highlight</item>
         <item name="tweet_list_item_other">@color/light_tweet_list_item_other</item>
-        <item name="tweet_list_item_background_selected">@color/light_tweet_list_item_background_selected</item>
-        <item name="tweet_list_item_background_unselected">@color/light_tweet_list_item_background_unselected</item>
-        <item name="tweet_list_item_background_ripple">@color/light_tweet_list_item_background_ripple</item>
+        <item name="tweet_list_item_background">@drawable/selector_light_list_item</item>
         <item name="tweet_list_item_like_list_background">@color/light_tweet_list_item_like_list_background</item>
 
         <item name="tweet_comment_list_item_username">@color/light_tweet_comment_list_item_username</item>
         <item name="tweet_comment_list_item_content">@color/light_tweet_comment_list_item_content</item>
         <item name="tweet_comment_list_item_time">@color/light_tweet_comment_list_item_time</item>
-        <item name="tweet_comment_list_item_background_selected">@color/light_tweet_comment_list_item_background_selected</item>
-        <item name="tweet_comment_list_item_background_unselected">@color/light_tweet_comment_list_item_background_unselected</item>
-        <item name="tweet_comment_list_item_background_ripple">@color/light_tweet_comment_list_item_background_ripple</item>
+        <item name="tweet_comment_list_item_background">@drawable/selector_light_list_item</item>
 
         <item name="tweet_floating_action_button_background_unselected">@color/light_tweet_floating_action_button_background_unselected</item>
         <item name="tweet_floating_action_button_background_selected">@color/light_tweet_floating_action_button_background_selected</item>
@@ -112,9 +98,7 @@
         <item name="login_form_error">@color/light_login_form_error</item>
         <item name="login_text">@color/light_login_text</item>
 
-        <item name="dialog_background">@color/light_dialog_background</item>
-        <item name="dialog_background_selected">@color/light_dialog_background_selected</item>
-        <item name="dialog_background_ripple">@color/light_dialog_background_ripple</item>
+        <item name="dialog_opinion_background">@drawable/selector_light_opinion_item</item>
         <item name="dialog_text">@color/light_dialog_text</item>
 
         <item name="tweet_publish_editor_background">@color/light_tweet_publish_editor_background</item>
@@ -126,12 +110,7 @@
     <style name="DarkTheme.Base" parent="AppTheme.Base">
         <item name="colorPrimary">@color/dark_principle</item>
         <item name="colorPrimaryDark">@color/dark_state_bar</item>
-        <item name="android:textColorPrimary">#FFF</item>
         <item name="android:listDivider">@color/dark_divider</item>
-
-        <item name="principle">@color/dark_principle</item>
-        <item name="state_bar">@color/dark_state_bar</item>
-        <item name="action_bar_text">@color/dark_action_bar_text</item>
         <item name="hint">@color/dark_hint</item>
         <item name="horizontal_divider">@color/dark_divider</item>
 
@@ -139,19 +118,16 @@
         <item name="tab_item_unselected">@color/dark_tab_item_unselected</item>
         <item name="tab_item_underline">@color/dark_tab_item_underline</item>
 
-        <item name="list_view_background">@color/dark_list_view_background</item>
+        <item name="list_view_background">@color/dark_list_item_background</item>
 
-        <item name="main_list_view_title">@color/dark_main_list_view_title</item>
-        <item name="main_list_view_content">@color/dark_main_list_view_content</item>
-        <item name="main_list_view_username">@color/dark_main_list_view_username</item>
-        <item name="main_list_view_time">@color/dark_main_list_view_time</item>
-        <item name="main_list_view_selected">@color/dark_main_list_view_selected</item>
-        <item name="main_list_view_unselected">@color/dark_main_list_view_unselected</item>
-        <item name="main_list_view_ripple">@color/dark_main_list_view_ripple</item>
-        <item name="main_list_view_comment_count">@color/dark_main_list_view_comment_count</item>
+        <item name="main_list_item_title">@color/dark_main_list_item_title</item>
+        <item name="main_list_item_content">@color/dark_main_list_item_content</item>
+        <item name="main_list_item_username">@color/dark_main_list_item_username</item>
+        <item name="main_list_item_time">@color/dark_main_list_item_time</item>
+        <item name="main_list_item_background">@drawable/selector_dark_list_item</item>
+        <item name="main_list_item_comment_count">@color/dark_main_list_item_comment_count</item>
 
         <item name="drawer_header_background">@color/dark_drawer_header_background</item>
-        <item name="drawer_header_background_selected">@color/dark_drawer_header_background_selected</item>
         <item name="drawer_header_username">@color/dark_drawer_header_username</item>
         <item name="drawer_header_abilities">@color/dark_drawer_header_abilities</item>
         <item name="drawer_header_abilities_background">@color/dark_drawer_header_abilities_background</item>
@@ -159,6 +135,7 @@
 
         <item name="drawer_container_background">@color/dark_drawer_container_background</item>
         <item name="drawer_container_menu_text">@color/dark_drawer_container_menu_text</item>
+        <item name="drawer_container_menu">@drawable/selector_dark_drawer_menu</item>
 
         <item name="func_loading_text">@color/dark_func_loading_text</item>
 
@@ -172,42 +149,33 @@
         <item name="detail_content_text">@color/dark_detail_content_text</item>
         <item name="detail_content_background">@color/dark_detail_content_background</item>
         <item name="detail_footer_text">@color/dark_detail_footer_text</item>
-        <item name="detail_footer_background">@color/dark_detail_footer_background</item>
-        <item name="detail_footer_background_selected">@color/dark_detail_footer_background_selected</item>
-        <item name="detail_footer_background_ripple">@color/dark_detail_footer_background_ripple</item>
+        <item name="detail_footer_background">@drawable/selector_dark_detail_footer_item</item>
 
-        <item name="comment_list_view_username">@color/dark_comment_list_view_username</item>
-        <item name="comment_list_view_time">@color/dark_comment_list_view_time</item>
-        <item name="comment_list_view_content">@color/dark_comment_list_view_content</item>
-        <item name="comment_list_view_selected">@color/dark_comment_list_view_selected</item>
-        <item name="comment_list_view_unselected">@color/dark_comment_list_view_unselected</item>
-        <item name="comment_list_view_ripple">@color/dark_comment_list_view_ripple</item>
-        <item name="comment_list_view_refer_background">@color/dark_comment_list_view_refer_background</item>
-        <item name="comment_list_view_refer_title">@color/dark_comment_list_view_refer_title</item>
-        <item name="comment_list_view_refer_content">@color/dark_comment_list_view_refer_content</item>
-        <item name="comment_list_view_refer_border">@color/dark_comment_list_view_refer_border</item>
+        <item name="comment_list_item_username">@color/dark_comment_list_item_username</item>
+        <item name="comment_list_item_time">@color/dark_comment_list_item_time</item>
+        <item name="comment_list_item_content">@color/dark_comment_list_item_content</item>
+        <item name="comment_list_item_background">@drawable/selector_dark_list_item</item>
+        <item name="comment_list_item_refer_background">@drawable/shape_dark_refer_item</item>
+        <item name="comment_list_item_refer_title">@color/dark_comment_list_item_refer_title</item>
+        <item name="comment_list_item_refer_content">@color/dark_comment_list_item_refer_content</item>
+        <item name="comment_list_item_refer_border">@color/dark_comment_list_item_refer_border</item>
 
         <item name="keyboard_panel_background">@color/dark_keyboard_panel_background</item>
-        <item name="keyboard_emotion_tab_item_selected">@color/dark_keyboard_emotion_tab_item_selected</item>
-        <item name="keyboard_emotion_tab_item_unselected">@color/dark_keyboard_emotion_tab_item_unselected</item>
-        <item name="keyboard_emotion_card_tab_item_selected">@color/dark_keyboard_emotion_card_tab_item_selected</item>
-        <item name="keyboard_emotion_card_tab_item_unselected">@color/dark_keyboard_emotion_card_tab_item_unselected</item>
+        <item name="keyboard_emotion_tab_item_background">@drawable/selector_dark_emotion_item</item>
+        <item name="keyboard_emotion_tab_item_text">@color/dark_keyboard_emotion_tab_item_text</item>
         <item name="keyboard_input_text">@color/dark_keyboard_input_text</item>
 
         <item name="tweet_list_item_username">@color/dark_tweet_list_item_username</item>
         <item name="tweet_list_item_content">@color/dark_tweet_list_item_content</item>
         <item name="tweet_list_item_highlight">@color/dark_tweet_list_item_highlight</item>
         <item name="tweet_list_item_other">@color/dark_tweet_list_item_other</item>
-        <item name="tweet_list_item_background_selected">@color/dark_tweet_list_item_background_selected</item>
-        <item name="tweet_list_item_background_unselected">@color/dark_tweet_list_item_background_unselected</item>
-        <item name="tweet_list_item_background_ripple">@color/dark_tweet_list_item_background_ripple</item>
+        <item name="tweet_list_item_background">@drawable/selector_dark_list_item</item>
         <item name="tweet_list_item_like_list_background">@color/dark_tweet_list_item_like_list_background</item>
 
         <item name="tweet_comment_list_item_username">@color/dark_tweet_comment_list_item_username</item>
         <item name="tweet_comment_list_item_content">@color/dark_tweet_comment_list_item_content</item>
         <item name="tweet_comment_list_item_time">@color/dark_tweet_comment_list_item_time</item>
-        <item name="tweet_comment_list_item_background_selected">@color/dark_tweet_comment_list_item_background_selected</item>
-        <item name="tweet_comment_list_item_background_ripple">@color/dark_tweet_comment_list_item_background_ripple</item>
+        <item name="tweet_comment_list_item_background">@drawable/selector_dark_list_item</item>
 
         <item name="tweet_floating_action_button_background_unselected">@color/dark_tweet_floating_action_button_background_unselected</item>
         <item name="tweet_floating_action_button_background_selected">@color/dark_tweet_floating_action_button_background_selected</item>
@@ -225,9 +193,7 @@
         <item name="login_form_error">@color/dark_login_form_error</item>
         <item name="login_text">@color/dark_login_text</item>
 
-        <item name="dialog_background">@color/dark_dialog_background</item>
-        <item name="dialog_background_selected">@color/dark_dialog_background_selected</item>
-        <item name="dialog_background_ripple">@color/dark_dialog_background_ripple</item>
+        <item name="dialog_opinion_background">@drawable/selector_dark_opinion_item</item>
         <item name="dialog_text">@color/dark_dialog_text</item>
 
         <item name="tweet_publish_editor_background">@color/dark_tweet_publish_editor_background</item>

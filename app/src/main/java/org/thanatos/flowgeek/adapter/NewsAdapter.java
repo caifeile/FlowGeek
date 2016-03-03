@@ -28,7 +28,7 @@ public class NewsAdapter extends BaseListAdapter<News> {
 
     @Override
     protected RecyclerView.ViewHolder onCreateDefaultViewHolder(ViewGroup parent, int type) {
-        return new NewsViewHolder(mInflater.inflate(R.layout.list_item_news, null));
+        return new NewsViewHolder(mInflater.inflate(R.layout.list_item_news, parent, false));
     }
 
     @Override

@@ -31,7 +31,7 @@ public abstract class BaseActivity<P extends Presenter> extends NucleusActivity<
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(UIHelper.getAttrValueFromTheme(R.attr.principle, getTheme()));
+            getWindow().setStatusBarColor(UIHelper.getAttrValueFromTheme(R.attr.colorPrimaryDark, getTheme()));
         }
     }
 

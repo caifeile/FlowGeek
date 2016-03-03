@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/selector_list_item_comment"
+    android:background="?attr/tweet_comment_list_item_background"
     android:orientation="horizontal"
     android:padding="10dp">
 
@@ -63,7 +63,7 @@
 
             <TextView
                 android:id="@+id/tv_time"
-                android:textColor="?attr/main_list_view_time"
+                android:textColor="?attr/main_list_item_time"
                 android:layout_marginTop="2dp"
                 android:textSize="@dimen/item_time"
                 android:alpha="@dimen/secondary_alpha"
@@ -77,7 +77,7 @@
                 android:id="@+id/tv_comment_count"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:textColor="?attr/main_list_view_comment_count"
+                android:textColor="?attr/main_list_item_comment_count"
                 android:textSize="@dimen/item_content"
                 android:drawableLeft="@mipmap/icon_comment_mini_not"
                 android:drawableStart="@mipmap/icon_comment_mini_not"

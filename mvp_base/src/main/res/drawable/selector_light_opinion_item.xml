@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
-        <color android:color="?attr/dialog_background_selected"/>
+        <color android:color="@color/light_dialog_option_unselected"/>
     </item>
 
     <item>
-        <color android:color="?attr/dialog_background"/>
+        <color android:color="@color/light_dialog_option_unselected"/>
     </item>
 </selector>
