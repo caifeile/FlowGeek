@@ -31,6 +31,10 @@ public class TweetPublishActivity extends BaseHoldBackActivity<TweetPublishPrese
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame_emotion_panel, Fragment.instantiate(this, EmotionPanelFragment.class.getName()))
+                .commit();
     }
 
     @Override
