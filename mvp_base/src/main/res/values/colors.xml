@@ -39,7 +39,7 @@
     <color name="light_main_list_view_comment_count">#999</color>
 
     <color name="light_drawer_header_background">#339933</color>
-    <color name="light_drawer_header_background_selected">#EEE</color>
+    <color name="light_drawer_header_background_selected">#FFEEEEEE</color>
     <color name="light_drawer_header_username">#FFFFFF</color>
     <color name="light_drawer_header_abilities">#FFFFFF</color>
     <color name="light_drawer_header_abilities_background">#EEE</color>
@@ -119,6 +119,9 @@
     <color name="light_dialog_background_ripple">#E4E4E4</color>
     <color name="light_dialog_text">#000</color>
 
+    <color name="light_tweet_publish_editor_background">#FFF</color>
+    <color name="light_tweet_publish_emotion_navigation">#E4E4E4</color>
+
 
     <!--====================the dark theme color set=======================-->
     <color name="dark_principle">#293339</color>
@@ -143,7 +146,7 @@
     <color name="dark_main_list_view_comment_count">#83898C</color>
 
     <color name="dark_drawer_header_background">#181E21</color>
-    <color name="dark_drawer_header_background_selected">#293339</color>
+    <color name="dark_drawer_header_background_selected">#FF293339</color>
     <color name="dark_drawer_header_username">#FFFFFF</color>
     <color name="dark_drawer_header_abilities">#FFFFFF</color>
     <color name="dark_drawer_header_abilities_background">#EEE</color>
@@ -222,5 +225,8 @@
     <color name="dark_dialog_background_selected">#242e35</color>
     <color name="dark_dialog_background_ripple">#1f282e</color>
     <color name="dark_dialog_text">#FFF</color>
+
+    <color name="dark_tweet_publish_editor_background">#181E21</color>
+    <color name="dark_tweet_publish_emotion_navigation">#293339</color>
 
 </resources>

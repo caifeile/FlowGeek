@@ -69,6 +69,7 @@ public class ListTweetCmmFragment extends BaseCmmFragment<CmmPresenter>
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mListView.setPadding(0, setDividerSize(), 0, 0);
         mAdapter.setOnLoadingHeaderCallBack(this);
     }
 

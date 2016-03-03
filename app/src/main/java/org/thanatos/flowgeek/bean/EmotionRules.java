@@ -19,7 +19,7 @@ public enum EmotionRules {
     EMOTION9(0, R.mipmap.smiley_9, "[大哭]", "[9]"),
     EMOTION10(0, R.mipmap.smiley_10, "[尴尬]", "[10]"),
     EMOTION11(0, R.mipmap.smiley_11, "[发怒]", "[11]"),
-    EMOTION12(0, R.mipmap.smiley_12, "调皮", "[12]"),
+    EMOTION12(0, R.mipmap.smiley_12, "[调皮]", "[12]"),
     EMOTION13(0, R.mipmap.smiley_13, "[呲牙]", "[13]"),
     EMOTION14(0, R.mipmap.smiley_14, "[惊讶]", "[14]"),
     EMOTION15(0, R.mipmap.smiley_15, "[难过]", "[15]"),
@@ -105,5 +105,13 @@ public enum EmotionRules {
 
     public void setRemote(String remote) {
         this.remote = remote;
+    }
+
+    public static EmotionRules containOf(String s) {
+        EmotionRules[] rules = EmotionRules.values();
+        for (EmotionRules item : rules){
+            if (item.getName().equals(s)) return item;
+        }
+        return null;
     }
 }

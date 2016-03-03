@@ -103,5 +103,9 @@
     <attr name="dialog_background_ripple" format="color"/>
     <attr name="dialog_text" format="color"/>
 
+    <attr name="tweet_publish_editor_background" format="color"/>
+    <attr name="tweet_publish_emotion_navigation" format="color"/>
+
+
 
 </resources>

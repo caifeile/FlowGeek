@@ -24,7 +24,12 @@
                 android:textColor="?attr/keyboard_input_text"
                 android:background="@drawable/selector_shape_input"
                 android:textSize="18sp"
-                android:padding="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingStart="8dp"
+                android:paddingRight="30dp"
+                android:paddingEnd="30dp"
                 android:textColorHint="?attr/hint"
                 android:hint="@string/please_say_something"
                 android:layout_height="wrap_content" />

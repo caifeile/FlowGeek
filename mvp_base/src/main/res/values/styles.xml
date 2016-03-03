@@ -116,6 +116,10 @@
         <item name="dialog_background_selected">@color/light_dialog_background_selected</item>
         <item name="dialog_background_ripple">@color/light_dialog_background_ripple</item>
         <item name="dialog_text">@color/light_dialog_text</item>
+
+        <item name="tweet_publish_editor_background">@color/light_tweet_publish_editor_background</item>
+        <item name="tweet_publish_emotion_navigation">@color/light_tweet_publish_emotion_navigation</item>
+
     </style>
 
     <!--======================Dark Theme========================-->
@@ -225,6 +229,9 @@
         <item name="dialog_background_selected">@color/dark_dialog_background_selected</item>
         <item name="dialog_background_ripple">@color/dark_dialog_background_ripple</item>
         <item name="dialog_text">@color/dark_dialog_text</item>
+
+        <item name="tweet_publish_editor_background">@color/dark_tweet_publish_editor_background</item>
+        <item name="tweet_publish_emotion_navigation">@color/dark_tweet_publish_emotion_navigation</item>
     </style>
 
     <style name="LightTheme" parent="LightTheme.Base">

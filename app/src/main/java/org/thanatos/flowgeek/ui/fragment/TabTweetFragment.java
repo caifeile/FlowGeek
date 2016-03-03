@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 
 import org.thanatos.component.FloatingActionsMenu;
 import org.thanatos.flowgeek.R;
+import org.thanatos.flowgeek.UIManager;
 import org.thanatos.flowgeek.ui.activity.MainActivity;
 
 /**
@@ -55,6 +56,15 @@ public class TabTweetFragment extends BaseTabMainFragment{
 
         mFrameCover.setVisibility(View.GONE);
         mFloatingActionMenu.setCoverView(mFrameCover);
+
+        mFloatingActionMenu.findViewById(R.id.btn_publish_text)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mFloatingActionMenu.toggle();
+                        UIManager.showTweetPublishUI(getContext());
+                    }
+                });
 
         mAttachActivity.addToCoordinatorLayout(mFrameCover);
         mAttachActivity.addToCoordinatorLayout(mFloatingActionMenu);

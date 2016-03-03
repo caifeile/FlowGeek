@@ -69,6 +69,17 @@ public class KeyboardFragment extends BaseTabNavFragment {
         mEmotionSelected = getResources().getDrawable(R.mipmap.icon_emotion_selected);
         mEmotionUnselected = getResources().getDrawable(R.mipmap.icon_emotion);
 
+        mInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus){
+                    hideEmoLayout();
+                }else{
+                    hideSoftKeyboard();
+                }
+            }
+        });
+
     }
 
     private void initSubscribers() {
@@ -78,6 +89,7 @@ public class KeyboardFragment extends BaseTabNavFragment {
                 .filter(events -> events.what == Events.EventEnum.DELIVER_SELECT_EMOTION)
                 .subscribe(events -> {
                     EmotionRules emotion = events.<EmotionRules>getMessage();
+
                     if (mInput == null || emotion == null) {
                         return;
                     }
@@ -85,10 +97,10 @@ public class KeyboardFragment extends BaseTabNavFragment {
                     int end = mInput.getSelectionEnd();
                     if (start == end) {
                         // 没有多选时，直接在当前光标处添加
-                        mInput.append(InputHelper.display(mInput.getResources(), emotion));
+                        mInput.append(InputHelper.insertEtn(mContext, emotion));
                     } else {
                         // 将已选中的部分替换为表情(当长按文字时会多选刷中很多文字)
-                        Spannable str = InputHelper.display(mInput.getResources(), emotion);
+                        Spannable str = InputHelper.insertEtn(mContext, emotion);
                         mInput.getText().replace(Math.min(start, end), Math.max(start, end), str, 0, str.length());
                     }
                 });
@@ -100,6 +112,7 @@ public class KeyboardFragment extends BaseTabNavFragment {
                 .subscribe(events -> {
                     if (mReplyCmm!=null){
                         mInput.setHint(getResources().getString(R.string.please_say_something));
+                        mReplyCmm = null;
                         return;
                     }
                     if (isShowingEmoLayout()) {
@@ -222,8 +235,6 @@ public class KeyboardFragment extends BaseTabNavFragment {
         Events<Comment> events = Events.just(comment);
         events.what = Events.EventEnum.DELIVER_SEND_COMMENT;
         RxBus.getInstance().send(events);
-        RxBus.getInstance().send(Events.EventEnum.GET_ARTICLE_ID, Events.EventEnum.DELIVER_ARTICLE_ID_FROM_KEYBOARD);
-        RxBus.getInstance().send(Events.EventEnum.GET_ARTICLE_CATALOG, Events.EventEnum.DELIVER_ARTICLE_CATALOG_FROM_KEYBOARD);
     }
 
     /**

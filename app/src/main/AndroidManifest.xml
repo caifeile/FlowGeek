@@ -46,6 +46,9 @@
         <activity
             android:name=".ui.activity.LoginActivity"
             android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name=".ui.activity.TweetPublishActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
     </application>
 
 </manifest>

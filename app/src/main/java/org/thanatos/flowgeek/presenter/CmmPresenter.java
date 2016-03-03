@@ -95,7 +95,7 @@ public class CmmPresenter extends BaseListPresenter<BaseCmmFragment> {
         Observable<RespResult> observable;
         switch (type){
             default:  // 普通评论
-                if (rid == 0){ // --> 不是回复评论
+                if (rid <= 0){ // --> 不是回复评论
                     observable = ServerAPI.getOSChinaAPI().publicNormalComment(
                             catalog, aid, AppManager.LOCAL_LOGINED_USER.getUid(), content, 1);
                 }else{ // --> 是回复评论
@@ -104,7 +104,7 @@ public class CmmPresenter extends BaseListPresenter<BaseCmmFragment> {
                 }
                 break;
             case 1: // 博客评论
-                if (rid == 0){
+                if (rid <= 0){
                     observable = ServerAPI.getOSChinaAPI().publicBlogComment(
                             aid, AppManager.LOCAL_LOGINED_USER.getUid(), content);
                 }else{

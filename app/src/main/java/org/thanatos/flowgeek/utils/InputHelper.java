@@ -10,6 +10,7 @@ import android.text.Spanned;
 import android.text.style.ImageSpan;
 import android.view.KeyEvent;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.thanatos.flowgeek.bean.EmotionRules;
 
@@ -33,10 +34,10 @@ public class InputHelper {
      * @return
      */
     @SuppressWarnings("all")
-    public static Spannable display(Resources resources, EmotionRules emotion) {
+    public static Spannable insertEtn(Context context, EmotionRules emotion) {
         String remote = emotion.getRemote();
         Spannable spannable = new SpannableString(remote);
-        Drawable d = resources.getDrawable(emotion.getMResId());
+        Drawable d = context.getResources().getDrawable(emotion.getMResId());
         d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
         ImageSpan iSpan = new ImageSpan(d, ImageSpan.ALIGN_BASELINE);
         //Spanned.SPAN_EXCLUSIVE_EXCLUSIVE 前后输入的字符都不应用这种Spannable
@@ -44,10 +45,48 @@ public class InputHelper {
         return spannable;
     }
 
-    public static Spannable input2posts4image(Context context, String text, Bitmap bitmap){
-        Spannable spannable = new SpannableString(text);
-        ImageSpan imageSpan = new ImageSpan(context, bitmap);
-        spannable.setSpan(imageSpan, 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        return spannable;
+    public static void encode(TextView view, String content){
+        StringBuilder mNormalBuilder = new StringBuilder();
+        StringBuilder mEtnBuilder = new StringBuilder();
+        boolean cutable = false;
+        for (int i=0; i<content.length(); i++){
+            char unit = content.charAt(i);
+            // 截断,保存在etnBuilder容器
+            if (cutable){
+                // 截断期间发现新的[,将之前的缓存存入view,刷新容器
+                if (unit == '['){
+                    mNormalBuilder.append(mEtnBuilder.toString());
+                    mEtnBuilder = new StringBuilder();
+                    mEtnBuilder.append(unit);
+                    continue;
+                }
+                if (unit == ']'){
+                    mEtnBuilder.append(unit);
+                    EmotionRules rule = EmotionRules.containOf(mEtnBuilder.toString());
+                    view.append(mNormalBuilder.toString());
+                    if (rule!=null){
+                        view.append(insertEtn(view.getContext(), rule));
+                    }else{
+                        view.append(mEtnBuilder.toString());
+                    }
+                    mNormalBuilder = new StringBuilder();
+                    mEtnBuilder = new StringBuilder();
+                    cutable = false;
+                    continue;
+                }
+                mEtnBuilder.append(unit);
+
+            }else{ // --> 非截流
+                if (unit == '['){
+                    mEtnBuilder.append(unit);
+                    cutable = true;
+                    continue;
+                }
+                mNormalBuilder.append(unit);
+            }
+        }
+        view.append(mNormalBuilder.toString());
+        view.append(mEtnBuilder.toString());
     }
+
 }

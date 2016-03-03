@@ -1,10 +1,12 @@
 package org.thanatos.flowgeek.ui.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -15,6 +17,8 @@ import org.thanatos.base.ui.fragment.BaseTabNavFragment;
 import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.bean.EmotionRules;
 import org.thanatos.base.utils.UIHelper;
+import org.thanatos.flowgeek.event.Events;
+import org.thanatos.flowgeek.event.RxBus;
 
 import java.util.Arrays;
 
@@ -77,6 +81,14 @@ public class EmotionPanelFragment extends BaseTabNavFragment {
         view.setLayoutParams(params);
         view.setNumColumns(COLUMN);
         view.setAdapter(new EmotionAdapter(rules));
+        view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Events<EmotionRules> events = Events.just(rules[position]);
+                events.what = Events.EventEnum.DELIVER_SELECT_EMOTION;
+                RxBus.getInstance().send(events);
+            }
+        });
         return view;
     }
 

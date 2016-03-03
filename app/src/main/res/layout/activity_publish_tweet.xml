@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <include layout="@layout/view_toolbar"/>
+
+    <EditText
+        android:id="@+id/et_input"
+        android:layout_width="match_parent"
+        android:padding="7dp"
+        android:background="?attr/tweet_publish_editor_background"
+        android:gravity="start|top"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <include layout="@layout/view_horizontal_line"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="7dp"
+        android:background="?attr/tweet_publish_emotion_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_emotion"
+            android:src="@mipmap/icon_emotion"
+            android:contentDescription="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <fragment
+            android:id="@+id/frame_emotion_panel"
+            android:name="org.thanatos.flowgeek.ui.fragment.EmotionPanelFragment"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

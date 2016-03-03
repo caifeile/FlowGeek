@@ -3,10 +3,13 @@ package org.thanatos.flowgeek;
 import android.app.Application;
 import android.test.ApplicationTestCase;
 import android.test.UiThreadTest;
+import android.util.Log;
+import android.widget.TextView;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 import org.thanatos.flowgeek.bean.Blog;
+import org.thanatos.flowgeek.utils.InputHelper;
 
 /**
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
@@ -54,6 +57,13 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @UiThreadTest
+    public void test02(){
+        TextView view = new TextView(getContext());
+        InputHelper.encode(view, "大家好[发呆],想我了吗[科科], [来来来[得意]][流泪]想啊!!!");
+        Log.d("thanatos", view.getText().toString());
     }
 
 

@@ -11,6 +11,7 @@
     android:layout_height="wrap_content">
 
     <org.thanatos.component.FloatingActionButton
+        android:id="@+id/btn_scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:fab_colorNormal="?attr/tweet_floating_action_button_item_background_unselected"
@@ -20,6 +21,7 @@
         app:fab_size="mini" />
 
     <org.thanatos.component.FloatingActionButton
+        android:id="@+id/btn_publish_voice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:fab_colorNormal="?attr/tweet_floating_action_button_item_background_unselected"
@@ -29,6 +31,7 @@
         app:fab_size="mini" />
 
     <org.thanatos.component.FloatingActionButton
+        android:id="@+id/btn_publish_photograph"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:fab_colorNormal="?attr/tweet_floating_action_button_item_background_unselected"
@@ -38,6 +41,7 @@
         app:fab_size="mini" />
 
     <org.thanatos.component.FloatingActionButton
+        android:id="@+id/btn_publish_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:fab_colorNormal="?attr/tweet_floating_action_button_item_background_unselected"
@@ -47,6 +51,7 @@
         app:fab_size="mini" />
 
     <org.thanatos.component.FloatingActionButton
+        android:id="@+id/btn_publish_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:fab_colorNormal="?attr/tweet_floating_action_button_item_background_unselected"

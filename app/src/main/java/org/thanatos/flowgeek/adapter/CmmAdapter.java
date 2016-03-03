@@ -15,6 +15,7 @@ import org.thanatos.base.adapter.BaseListAdapter;
 import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.bean.Comment;
 import org.thanatos.base.utils.Utilities;
+import org.thanatos.flowgeek.utils.InputHelper;
 
 import java.text.ParseException;
 
@@ -50,7 +51,8 @@ public class CmmAdapter extends BaseListAdapter<Comment> {
         } catch (ParseException e) {
             hold.tvTime.setText(item.getPubDate());
         }
-        hold.tvContent.setText(item.getContent());
+        hold.tvContent.setText("");
+        InputHelper.encode(hold.tvContent, item.getContent());
 
         // setup refer
         if (hold.mLayoutRefer!=null){
@@ -69,7 +71,7 @@ public class CmmAdapter extends BaseListAdapter<Comment> {
                 TextView mContentView = (TextView) view.findViewById(R.id.tv_refer_content);
 
                 mTitleView.setText(refer.getTitle());
-                mContentView.setText(refer.getBody());
+                InputHelper.encode(mContentView, refer.getBody());
 
                 if (mTempLayoutRefer == null){
                     hold.mLayoutContainer.addView(hold.mLayoutRefer = view, 1);

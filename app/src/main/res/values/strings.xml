@@ -73,4 +73,6 @@
     <string name="delete">删除</string>
     <string name="are_you_sure_delete_the_comment">你确定删除该评论?</string>
     <string name="deleting_comment">正在删除该评论</string>
+    <string name="publish">发表</string>
+    <string name="dan_yi_dan">弹一弹</string>
 </resources>
