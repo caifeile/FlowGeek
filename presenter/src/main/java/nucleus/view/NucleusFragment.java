@@ -84,7 +84,6 @@ public abstract class NucleusFragment<P extends Presenter> extends RxFragment im
     @Override
     public void onDestroy() {
         super.onDestroy();
-        // 强制销毁Presenter,不用管Activity是否真的要销毁
         presenterDelegate.onDestroy(getActivity().isFinishing());
     }
 }

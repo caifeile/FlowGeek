@@ -37,11 +37,11 @@
                 android:id="@+id/iv_emotion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/icon_emotion"
                 android:layout_alignBottom="@id/et_input"
                 android:paddingBottom="8dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="5dp"
+                android:src="@drawable/selector_emotion_btn"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:contentDescription="@null" />

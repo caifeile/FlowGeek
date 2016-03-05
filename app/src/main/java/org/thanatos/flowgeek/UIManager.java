@@ -262,8 +262,9 @@ public class UIManager {
         context.startActivity(intent);
     }
 
-    public static void showTweetPublishUI(Context context) {
+    public static void showTweetPublishUI(Context context, int type) {
         Intent intent = new Intent(context, TweetPublishActivity.class);
+        intent.putExtra(TweetPublishActivity.TYPE_KEY, type);
         context.startActivity(intent);
     }
 }

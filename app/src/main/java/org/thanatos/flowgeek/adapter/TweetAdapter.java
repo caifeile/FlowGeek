@@ -28,6 +28,7 @@ import org.thanatos.flowgeek.bean.Tweet;
 import org.thanatos.flowgeek.bean.User;
 import org.thanatos.flowgeek.ui.activity.ListLikeUserActivity;
 import org.thanatos.flowgeek.ui.activity.UserHomeActivity;
+import org.thanatos.flowgeek.utils.InputHelper;
 import org.thanatos.flowgeek.utils.Utility;
 import org.thanatos.flowgeek.widget.JumpViewSpan;
 
@@ -56,7 +57,7 @@ public class TweetAdapter extends BaseListAdapter<Tweet>{
         Tweet item = items.get(position);
         Picasso.with(mContext).load(item.getPortrait()).into(holder.ivPortrait);
         holder.tvUsername.setText(item.getAuthor());
-        holder.tvContent.setText(item.getBody());
+        InputHelper.encode(holder.tvContent, item.getBody());
         try {
             holder.tvTime.setText(Utilities.dateFormat(item.getPubDate()));
         } catch (ParseException e) {

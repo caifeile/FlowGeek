@@ -9,6 +9,7 @@
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
+        android:paddingTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="130dp"/>
 

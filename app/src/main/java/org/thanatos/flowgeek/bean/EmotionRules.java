@@ -110,7 +110,7 @@ public enum EmotionRules {
     public static EmotionRules containOf(String s) {
         EmotionRules[] rules = EmotionRules.values();
         for (EmotionRules item : rules){
-            if (item.getName().equals(s)) return item;
+            if (item.getName().equals(s) || item.getRemote().equals(s)) return item;
         }
         return null;
     }

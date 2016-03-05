@@ -7,4 +7,5 @@
     android:background="?attr/colorPrimary"
     android:id="@+id/toolbar"
     android:fitsSystemWindows="true"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     app:layout_scrollFlags="scroll|enterAlways" />

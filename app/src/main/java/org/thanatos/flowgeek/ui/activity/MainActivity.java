@@ -125,13 +125,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         // gender
         if (AppManager.LOCAL_LOGINED_USER.getGender().equals("1")){ // --> 男
-            tvNick.setCompoundDrawables(null, null,
+            tvNick.setCompoundDrawablesWithIntrinsicBounds(null, null,
                     getResources().getDrawable(R.mipmap.icon_male), null);
         }else if (AppManager.LOCAL_LOGINED_USER.getGender().equals("0")){
-            tvNick.setCompoundDrawables(null, null,
+            tvNick.setCompoundDrawablesWithIntrinsicBounds(null, null,
                     getResources().getDrawable(R.mipmap.icon_female), null);
         }else{
-            tvNick.setCompoundDrawables(null, null,
+            tvNick.setCompoundDrawablesWithIntrinsicBounds(null, null,
                     getResources().getDrawable(R.mipmap.icon_gender), null);
         }
 

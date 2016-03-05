@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 import com.squareup.picasso.Picasso;
 
@@ -24,15 +25,19 @@ import org.thanatos.flowgeek.bean.RespUser;
 import org.thanatos.flowgeek.bean.RespUserInfo;
 import org.thanatos.flowgeek.bean.User;
 
+import java.io.File;
 import java.util.Locale;
 
+import retrofit.Call;
 import retrofit.Retrofit;
 import retrofit.RxJavaCallAdapterFactory;
 import retrofit.SimpleXmlConverterFactory;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
+import retrofit.http.Multipart;
 import retrofit.http.POST;
+import retrofit.http.Part;
 import retrofit.http.Query;
 import rx.Observable;
 
@@ -222,6 +227,23 @@ public class ServerAPI {
                 @Query("pageSize") int pageSize
         );
 
+
+        @Multipart
+        @POST("/action/api/tweet_pub")
+        Observable<RespResult> publishTweet(
+                @Part("uid") RequestBody uid,
+                @Part("msg") RequestBody message,
+                @Part("img") RequestBody image,
+                @Part("amr") RequestBody voice
+        );
+
+        @Multipart
+        @POST("/action/api/tweet_pub")
+        Call<RespResult> publicTweet(
+                @Part("uid") RequestBody uid,
+                @Part("msg") RequestBody message,
+                @Part("img\"; filename=\"image.png\" ") RequestBody image,
+                @Part("amr") RequestBody voice);
 
         // -------------- 评论api ---------------
         @GET("/action/api/comment_list")

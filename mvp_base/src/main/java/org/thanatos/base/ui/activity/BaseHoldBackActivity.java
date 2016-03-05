@@ -26,6 +26,7 @@ public abstract class BaseHoldBackActivity<P extends Presenter> extends BaseActi
         mToolbar.setTitle("");
         mToolbar.setSubtitle(onSetTitle());
         mToolbar.setNavigationIcon(R.mipmap.icon_back);
+        setSupportActionBar(mToolbar);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

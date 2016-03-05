@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">开源中国 · 改</string>
+    <string name="app_name">开源中国</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -75,4 +75,5 @@
     <string name="deleting_comment">正在删除该评论</string>
     <string name="publish">发表</string>
     <string name="dan_yi_dan">弹一弹</string>
+    <string name="let_us_fuck_it">弹一弹, #软件名#, @好友</string>
 </resources>

@@ -123,6 +123,7 @@
     <color name="light_dialog_text">#000</color>
 
     <color name="light_tweet_publish_editor_background">#FFF</color>
+    <color name="light_tweet_publish_editor_text">#000</color>
     <color name="light_tweet_publish_emotion_navigation">#E4E4E4</color>
 
 
@@ -233,6 +234,7 @@
     <color name="dark_dialog_text">#FFF</color>
 
     <color name="dark_tweet_publish_editor_background">#181E21</color>
+    <color name="dark_tweet_publish_editor_text">#FFF</color>
     <color name="dark_tweet_publish_emotion_navigation">#293339</color>
 
 

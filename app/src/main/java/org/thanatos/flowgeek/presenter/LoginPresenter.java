@@ -7,6 +7,7 @@ import org.thanatos.flowgeek.bean.RespUser;
 import org.thanatos.flowgeek.ui.activity.LoginActivity;
 
 import nucleus.presenter.RxPresenter;
+import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 

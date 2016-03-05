@@ -12,11 +12,12 @@ import org.thanatos.component.FloatingActionsMenu;
 import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.UIManager;
 import org.thanatos.flowgeek.ui.activity.MainActivity;
+import org.thanatos.flowgeek.ui.activity.TweetPublishActivity;
 
 /**
  * Created by thanatos on 16/2/17.
  */
-public class TabTweetFragment extends BaseTabMainFragment{
+public class TabTweetFragment extends BaseTabMainFragment implements View.OnClickListener {
 
     private MainActivity mAttachActivity;
     private FloatingActionsMenu mFloatingActionMenu;
@@ -57,19 +58,13 @@ public class TabTweetFragment extends BaseTabMainFragment{
         mFrameCover.setVisibility(View.GONE);
         mFloatingActionMenu.setCoverView(mFrameCover);
 
-        mFloatingActionMenu.findViewById(R.id.btn_publish_text)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mFloatingActionMenu.toggle();
-                        UIManager.showTweetPublishUI(getContext());
-                    }
-                });
+        mFloatingActionMenu.findViewById(R.id.btn_publish_text).setOnClickListener(this);
+        mFloatingActionMenu.findViewById(R.id.btn_publish_image).setOnClickListener(this);
+        mFloatingActionMenu.findViewById(R.id.btn_publish_photograph).setOnClickListener(this);
+        mFloatingActionMenu.findViewById(R.id.btn_publish_voice).setOnClickListener(this);
 
         mAttachActivity.addToCoordinatorLayout(mFrameCover);
         mAttachActivity.addToCoordinatorLayout(mFloatingActionMenu);
-
-
     }
 
     @Override
@@ -84,5 +79,27 @@ public class TabTweetFragment extends BaseTabMainFragment{
         super.onDestroyView();
         mAttachActivity.removeFormCoordinatorLayout(mFloatingActionMenu);
         mAttachActivity.removeFormCoordinatorLayout(mFrameCover);
+    }
+
+    @Override
+    public void onClick(View v) {
+        mFloatingActionMenu.toggle();
+        switch (v.getId()){
+            case R.id.btn_publish_text:
+                UIManager.showTweetPublishUI(getContext(), TweetPublishActivity.TYPE_TEXT);
+                break;
+
+            case R.id.btn_publish_image:
+                UIManager.showTweetPublishUI(getContext(), TweetPublishActivity.TYPE_IMAGE);
+                break;
+
+            case R.id.btn_publish_photograph:
+                UIManager.showTweetPublishUI(getContext(), TweetPublishActivity.TYPE_PHOTOGRAPH);
+                break;
+
+            case R.id.btn_publish_voice:
+                UIManager.showTweetPublishUI(getContext(), TweetPublishActivity.TYPE_VOICE);
+                break;
+        }
     }
 }

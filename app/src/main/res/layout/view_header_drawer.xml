@@ -42,8 +42,7 @@
         android:layout_marginTop="10dp"
         android:textSize="@dimen/drawer_header_username"
         android:drawablePadding="5dp"
-        android:textColor="?attr/drawer_header_username"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:textColor="?attr/drawer_header_username"/>
 
     <!--懒, 不想配置-->
     <TextView

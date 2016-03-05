@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:background="?attr/tweet_publish_editor_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,10 +12,24 @@
         android:id="@+id/et_input"
         android:layout_width="match_parent"
         android:padding="7dp"
-        android:background="?attr/tweet_publish_editor_background"
+        android:background="@null"
+        android:textColor="?attr/tweet_publish_editor_text"
+        android:textColorHint="?attr/hint"
+        android:hint="@string/let_us_fuck_it"
         android:gravity="start|top"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:inputType="text|textMultiLine" />
+
+    <include layout="@layout/view_horizontal_line"/>
+
+    <ImageView
+        android:id="@+id/iv_tweet_image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        android:contentDescription="@null" />
 
     <include layout="@layout/view_horizontal_line"/>
 
@@ -27,7 +42,7 @@
 
         <ImageView
             android:id="@+id/iv_emotion"
-            android:src="@mipmap/icon_emotion"
+            android:src="@drawable/selector_emotion_btn"
             android:contentDescription="@null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -35,6 +50,7 @@
         <FrameLayout
             android:id="@+id/frame_emotion_panel"
             android:visibility="gone"
+            android:paddingTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="130dp"/>
 

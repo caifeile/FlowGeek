@@ -46,17 +46,18 @@ public class InputHelper {
     }
 
     public static void encode(TextView view, String content){
+        view.setText("");
         StringBuilder mNormalBuilder = new StringBuilder();
         StringBuilder mEtnBuilder = new StringBuilder();
-        boolean cutable = false;
+        boolean isCut = false;
         for (int i=0; i<content.length(); i++){
             char unit = content.charAt(i);
             // 截断,保存在etnBuilder容器
-            if (cutable){
+            if (isCut){
                 // 截断期间发现新的[,将之前的缓存存入view,刷新容器
                 if (unit == '['){
                     mNormalBuilder.append(mEtnBuilder.toString());
-                    mEtnBuilder = new StringBuilder();
+                    mEtnBuilder.delete(0, mEtnBuilder.length());
                     mEtnBuilder.append(unit);
                     continue;
                 }
@@ -69,9 +70,9 @@ public class InputHelper {
                     }else{
                         view.append(mEtnBuilder.toString());
                     }
-                    mNormalBuilder = new StringBuilder();
-                    mEtnBuilder = new StringBuilder();
-                    cutable = false;
+                    mNormalBuilder.delete(0, mNormalBuilder.length());
+                    mEtnBuilder.delete(0, mEtnBuilder.length());
+                    isCut = false;
                     continue;
                 }
                 mEtnBuilder.append(unit);
@@ -79,7 +80,7 @@ public class InputHelper {
             }else{ // --> 非截流
                 if (unit == '['){
                     mEtnBuilder.append(unit);
-                    cutable = true;
+                    isCut = true;
                     continue;
                 }
                 mNormalBuilder.append(unit);

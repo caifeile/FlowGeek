@@ -5,8 +5,7 @@
     <style name="AppTheme.Base" parent="Theme.AppCompat">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:background">@color/transparent</item>
-        <item name="android:colorBackground">@color/transparent</item>
+        <item name="android:windowBackground">@color/transparent</item>
         <item name="android:textColorPrimary">#FFFFFF</item>
         <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
     </style>
@@ -102,6 +101,7 @@
         <item name="dialog_text">@color/light_dialog_text</item>
 
         <item name="tweet_publish_editor_background">@color/light_tweet_publish_editor_background</item>
+        <item name="tweet_publish_editor_text">@color/light_tweet_publish_editor_text</item>
         <item name="tweet_publish_emotion_navigation">@color/light_tweet_publish_emotion_navigation</item>
 
     </style>
@@ -197,6 +197,7 @@
         <item name="dialog_text">@color/dark_dialog_text</item>
 
         <item name="tweet_publish_editor_background">@color/dark_tweet_publish_editor_background</item>
+        <item name="tweet_publish_editor_text">@color/dark_tweet_publish_editor_text</item>
         <item name="tweet_publish_emotion_navigation">@color/dark_tweet_publish_emotion_navigation</item>
     </style>
 
