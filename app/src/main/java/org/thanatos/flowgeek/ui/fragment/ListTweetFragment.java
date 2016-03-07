@@ -73,7 +73,7 @@ public class ListTweetFragment extends BaseListFragment<Tweet, ListTweetPresente
                         mLoginLayout.setVisibility(View.GONE);
                         onLoadingState(BaseListFragment.LOAD_MODE_DEFAULT);
                         getPresenter().requestData(BaseListFragment.LOAD_MODE_DEFAULT, 0);
-                    })._create();
+                    }).create();
 
             RxBus.with(this)
                     .setEndEvent(FragmentEvent.DESTROY)
@@ -85,7 +85,7 @@ public class ListTweetFragment extends BaseListFragment<Tweet, ListTweetPresente
                         mSwipeRefreshLayout.setEnabled(false);
                         mLoginLayout.setVisibility(View.VISIBLE);
                         mState = STATE_USER_NOT_LOGIN;
-                    })._create();
+                    }).create();
         }
 
     }
