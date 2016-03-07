@@ -46,6 +46,7 @@ import org.thanatos.pay.ui.fragment.EntryFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import rx.Observable;
 
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -278,6 +279,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         mCurrentMenuItem = item;
         mDrawerLayout.closeDrawer(mDrawerNavView);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_search:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

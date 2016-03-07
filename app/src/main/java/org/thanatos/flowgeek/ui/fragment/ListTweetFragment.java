@@ -54,9 +54,6 @@ public class ListTweetFragment extends BaseListFragment<Tweet, ListTweetPresente
 
     public int mCatalog = TWEET_TYPE_NEW;
 
-    public Subscription subscription4login;
-    public Subscription subscription4logout;
-
     @Bind(R.id.layout_login) RelativeLayout mLoginLayout;
 
     @Override
