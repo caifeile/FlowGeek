@@ -76,4 +76,5 @@
     <string name="publish">发表</string>
     <string name="dan_yi_dan">弹一弹</string>
     <string name="let_us_fuck_it">弹一弹, #软件名#, @好友</string>
+    <string name="go_to_login"><![CDATA[去登录>>>]]></string>
 </resources>

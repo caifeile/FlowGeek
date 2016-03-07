@@ -1,6 +1,8 @@
 package org.thanatos.base.ui.fragment;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import org.thanatos.base.R;
@@ -28,6 +32,8 @@ import java.util.List;
 public abstract class BaseListFragment<T extends Entity, P extends BaseListPresenter> extends BaseFragment<P>
         implements SwipeRefreshLayout.OnRefreshListener,ErrorLayout.OnActiveClickListener, BaseListAdapter.OnLoadingListener {
 
+    protected static final String BUNDLE_STATE_REFRESH = "BUNDLE_STATE_REFRESH";
+
     protected SwipeRefreshLayout mSwipeRefreshLayout;
     protected RecyclerView mListView;
     protected ErrorLayout mErrorLayout;
@@ -38,10 +44,11 @@ public abstract class BaseListFragment<T extends Entity, P extends BaseListPrese
     public static final int STATE_NONE = 0;
     public static final int STATE_REFRESHING = 1;
     public static final int STATE_PRESSING = 2;// 正在下拉但还没有到刷新的状态
+    public static final int STATE_CACHE_LOADING = 3;
 
-    public static final int LOAD_MODE_DEFAULT = 1;
-    public static final int LOAD_MODE_UP_DRAG = 2;
-    public static final int LOAD_MODE_CACHE = 3;
+    public static final int LOAD_MODE_DEFAULT = 1; // 默认的下拉刷新,小圆圈
+    public static final int LOAD_MODE_UP_DRAG = 2; // 上拉到底部时刷新
+    public static final int LOAD_MODE_CACHE = 3; // 缓存,ErrorLayout显示情况
 
     public int mState = STATE_NONE;
 
@@ -59,20 +66,22 @@ public abstract class BaseListFragment<T extends Entity, P extends BaseListPrese
         mErrorLayout = (ErrorLayout) view.findViewById(R.id.error_frame);
 
 
-        mSwipeRefreshLayout.setOnRefreshListener(this);
-        mSwipeRefreshLayout.setColorSchemeResources(
-                R.color.swipe_refresh_first, R.color.swipe_refresh_second,
-                R.color.swipe_refresh_third, R.color.swipe_refresh_four
-        );
-        mSwipeRefreshLayout.setProgressBackgroundColorSchemeResource(
-                UIHelper.getAttrResourceFromTheme(R.attr.refresh_progress_background, getActivity().getTheme())
-        );
+        if (getRefreshable()){
+            mSwipeRefreshLayout.setOnRefreshListener(this);
+            mSwipeRefreshLayout.setColorSchemeResources(
+                    R.color.swipe_refresh_first, R.color.swipe_refresh_second,
+                    R.color.swipe_refresh_third, R.color.swipe_refresh_four
+            );
+            mSwipeRefreshLayout.setProgressBackgroundColorSchemeResource(
+                    UIHelper.getAttrResourceFromTheme(R.attr.refresh_progress_background, getActivity().getTheme())
+            );
+        }
 
         mErrorLayout.setOnActiveClickListener(this);
 
         mListView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         mListView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getActivity())
-                .color(getResources().getColor(R.color.transparent))
+                .color(setDividerColor())
                 .size(setDividerSize())
                 .build());
 
@@ -84,6 +93,25 @@ public abstract class BaseListFragment<T extends Entity, P extends BaseListPrese
             mAdapter.setOnLoadingListener(this);
             mErrorLayout.setState(ErrorLayout.LOADING);
         }
+
+
+        if (savedInstanceState != null){
+            if (mState == STATE_REFRESHING && getRefreshable()
+                    && savedInstanceState.getInt(BUNDLE_STATE_REFRESH, STATE_NONE) == STATE_REFRESHING){
+                mSwipeRefreshLayout.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mSwipeRefreshLayout.setRefreshing(true);
+                    }
+                });
+            }
+
+            if (mState == STATE_CACHE_LOADING && getRefreshable()
+                    && savedInstanceState.getInt(BUNDLE_STATE_REFRESH, STATE_NONE) == STATE_CACHE_LOADING){
+                mErrorLayout.setState(ErrorLayout.LOADING);
+            }
+        }
+
     }
 
     /**
@@ -98,6 +126,10 @@ public abstract class BaseListFragment<T extends Entity, P extends BaseListPrese
      */
     public int setDividerSize(){
         return getResources().getDimensionPixelSize(R.dimen.divider_height);
+    }
+
+    public int setDividerColor(){
+        return getResources().getColor(R.color.transparent);
     }
 
     /**
@@ -126,6 +158,7 @@ public abstract class BaseListFragment<T extends Entity, P extends BaseListPrese
             T obj = iterator.next();
             for (int i=0; i<data.size(); i++){
                 if (data.get(i).getId().equals(obj.getId())){
+                    data.set(i, obj);
                     iterator.remove();
                     break;
                 }
@@ -143,13 +176,13 @@ public abstract class BaseListFragment<T extends Entity, P extends BaseListPrese
      */
     @Override
     public void onRefresh() {
-        if (mState == STATE_REFRESHING)
+        if (mState == STATE_REFRESHING && getRefreshable())
             return;
         if (!DeviceManager.hasInternet(getContext())){
             onNetworkInvalid(LOAD_MODE_DEFAULT);
             return;
         }
-        onLoadingState();
+        onLoadingState(LOAD_MODE_DEFAULT);
         getPresenter().requestData(LOAD_MODE_DEFAULT, 0);
     }
 
@@ -182,10 +215,14 @@ public abstract class BaseListFragment<T extends Entity, P extends BaseListPrese
     public void onLoadErrorState(int mode) {
         switch (mode){
             case LOAD_MODE_DEFAULT:
-                mErrorLayout.setState(ErrorLayout.LOAD_FAILED);
-                mSwipeRefreshLayout.setRefreshing(false);
-                mSwipeRefreshLayout.setEnabled(false);
-                mState = STATE_NONE;
+                mSwipeRefreshLayout.setEnabled(true);
+                if (mAdapter.getDataSize()>0){
+                    mSwipeRefreshLayout.setRefreshing(false);
+                    mState = STATE_NONE;
+                    Toast.makeText(mContext, "数据加载失败", Toast.LENGTH_SHORT).show();
+                }else{
+                    mErrorLayout.setState(ErrorLayout.LOAD_FAILED);
+                }
                 break;
             case LOAD_MODE_UP_DRAG:
                 mAdapter.setState(BaseListAdapter.STATE_LOAD_ERROR);
@@ -226,20 +263,31 @@ public abstract class BaseListFragment<T extends Entity, P extends BaseListPrese
     /**
      * 顶部加载状态
      */
-    public void onLoadingState() {
-        if (mSwipeRefreshLayout != null) {
-            mSwipeRefreshLayout.setRefreshing(true);
-            mState = STATE_REFRESHING;
-            mSwipeRefreshLayout.setEnabled(false);
+    public void onLoadingState(int mode) {
+        switch (mode){
+            case LOAD_MODE_DEFAULT:
+                mState = STATE_REFRESHING;
+                mSwipeRefreshLayout.setRefreshing(true);
+                mSwipeRefreshLayout.setEnabled(false);
+                break;
+            case LOAD_MODE_CACHE:
+                mState = STATE_CACHE_LOADING;
+                mErrorLayout.setState(ErrorLayout.LOADING);
+                break;
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(BUNDLE_STATE_REFRESH, mState);
     }
 
     /**
      * 设置是否可刷新
-     * @param refreshable 是否可刷新
      */
-    public void setRefreshable(boolean refreshable){
-        mSwipeRefreshLayout.setEnabled(refreshable);
+    public boolean getRefreshable(){
+        return true;
     }
 
     /**

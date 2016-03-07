@@ -65,6 +65,7 @@ public class TabTweetFragment extends BaseTabMainFragment implements View.OnClic
 
         mAttachActivity.addToCoordinatorLayout(mFrameCover);
         mAttachActivity.addToCoordinatorLayout(mFloatingActionMenu);
+
     }
 
     @Override

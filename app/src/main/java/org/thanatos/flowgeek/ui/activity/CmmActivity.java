@@ -2,6 +2,7 @@ package org.thanatos.flowgeek.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.view.KeyEvent;
 
 import com.trello.rxlifecycle.ActivityEvent;
@@ -31,6 +32,8 @@ public class CmmActivity extends BaseHoldBackActivity {
                 .replace(R.id.frame_container, Fragment.instantiate(this, CmmFragment.class.getName()))
                 .replace(R.id.frame_keyboard, Fragment.instantiate(this, KeyboardFragment.class.getName()))
                 .commit();
+
+        ViewCompat.setElevation(mToolbar, 7);
 
         RxBus.getInstance().toObservable()
                 .compose(bindUntilEvent(ActivityEvent.DESTROY))

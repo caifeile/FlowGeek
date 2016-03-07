@@ -61,7 +61,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private TextView tvScore;
     private ImageView ivExit;
 
-    private MenuItem mPreMenuItem;
+    private MenuItem mCurrentMenuItem;
 
 
     @Override
@@ -105,6 +105,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 }
             });
             tvNick.setText("未登录");
+            tvNick.setCompoundDrawables(null, null, null, null);
             ivExit.setVisibility(View.GONE);
             tvScore.setText(null);
             return;
@@ -164,6 +165,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                                 ServerAPI.clearCookies();
                                 initLogin();
                                 dialog.dismiss();
+                                RxBus.getInstance().send(Events.EventEnum.DELIVER_LOGOUT, null);
                             }
                         }).create().show();
             }
@@ -218,27 +220,27 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_explore: // 发现探索
-                if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_explore) break;
+                if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_explore) break;
 
                 break;
             case R.id.menu_blog: // 博客
-                if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_blog) break;
+                if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_blog) break;
 
                 break;
             case R.id.menu_tweets: // 动弹
-                if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_tweets) break;
+                if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_tweets) break;
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_container, Fragment.instantiate(this, TabTweetFragment.class.getName()))
                         .commit();
                 break;
 
             case R.id.menu_technology_question_answer: // 技术问答
-                if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_technology_question_answer) break;
+                if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_technology_question_answer) break;
 
                 break;
 
             case R.id.menu_theme: // 更改主题
-                if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_theme) break;
+                if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_theme) break;
                 SharedPreferences preferences = SharePreferenceManager.getApplicationSetting(this);
                 int theme = preferences.getInt(ApplicationSetting.KEY_THEME, ApplicationTheme.LIGHT.getKey());
                 SharedPreferences.Editor editor = preferences.edit();
@@ -256,11 +258,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 overridePendingTransition(R.anim.enter, R.anim.exit);
                 return true;
             case R.id.menu_setting: // 设置
-                if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_setting) break;
+                if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_setting) break;
 
                 break;
             case R.id.menu_donate: // 捐助我
-                if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_donate) break;
+                if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_donate) break;
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_container,
                                 Fragment.instantiate(this, EntryFragment.class.getName()))
@@ -268,13 +270,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 break;
 
             case R.id.menu_new : // 资讯
-                if (mPreMenuItem!=null && mPreMenuItem.getItemId()==R.id.menu_new) break;
+                if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_new) break;
                 setDefaultMenuItem();
                 break;
         }
         item.setChecked(true);
-        if (mPreMenuItem!=null) mPreMenuItem.setChecked(false);
-        mPreMenuItem = item;
+        mCurrentMenuItem = item;
         mDrawerLayout.closeDrawer(mDrawerNavView);
         return true;
     }
@@ -312,6 +313,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()!=R.id.menu_new){
+                setDefaultMenuItem();
+                mDrawerNavView.setCheckedItem(R.id.menu_new);
+                mCurrentMenuItem = mDrawerNavView.getMenu().getItem(0);
+                return true;
+            }
             if (isBacking) {
                 if (mBackToast != null)
                     mBackToast.cancel();

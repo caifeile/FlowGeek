@@ -140,7 +140,7 @@ public class TweetAdapter extends BaseListAdapter<Tweet>{
 
         public TweetViewHold(View view) {
             super(view);
-            ViewCompat.setElevation(view, 3.0f);
+            ViewCompat.setElevation(view, 4.0f);
             ButterKnife.bind(this, view);
         }
     }

@@ -6,6 +6,7 @@ import android.view.ViewTreeObserver;
 
 import org.thanatos.base.presenter.BaseListPresenter;
 import org.thanatos.base.manager.DeviceManager;
+import org.thanatos.base.ui.fragment.BaseListFragment;
 import org.thanatos.flowgeek.ServerAPI;
 import org.thanatos.flowgeek.bean.News;
 import org.thanatos.flowgeek.bean.NewsList;
@@ -69,6 +70,7 @@ public class ListNewsPresenter extends BaseListPresenter<ListNewsFragment> {
                 (view) -> {
                     Log.d("thanatos", "------afterTakeView-------");
                     // 读取缓存
+                    view.onLoadingState(BaseListFragment.LOAD_MODE_CACHE);
                     Subscription mReadCacheSubscriptor = this.<List<News>>getCacheFile(view.getContext(), cache_key)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
@@ -145,7 +147,7 @@ public class ListNewsPresenter extends BaseListPresenter<ListNewsFragment> {
         // 判读网络情况
         if (!DeviceManager.hasInternet(view.getContext())) return;
 
-        view.onLoadingState();
+        view.onLoadingState(BaseListFragment.LOAD_MODE_DEFAULT);
 
         // 得及时解除订阅才行, 使用restartableFirst而不是用restartableLastCache,不然每次
         // views emit, 这里的订阅者都会有响应.

@@ -222,19 +222,9 @@ public class ServerAPI {
         // -------------- 动弹api ---------------
         @GET("/action/api/tweet_list")
         Observable<RespTweetList> getTweetList(
-                @Query("uid") int uid,
+                @Query("uid") long uid,
                 @Query("pageIndex") int pageIndex,
                 @Query("pageSize") int pageSize
-        );
-
-
-        @Multipart
-        @POST("/action/api/tweet_pub")
-        Observable<RespResult> publishTweet(
-                @Part("uid") RequestBody uid,
-                @Part("msg") RequestBody message,
-                @Part("img") RequestBody image,
-                @Part("amr") RequestBody voice
         );
 
         @Multipart
@@ -244,6 +234,14 @@ public class ServerAPI {
                 @Part("msg") RequestBody message,
                 @Part("img\"; filename=\"image.png\" ") RequestBody image,
                 @Part("amr") RequestBody voice);
+
+        @FormUrlEncoded
+        @POST("/action/api/tweet_delete")
+        Call<RespResult> deleteTweet(
+                @Field("uid") long uid,
+                @Field("tweetid") long tid
+        );
+
 
         // -------------- 评论api ---------------
         @GET("/action/api/comment_list")

@@ -27,14 +27,14 @@
     <color name="light_tab_item_unselected">#FFFFFF</color>
     <color name="light_tab_item_underline">#EBFAEB</color>
 
-    <color name="light_list_item_background">#EBFAEB</color>
+    <color name="light_list_item_background">#f2faf2</color>
 
-    <color name="light_main_list_item_title">#666</color>
+    <color name="light_main_list_item_title">#535353</color>
     <color name="light_main_list_item_content">#999</color>
     <color name="light_main_list_item_username">#339933</color>
     <color name="light_main_list_item_time">#999</color>
     <color name="light_main_list_item_unselected">#FFFFFF</color>
-    <color name="light_main_list_item_selected">#EEE</color>
+    <color name="light_main_list_item_selected">#f4f4f4</color>
     <color name="light_main_list_item_ripple">#E4E4E4</color>
     <color name="light_main_list_item_comment_count">#999</color>
 

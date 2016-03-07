@@ -10,7 +10,6 @@
     <dimen name="pager_nav_item_text">14sp</dimen>
     <dimen name="item_title">16sp</dimen>
     <dimen name="item_content">14sp</dimen>
-    <dimen name="divider_height">5dp</dimen>
     <dimen name="item_time">12sp</dimen>
     <dimen name="detail_content">15sp</dimen>
     <dimen name="item_type">12sp</dimen>

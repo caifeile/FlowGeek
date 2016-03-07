@@ -13,6 +13,7 @@ import org.thanatos.base.R;
 import org.thanatos.base.domain.Entity;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -85,12 +86,25 @@ public abstract class BaseListAdapter<T extends Entity> extends RecyclerView.Ada
         return items.get(getIndex(position));
     }
 
+    public void removeObjectForId(long id) {
+        Iterator<T> iterator = items.iterator();
+        while (iterator.hasNext()){
+            T obj = iterator.next();
+            if (obj.getId() == id){
+                iterator.remove();
+                notifyDataSetChanged();
+            }
+        }
+    }
+
     private int getIndex(int position) {
         return BEHAVIOR_MODE == ONLY_HEADER || BEHAVIOR_MODE == BOTH_HEADER_FOOTER ? position - 1 : position;
     }
 
     public final void clear() {
         items.clear();
+        mState = STATE_HIDE;
+        notifyDataSetChanged();
     }
 
     public final List<T> getDataSet() {

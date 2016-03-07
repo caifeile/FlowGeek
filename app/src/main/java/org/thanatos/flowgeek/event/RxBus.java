@@ -6,6 +6,7 @@ import com.trello.rxlifecycle.FragmentEvent;
 import com.trello.rxlifecycle.FragmentLifecycleProvider;
 
 import rx.Observable;
+import rx.Subscription;
 import rx.functions.Action1;
 import rx.subjects.PublishSubject;
 import rx.subjects.SerializedSubject;
@@ -116,19 +117,23 @@ public class RxBus {
         }
 
         public void create(){
+            _create();
+        }
+
+        public Subscription _create(){
             if (mFragLifecycleProvider!=null){
-                RxBus.getInstance().toObservable()
+                return RxBus.getInstance().toObservable()
                         .compose(mFragLifecycleProvider.bindUntilEvent(mFragmentEndEvent))
                         .filter(events -> events.what == event)
                         .subscribe(onNext, onError == null ? Throwable::printStackTrace : onError);
-                return;
             }
             if (mActLifecycleProvider!=null){
-                RxBus.getInstance().toObservable()
+                return RxBus.getInstance().toObservable()
                         .compose(mActLifecycleProvider.bindUntilEvent(mActivityEndEvent))
                         .filter(events -> events.what == event)
                         .subscribe(onNext, onError == null ? Throwable::printStackTrace : onError);
             }
+            return null;
         }
     }
 

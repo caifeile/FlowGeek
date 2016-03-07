@@ -2,6 +2,7 @@ package org.thanatos.flowgeek.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.view.KeyEvent;
 
 import com.trello.rxlifecycle.ActivityEvent;
@@ -30,6 +31,8 @@ public class TweetDetailActivity extends BaseHoldBackActivity{
         tweet = (Tweet) getIntent().getSerializableExtra(BUNDLE_KEY_TWEET);
 
         ButterKnife.bind(this);
+
+        ViewCompat.setElevation(mToolbar, 7);
 
         // 处理请求article类型
         RxBus.getInstance().toObservable()
