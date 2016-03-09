@@ -10,10 +10,12 @@ import org.thanatos.base.ui.fragment.BaseListFragment;
 import org.thanatos.flowgeek.ServerAPI;
 import org.thanatos.flowgeek.bean.News;
 import org.thanatos.flowgeek.bean.NewsList;
+import org.thanatos.flowgeek.bean.RespNewsDetail;
 import org.thanatos.flowgeek.ui.fragment.ListNewsFragment;
 
 import java.util.List;
 
+import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -28,9 +30,7 @@ public class ListNewsPresenter extends BaseListPresenter<ListNewsFragment> {
     public static final String CACHE_KEY_WEEK = "WeekNewsListData";
     public static final String CACHE_KEY_MONTH = "MonthNewsListData";
 
-    private static final int START_READ_CACHE = 1;
-    private static final int START_FIRST_PAGE_DATA = 2;
-    private static final int START_REQUEST_PAGE_DATA = 3;
+    private static final int REQUEST_REMOTE_PAGE_DATA = 1;
 
     public String cache_key = CACHE_KEY_All;
     public String show = "";
@@ -63,38 +63,66 @@ public class ListNewsPresenter extends BaseListPresenter<ListNewsFragment> {
     @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
+        add(afterTakeView().subscribe(this::init, Throwable::printStackTrace));
 
-        Log.d("thanatos", "ListNewsPresenter created");
-
-        add(afterTakeView().subscribe(
-                (view) -> {
-                    Log.d("thanatos", "------afterTakeView-------");
-                    // 读取缓存
-                    view.onLoadingState(BaseListFragment.LOAD_MODE_CACHE);
-                    Subscription mReadCacheSubscriptor = this.<List<News>>getCacheFile(view.getContext(), cache_key)
-                            .subscribeOn(Schedulers.io())
+        // 初始化函数
+        this.<Integer, Subscription, Integer, Object>restartable(REQUEST_REMOTE_PAGE_DATA,
+                (pageNum, subscriber, mode, o4) -> {
+                    Observable<NewsList> observable;
+                    if (pageNum == 0) {
+                        observable = ServerAPI.getOSChinaAPI().getNewsList(
+                                NewsList.CATALOG_ALL, 0, 20, show);
+                    } else {
+                        observable = ServerAPI.getOSChinaAPI().getNewsList(
+                                getView().mCatalog, pageNum, 20, show);
+                    }
+                    return observable.subscribeOn(Schedulers.io())
+                            .compose(this.<NewsList>deliverFirst())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(
-                                    (data) -> {
-                                        view.onLoadResultData(data);
-                                        view.onLoadFinishState(getView().LOAD_MODE_CACHE);
+                            .subscribe(split(
+                                    (view, page) -> {
+                                        if (subscriber != null)
+                                            dismissReadCache(view, subscriber);
+                                        if (page != null && page.getList() != null && page.getList().size() > 0)
+                                            this.<News>cacheData(view.getContext(), page.getList(), cache_key);
+                                        view.onLoadResultData(page.getList());
+                                        view.onLoadFinishState(ListNewsFragment.LOAD_MODE_DEFAULT);
                                     },
-                                    (error) -> {
-                                        Log.w("thanatos", "没有缓存文件");
-                                    });
+                                    (view, error) -> {
+                                        error.printStackTrace();
+                                        view.onLoadErrorState(mode);
+                                    }));
+                });
+    }
 
-                    // request remote data
-                    view.getView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                        @Override
-                        public void onGlobalLayout() {
-                            getView().getView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                            requestData(view, mReadCacheSubscriptor);
-                        }
-                    });
-                },
-                (error) -> {
-                    error.printStackTrace();
-                }));
+    /**
+     * 第一次绑定view所要做的工作
+     *
+     * @param view
+     */
+    private void init(ListNewsFragment view) {
+        // 读取缓存
+        view.onLoadingState(BaseListFragment.LOAD_MODE_CACHE);
+        Subscription mReadCacheSubscriptor = this.<List<News>>getCacheFile(view.getContext(), cache_key)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        (data) -> {
+                            view.onLoadResultData(data);
+                            view.onLoadFinishState(getView().LOAD_MODE_CACHE);
+                        },
+                        (error) -> {
+                            Log.w("thanatos", "没有缓存文件");
+                        });
+
+        // request remote data
+        view.getView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                getView().getView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                requestData(view, mReadCacheSubscriptor);
+            }
+        });
     }
 
     /**
@@ -117,24 +145,7 @@ public class ListNewsPresenter extends BaseListPresenter<ListNewsFragment> {
         // 还是不能缓存函数,因为参数每次都不一样,除非使用可以传参的方式
         // 在CmmPresenter中已经解决
 
-        restartableFirst(START_REQUEST_PAGE_DATA,
-                () -> {
-                    return ServerAPI.getOSChinaAPI().getNewsList(getView().mCatalog, pageNum, 20, show)
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread());
-                },
-                (view, page) -> {
-                    if (pageNum == 0 && page != null && page.getList() != null && page.getList().size() > 0) {
-                        this.<News>cacheData(view.getContext(), page.getList(), cache_key);
-                    }
-                    view.onLoadResultData(page.getList());
-                    view.onLoadFinishState(mode);
-                },
-                (view, error) -> {
-                    error.printStackTrace();
-                    view.onLoadErrorState(mode);
-                });
-        start(START_REQUEST_PAGE_DATA);
+        start(REQUEST_REMOTE_PAGE_DATA, pageNum, null, mode, null);
     }
 
     /**
@@ -152,25 +163,7 @@ public class ListNewsPresenter extends BaseListPresenter<ListNewsFragment> {
         // 得及时解除订阅才行, 使用restartableFirst而不是用restartableLastCache,不然每次
         // views emit, 这里的订阅者都会有响应.
 
-        restartableFirst(START_FIRST_PAGE_DATA,
-                ()->{
-                    return ServerAPI.getOSChinaAPI().getNewsList(NewsList.CATALOG_ALL, 0, 20, show)
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread());
-                },
-                (v, page)->{
-                    Log.d("thanatos", "requestData and unsubscribe subscriber");
-                    dismissReadCache(v, subscriptor);
-                    if (page != null && page.getList() != null && page.getList().size() > 0)
-                        this.<News>cacheData(view.getContext(), page.getList(), cache_key);
-                    v.onLoadResultData(page.getList());
-                    v.onLoadFinishState(ListNewsFragment.LOAD_MODE_DEFAULT);
-                },
-                (v, error)->{
-                    error.printStackTrace();
-                    v.onLoadErrorState(ListNewsFragment.LOAD_MODE_DEFAULT);
-                });
-        start(START_FIRST_PAGE_DATA);
+        start(REQUEST_REMOTE_PAGE_DATA, 0, subscriptor, BaseListFragment.LOAD_MODE_DEFAULT, null);
     }
 
     /**
@@ -185,9 +178,4 @@ public class ListNewsPresenter extends BaseListPresenter<ListNewsFragment> {
         }
     }
 
-    @Override
-    protected void onDropView() {
-        super.onDropView();
-//        getView().dismissRefreshing();
-    }
 }

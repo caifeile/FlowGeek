@@ -1,6 +1,7 @@
 package org.thanatos.base.ui.activity;
 
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,8 @@ public abstract class BaseActivity<P extends Presenter> extends NucleusActivity<
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // 主题选择
         SharedPreferences preferences = SharePreferenceManager.getApplicationSetting(this);
 
         int theme = preferences.getInt(ApplicationSetting.KEY_THEME, ApplicationTheme.LIGHT.getKey());
@@ -30,9 +33,8 @@ public abstract class BaseActivity<P extends Presenter> extends NucleusActivity<
             setTheme(ApplicationTheme.DARK.getResId());
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(UIHelper.getAttrValueFromTheme(R.attr.colorPrimaryDark, getTheme()));
-        }
+        // 方向锁定
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override

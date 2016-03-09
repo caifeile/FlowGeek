@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/tweet_comment_list_item_background"
+    android:orientation="horizontal"
+    android:layout_marginBottom="7dp"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/iv_portrait"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="?attr/hint"
+        android:contentDescription="@null" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp">
+
+        <!--user name-->
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="?attr/tweet_list_item_username"
+            android:textSize="@dimen/item_title" />
+
+        <!--time-->
+        <TextView
+            android:id="@+id/tv_time"
+            android:textColor="?attr/main_list_item_time"
+            android:text="@string/publish_on"
+            android:textSize="@dimen/item_time"
+            android:alpha="@dimen/secondary_alpha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!--content-->
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="我是叶良辰我怕谁!!!"
+            android:textColor="?attr/tweet_list_item_content"
+            android:textSize="@dimen/item_content" />
+
+        <!--image list-->
+        <LinearLayout
+            android:id="@+id/layout_image_list"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!--like person list-->
+        <TextView
+            android:id="@+id/tv_liker_list"
+            android:visibility="gone"
+            android:background="?attr/tweet_list_item_like_list_background"
+            android:layout_marginTop="10dp"
+            android:textColor="?attr/tweet_list_item_other"
+            android:textSize="@dimen/tweet_list_item_other"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_comment_count"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textColor="?attr/main_list_item_comment_count"
+                android:textSize="@dimen/item_content"
+                android:drawableLeft="@mipmap/icon_comment_circle"
+                android:drawableStart="@mipmap/icon_comment_circle"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:alpha="@dimen/secondary_alpha"
+                android:text="@string/zero"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/iv_like"
+                android:src="@mipmap/icon_like_circle_not"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toLeftOf="@id/tv_comment_count"
+                android:layout_toStartOf="@id/tv_comment_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@null" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

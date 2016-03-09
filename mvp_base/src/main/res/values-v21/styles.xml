@@ -14,6 +14,8 @@
         <item name="windowNoTitle">true</item>
         <item name="android:colorAccent">#389738</item>
         <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:textColorPrimary">#FFFFFF</item>
         <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
     </style>

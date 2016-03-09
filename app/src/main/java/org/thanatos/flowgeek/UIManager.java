@@ -13,7 +13,9 @@ import org.thanatos.flowgeek.bean.News;
 import org.thanatos.flowgeek.ui.activity.CmmActivity;
 import org.thanatos.flowgeek.ui.activity.DetailActivity;
 import org.thanatos.flowgeek.ui.activity.LoginActivity;
+import org.thanatos.flowgeek.ui.activity.MainActivity;
 import org.thanatos.flowgeek.ui.activity.TweetPublishActivity;
+import org.thanatos.flowgeek.ui.activity.UserHomeActivity;
 import org.thanatos.flowgeek.ui.fragment.ListTweetFragment;
 import org.thanatos.flowgeek.utils.URLUtils;
 import org.thanatos.base.utils.Utilities;
@@ -265,6 +267,11 @@ public class UIManager {
     public static void showTweetPublishUI(Context context, int type) {
         Intent intent = new Intent(context, TweetPublishActivity.class);
         intent.putExtra(TweetPublishActivity.TYPE_KEY, type);
+        context.startActivity(intent);
+    }
+
+    public static void toUserHome(Context context) {
+        Intent intent = new Intent(context, UserHomeActivity.class);
         context.startActivity(intent);
     }
 }

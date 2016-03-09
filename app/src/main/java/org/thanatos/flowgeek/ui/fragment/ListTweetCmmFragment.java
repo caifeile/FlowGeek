@@ -86,7 +86,7 @@ public class ListTweetCmmFragment extends BaseCmmFragment<CmmPresenter>
     @Override
     public RecyclerView.ViewHolder onCreateHeaderHolder(ViewGroup parent) {
         return new TweetViewHold(LayoutInflater.from(mContext)
-                .inflate(R.layout.list_item_tweet, parent, false));
+                .inflate(R.layout.list_header_tweet, parent, false));
     }
 
     @Override

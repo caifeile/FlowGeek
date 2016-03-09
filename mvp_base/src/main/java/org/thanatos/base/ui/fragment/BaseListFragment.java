@@ -125,7 +125,7 @@ public abstract class BaseListFragment<T extends Entity, P extends BaseListPrese
      * @return
      */
     public int setDividerSize(){
-        return getResources().getDimensionPixelSize(R.dimen.divider_height);
+        return (int) getResources().getDimension(R.dimen.divider_height);
     }
 
     public int setDividerColor(){

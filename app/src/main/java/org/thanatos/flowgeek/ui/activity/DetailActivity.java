@@ -25,6 +25,7 @@ import org.thanatos.base.model.SharePreferenceManager;
 import org.thanatos.base.model.SharePreferenceManager.ApplicationSetting;
 import org.thanatos.base.model.SharePreferenceManager.ApplicationSetting.ApplicationTheme;
 import org.thanatos.base.ui.activity.BaseHoldBackActivity;
+import org.thanatos.base.utils.UIHelper;
 import org.thanatos.flowgeek.R;
 import org.thanatos.flowgeek.UIManager;
 import org.thanatos.flowgeek.bean.Article;

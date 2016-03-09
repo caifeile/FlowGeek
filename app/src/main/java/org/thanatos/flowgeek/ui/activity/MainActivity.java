@@ -118,7 +118,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         ivPortrait.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                UIManager.toUserHome(MainActivity.this);
             }
         });
 

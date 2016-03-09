@@ -58,7 +58,7 @@ public class DetailPresenter extends RxPresenter<DetailActivity> {
                             }
                         })
                         .filter((article -> article != null))
-                        .compose(this.<Article>deliverLatestCache())
+                        .compose(this.<Article>deliverFirst())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(split(
                                         (view, detail) -> {

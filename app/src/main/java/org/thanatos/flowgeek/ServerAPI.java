@@ -27,6 +27,7 @@ import org.thanatos.flowgeek.bean.User;
 
 import java.io.File;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import retrofit.Call;
 import retrofit.Retrofit;
@@ -68,6 +69,8 @@ public class ServerAPI {
                     return chain.proceed(chain.request());
                 }
             });
+
+            httpClient.setConnectTimeout(3, TimeUnit.MINUTES);
 
             httpClient.interceptors().add(chain -> {
                 Request original = chain.request();

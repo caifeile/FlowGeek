@@ -66,7 +66,7 @@ public class TweetAdapter extends BaseListAdapter<Tweet>{
         }
         holder.tvCmmCount.setText(item.getCmmCount());
         if (item.getIsLike()==1){
-            holder.ivLike.setImageResource(R.mipmap.icon_like_mini_yes);
+            holder.ivLike.setSelected(true);
         }
 
         if (item.getLikeUser()!=null && item.getLikeUser().size()>0){
@@ -87,10 +87,6 @@ public class TweetAdapter extends BaseListAdapter<Tweet>{
                         Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
                 holder.tvLikerList.append(spannable);
             }
-            holder.tvLikerList.setCompoundDrawables(mContext.getResources().getDrawable(
-                    R.mipmap.icon_like_mini_yes), null, null, null);
-            holder.tvLikerList.setCompoundDrawablePadding(UIHelper.dip2px(mContext, 3));
-
             holder.tvLikerList.append("等");
 
             Intent intent = new Intent(mContext, ListLikeUserActivity.class);
@@ -140,7 +136,6 @@ public class TweetAdapter extends BaseListAdapter<Tweet>{
 
         public TweetViewHold(View view) {
             super(view);
-            ViewCompat.setElevation(view, 4.0f);
             ButterKnife.bind(this, view);
         }
     }
