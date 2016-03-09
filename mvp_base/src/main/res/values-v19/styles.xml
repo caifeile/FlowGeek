@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <style name="AppTheme.Base" parent="Theme.AppCompat">
+                <item name="windowActionBar">false</item>
+                <item name="windowNoTitle">true</item>
+                <item name="android:windowBackground">@color/transparent</item>
+                <item name="android:windowTranslucentStatus">true</item>
+                <item name="android:textColorPrimary">#FFFFFF</item>
+                <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+        </style>
+</resources>

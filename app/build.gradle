@@ -35,6 +35,9 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'
 
+    // circle image view
+    compile 'de.hdodenhof:circleimageview:2.0.0'
+
     // Async Http Client Retrofit
     compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
     compile ('com.squareup.retrofit:converter-simplexml:2.0.0-beta2'){

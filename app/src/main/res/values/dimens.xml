@@ -24,4 +24,6 @@
     <dimen name="login_form_text">18sp</dimen>
     <dimen name="login_submit_text">18sp</dimen>
     <dimen name="drawer_header_username">16sp</dimen>
+    <dimen name="user_home_username">20sp</dimen>
+    <dimen name="user_home_join_time">14sp</dimen>
 </resources>

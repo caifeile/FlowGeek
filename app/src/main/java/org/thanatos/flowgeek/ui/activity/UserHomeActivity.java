@@ -1,5 +1,8 @@
 package org.thanatos.flowgeek.ui.activity;
 
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.widget.NestedScrollView;
+
 import org.thanatos.base.ui.activity.BaseHoldBackActivity;
 import org.thanatos.flowgeek.R;
 
