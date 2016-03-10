@@ -10,17 +10,17 @@ FlowGeek是基于MVP架构的、遵循Material Design设计规范的开源中国
 ###MVP
 
 <img src="http://git.oschina.net/uploads/images/2016/0310/133601_cf3c9118_116508.png" width="600"/>
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/133601_cf3c9118_116508.png "在这里输入图片标题")
+
 
 ###类图
 Activity
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/133604_d1087573_116508.png "在这里输入图片标题")
+<img src="http://git.oschina.net/uploads/images/2016/0310/133604_d1087573_116508.png" width="600"/>
 
 Fragment
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/133607_6191b5fe_116508.png "在这里输入图片标题")
+<img src="http://git.oschina.net/uploads/images/2016/0310/133607_6191b5fe_116508.png" width="600"/>
 
 Presenter
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/133609_5518d6b3_116508.png "在这里输入图片标题")
+<img src="http://git.oschina.net/uploads/images/2016/0310/133609_5518d6b3_116508.png" width="600"/>
 
 我发现我还是很敬业的
 
@@ -60,40 +60,56 @@ Presenter
 
 ##效果图一览
 #FlowGeek
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/140315_bbf764cc_116508.png "在这里输入图片标题")
 
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/140317_1db676f0_116508.png "在这里输入图片标题")
-
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/140319_0b00d52d_116508.png "在这里输入图片标题")
-
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/140333_50142400_116508.png "在这里输入图片标题")
-
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/140335_041eb74f_116508.png "在这里输入图片标题")
-
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/140336_b459238f_116508.png "在这里输入图片标题")
-
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/140338_5dee381c_116508.png "在这里输入图片标题")
-
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/140340_621e5059_116508.png "在这里输入图片标题")
-
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/140342_1c1dd7b1_116508.png "在这里输入图片标题")
+<img src="http://git.oschina.net/uploads/images/2016/0310/140315_bbf764cc_116508.png" height="800"/>
 
 
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/140356_9403ffcd_116508.png "在这里输入图片标题")
+<img src="http://git.oschina.net/uploads/images/2016/0310/140317_1db676f0_116508.png" height="800"/>
 
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/140427_e8e3fcaf_116508.png "在这里输入图片标题")
 
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/140435_c73abe4d_116508.png "在这里输入图片标题")
+<img src="http://git.oschina.net/uploads/images/2016/0310/140319_0b00d52d_116508.png" height="800"/>
 
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/140437_0effd45f_116508.png "在这里输入图片标题")
 
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/140438_f37f37e1_116508.png "在这里输入图片标题")
 
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/140440_c5e114a0_116508.png "在这里输入图片标题")
+<img src="http://git.oschina.net/uploads/images/2016/0310/140333_50142400_116508.png" height="800"/>
 
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/140442_3d2414e2_116508.png "在这里输入图片标题")
 
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/140450_6f4611e7_116508.png "在这里输入图片标题")
+<img src="http://git.oschina.net/uploads/images/2016/0310/140336_b459238f_116508.png" height="800"/>
+
+
+<img src="http://git.oschina.net/uploads/images/2016/0310/140338_5dee381c_116508.png" height="800"/>
+
+
+<img src="http://git.oschina.net/uploads/images/2016/0310/140340_621e5059_116508.png" height="800"/>
+
+
+<img src="http://git.oschina.net/uploads/images/2016/0310/140342_1c1dd7b1_116508.png" height="800"/>
+
+
+<img src="http://git.oschina.net/uploads/images/2016/0310/140356_9403ffcd_116508.png" height="800"/>
+
+
+<img src="http://git.oschina.net/uploads/images/2016/0310/140427_e8e3fcaf_116508.png" height="800"/>
+
+
+<img src="http://git.oschina.net/uploads/images/2016/0310/140435_c73abe4d_116508.png" height="800"/>
+
+
+<img src="http://git.oschina.net/uploads/images/2016/0310/140437_0effd45f_116508.png" height="800"/>
+
+
+<img src="http://git.oschina.net/uploads/images/2016/0310/140438_f37f37e1_116508.png" height="800"/>
+
+
+<img src="http://git.oschina.net/uploads/images/2016/0310/140440_c5e114a0_116508.png" height="800"/>
+
+
+<img src="http://git.oschina.net/uploads/images/2016/0310/140442_3d2414e2_116508.png" height="800"/>
+
+
+<img src="http://git.oschina.net/uploads/images/2016/0310/140450_6f4611e7_116508.png" height="800"/>
+
+
 
 ##Note
 - 本人技术和见识都有限，自己认为好的不一定是被认可的，可取的，我希望大家不吝赐教，发挥开源的力量。
@@ -103,4 +119,3 @@ Presenter
 - 没有正式完成前改动都会比较大，希望大家定期关注。
 
 - 恩，我可以去当设计师了╭∩╮（︶︿︶）╭∩╮
-
