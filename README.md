@@ -67,37 +67,7 @@ Presenter
 
 
 
-<img src="http://git.oschina.net/uploads/images/2016/0310/140319_0b00d52d_116508.png" height="800"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140333_50142400_116508.png" height="800"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140336_b459238f_116508.png" height="800"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140338_5dee381c_116508.png" height="800"/>
-
-
-<img src="http://git.oschina.net/uploads/images/2016/0310/140340_621e5059_116508.png" height="800"/>
-
-
-<img src="http://git.oschina.net/uploads/images/2016/0310/140342_1c1dd7b1_116508.png" height="800"/>
-
-
-<img src="http://git.oschina.net/uploads/images/2016/0310/140356_9403ffcd_116508.png" height="800"/>
-
-
-<img src="http://git.oschina.net/uploads/images/2016/0310/140427_e8e3fcaf_116508.png" height="800"/>
-
-
-<img src="http://git.oschina.net/uploads/images/2016/0310/140435_c73abe4d_116508.png" height="800"/>
-
-
-<img src="http://git.oschina.net/uploads/images/2016/0310/140437_0effd45f_116508.png" height="800"/>
-
-
-<img src="http://git.oschina.net/uploads/images/2016/0310/140438_f37f37e1_116508.png" height="800"/>
-
-
-<img src="http://git.oschina.net/uploads/images/2016/0310/140440_c5e114a0_116508.png" height="800"/>
-
-
-<img src="http://git.oschina.net/uploads/images/2016/0310/140442_3d2414e2_116508.png" height="800"/>
-
-
-<img src="http://git.oschina.net/uploads/images/2016/0310/140450_6f4611e7_116508.png" height="800"/>
+<img src="http://git.oschina.net/uploads/images/2016/0310/140319_0b00d52d_116508.png" height="600"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140333_50142400_116508.png" height="600"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140336_b459238f_116508.png" height="600"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140338_5dee381c_116508.png" height="600"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140340_621e5059_116508.png" height="600"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140342_1c1dd7b1_116508.png" height="600"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140356_9403ffcd_116508.png" height="600"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140427_e8e3fcaf_116508.png" height="600"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140435_c73abe4d_116508.png" height="600"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140437_0effd45f_116508.png" height="600"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140438_f37f37e1_116508.png" height="600"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140440_c5e114a0_116508.png" height="600"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140442_3d2414e2_116508.png" height="600"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140450_6f4611e7_116508.png" height="600"/>
 
 
 
