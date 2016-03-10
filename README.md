@@ -67,17 +67,7 @@ Presenter
 
 
 
-<img src="http://git.oschina.net/uploads/images/2016/0310/140319_0b00d52d_116508.png" height="800"/>
-
-
-
-<img src="http://git.oschina.net/uploads/images/2016/0310/140333_50142400_116508.png" height="800"/>
-
-
-<img src="http://git.oschina.net/uploads/images/2016/0310/140336_b459238f_116508.png" height="800"/>
-
-
-<img src="http://git.oschina.net/uploads/images/2016/0310/140338_5dee381c_116508.png" height="800"/>
+<img src="http://git.oschina.net/uploads/images/2016/0310/140319_0b00d52d_116508.png" height="800"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140333_50142400_116508.png" height="800"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140336_b459238f_116508.png" height="800"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140338_5dee381c_116508.png" height="800"/>
 
 
 <img src="http://git.oschina.net/uploads/images/2016/0310/140340_621e5059_116508.png" height="800"/>
