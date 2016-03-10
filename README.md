@@ -30,7 +30,7 @@ Presenter
 ##主要开源组件
 - [RxJava/RxAndroid](https://github.com/ReactiveX/RxJava)：Java的响应式编程的库，相当强大且相当赞！！推荐大家深入到源码，体会设计的强大。
 
-- [Retrofit](https://github.com/square/retrofit)：优雅的HTTP请求开源库，使用动态代理实现，也很赞！退加你深入源码。
+- [Retrofit](https://github.com/square/retrofit)：优雅的HTTP请求开源库，使用动态代理实现，也很赞！推荐你深入源码。
 
 - [Picasso](https://github.com/square/picasso)：强大的图像加载库，Square公司真是业界良心。
 
