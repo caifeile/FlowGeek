@@ -13,13 +13,16 @@ FlowGeek是基于MVP架构的、遵循Material Design设计规范的开源中国
 
 
 ###类图
-Activity
+Activity    
+
 <img src="http://git.oschina.net/uploads/images/2016/0310/133604_d1087573_116508.png" width="600"/>
 
-Fragment
+Fragment    
+
 <img src="http://git.oschina.net/uploads/images/2016/0310/133607_6191b5fe_116508.png" width="600"/>
 
-Presenter
+Presenter    
+
 <img src="http://git.oschina.net/uploads/images/2016/0310/133609_5518d6b3_116508.png" width="600"/>
 
 我发现我还是很敬业的
@@ -61,10 +64,7 @@ Presenter
 ##效果图一览
 #FlowGeek
 
-<img src="http://git.oschina.net/uploads/images/2016/0310/140315_bbf764cc_116508.png" height="800"/>
 
-
-<img src="http://git.oschina.net/uploads/images/2016/0310/140317_1db676f0_116508.png" height="800"/>
 
 
 <img src="http://git.oschina.net/uploads/images/2016/0310/140319_0b00d52d_116508.png" height="800"/>
