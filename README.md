@@ -9,7 +9,7 @@ FlowGeek是基于MVP架构的、遵循Material Design设计规范的开源中国
 
 ###MVP
 
-<img src="http://git.oschina.net/uploads/images/2016/0310/133601_cf3c9118_116508.png" style="max-width:100px"/>
+<img src="http://git.oschina.net/uploads/images/2016/0310/133601_cf3c9118_116508.png" width="200"/>
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/0310/133601_cf3c9118_116508.png "在这里输入图片标题")
 
 ###类图
