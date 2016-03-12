@@ -13,8 +13,10 @@ import com.squareup.picasso.Picasso;
 
 import org.thanatos.base.adapter.BaseListAdapter;
 import org.thanatos.flowgeek.R;
+import org.thanatos.flowgeek.UIManager;
 import org.thanatos.flowgeek.bean.Comment;
 import org.thanatos.base.utils.Utilities;
+import org.thanatos.flowgeek.bean.User;
 import org.thanatos.flowgeek.utils.InputHelper;
 
 import java.text.ParseException;
@@ -81,6 +83,18 @@ public class CmmAdapter extends BaseListAdapter<Comment> {
                 mTempLayoutRefer = view;
             }
         }
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                User user = new User();
+                user.setUid(item.getAuthorId());
+                user.setName(item.getAuthor());
+                UIManager.toUserHome(mContext, user);
+            }
+        };
+        hold.tvUsername.setOnClickListener(listener);
+        hold.ivPortrait.setOnClickListener(listener);
 
     }
 

@@ -51,6 +51,7 @@ dependencies {
     compile 'org.immutables:gson:2.1.4'
 
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'org.apmem.tools:layouts:1.10@aar'
 
     compile project(':mvp_base')
     compile project(':presenter')

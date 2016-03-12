@@ -9,8 +9,10 @@ import android.widget.TextView;
 
 import org.thanatos.base.adapter.BaseListAdapter;
 import org.thanatos.flowgeek.R;
+import org.thanatos.flowgeek.UIManager;
 import org.thanatos.flowgeek.bean.News;
 import org.thanatos.base.utils.Utilities;
+import org.thanatos.flowgeek.bean.User;
 
 import java.text.ParseException;
 
@@ -45,6 +47,15 @@ public class NewsAdapter extends BaseListAdapter<News> {
             e.printStackTrace();
             holder.time.setText(item.getPubDate());
         }
+        holder.author.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                User user = new User();
+                user.setUid(item.getAuthorId());
+                user.setName(item.getAuthor());
+                UIManager.toUserHome(mContext, user);
+            }
+        });
     }
 
     public static final class NewsViewHolder extends RecyclerView.ViewHolder{

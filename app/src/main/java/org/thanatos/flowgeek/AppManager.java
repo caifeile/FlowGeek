@@ -29,7 +29,7 @@ public class AppManager extends Application{
         context = getApplicationContext();
         resources = getResources();
         preferences = getSharedPreferences(context.getPackageName(), MODE_PRIVATE);
-        LeakCanary.install(this);
+//        LeakCanary.install(this);
     }
 
     public static PackageInfo getPackageInfo(){

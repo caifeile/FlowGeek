@@ -126,6 +126,17 @@
     <color name="light_tweet_publish_editor_text">#000</color>
     <color name="light_tweet_publish_emotion_navigation">#E4E4E4</color>
 
+    <color name="light_user_home_username">#FFF</color>
+    <color name="light_user_home_join_time">#FFF</color>
+    <color name="light_user_home_coordinate">#FFF</color>
+    <color name="light_user_home_statistic">#000</color>
+    <color name="light_user_home_statistic_border">#e2e2e2</color>
+    <color name="light_user_home_blow_background">#ececec</color>
+    <color name="light_user_home_blow_row">#FFF</color>
+    <color name="light_user_home_blow_label">#000</color>
+    <color name="light_user_home_blow_label_value">#0e0e0e</color>
+    <color name="light_user_home_blow_label_value_background">#eee</color>
+
 
     <!--====================the dark theme color set=======================-->
     <color name="dark_principle">#293339</color>
@@ -237,6 +248,16 @@
     <color name="dark_tweet_publish_editor_text">#FFF</color>
     <color name="dark_tweet_publish_emotion_navigation">#293339</color>
 
+    <color name="dark_user_home_username">#FFF</color>
+    <color name="dark_user_home_join_time">#FFF</color>
+    <color name="dark_user_home_coordinate">#FFF</color>
+    <color name="dark_user_home_statistic">#FFF</color>
+    <color name="dark_user_home_statistic_border">#1e2920</color>
+    <color name="dark_user_home_blow_background">#181E21</color>
+    <color name="dark_user_home_blow_row">#293339</color>
+    <color name="dark_user_home_blow_label">#FFF</color>
+    <color name="dark_user_home_blow_label_value">#FFF</color>
+    <color name="dark_user_home_blow_label_value_background">#1c2226</color>
 
 
 </resources>

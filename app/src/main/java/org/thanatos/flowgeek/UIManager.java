@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.thanatos.flowgeek.bean.Article;
 import org.thanatos.flowgeek.bean.News;
+import org.thanatos.flowgeek.bean.User;
 import org.thanatos.flowgeek.ui.activity.CmmActivity;
 import org.thanatos.flowgeek.ui.activity.DetailActivity;
 import org.thanatos.flowgeek.ui.activity.LoginActivity;
@@ -270,8 +271,9 @@ public class UIManager {
         context.startActivity(intent);
     }
 
-    public static void toUserHome(Context context) {
+    public static void toUserHome(Context context, User user) {
         Intent intent = new Intent(context, UserHomeActivity.class);
+        intent.putExtra(UserHomeActivity.BUNDLE_USER_KEY, user);
         context.startActivity(intent);
     }
 }

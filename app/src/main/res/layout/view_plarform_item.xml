@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    android:textColor="?attr/user_home_blow_label_value"
+    android:background="?attr/user_home_blow_label_value_background"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="3dp"
+    android:singleLine="true"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

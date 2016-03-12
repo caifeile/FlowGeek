@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_portrait"
             android:src="@mipmap/icon_default_portrait"
             android:layout_alignParentLeft="true"
@@ -21,7 +21,6 @@
             android:layout_alignParentTop="true"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:scaleType="fitCenter"
             android:contentDescription="@null"/>
 
         <ImageView

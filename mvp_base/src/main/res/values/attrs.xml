@@ -96,6 +96,18 @@
     <attr name="tweet_publish_editor_text" format="color"/>
     <attr name="tweet_publish_emotion_navigation" format="color"/>
 
+    <attr name="user_home_username" format="color"/>
+    <attr name="user_home_join_time" format="color"/>
+    <attr name="user_home_coordinate" format="color"/>
+    <attr name="user_home_statistic" format="color"/>
+    <attr name="user_home_statistic_border" format="color"/>
+    <attr name="user_home_blow_background" format="color"/>
+    <attr name="user_home_blow_row" format="color"/>
+    <attr name="user_home_blow_label" format="color"/>
+    <attr name="user_home_blow_label_value" format="color"/>
+    <attr name="user_home_blow_label_value_background" format="reference"/>
+
+
 
 
 </resources>

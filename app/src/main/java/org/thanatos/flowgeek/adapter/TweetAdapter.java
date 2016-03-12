@@ -24,6 +24,7 @@ import org.thanatos.base.adapter.BaseListAdapter;
 import org.thanatos.base.utils.UIHelper;
 import org.thanatos.base.utils.Utilities;
 import org.thanatos.flowgeek.R;
+import org.thanatos.flowgeek.UIManager;
 import org.thanatos.flowgeek.bean.Tweet;
 import org.thanatos.flowgeek.bean.User;
 import org.thanatos.flowgeek.ui.activity.ListLikeUserActivity;
@@ -120,6 +121,17 @@ public class TweetAdapter extends BaseListAdapter<Tweet>{
                 holder.layoutImageList.removeAllViews();
             holder.layoutImageList.setVisibility(View.GONE);
         }
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                User user = new User();
+                user.setUid(item.getAuthorId());
+                user.setName(item.getAuthor());
+                UIManager.toUserHome(mContext, user);
+            }
+        };
+        holder.tvUsername.setOnClickListener(listener);
+        holder.ivPortrait.setOnClickListener(listener);
 
     }
 

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="?attr/login_background"
+    android:fitsSystemWindows="true"
+    android:background="?attr/colorPrimaryDark"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,7 +10,8 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="?attr/login_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

@@ -104,6 +104,17 @@
         <item name="tweet_publish_editor_text">@color/light_tweet_publish_editor_text</item>
         <item name="tweet_publish_emotion_navigation">@color/light_tweet_publish_emotion_navigation</item>
 
+        <item name="user_home_username">@color/light_user_home_username</item>
+        <item name="user_home_join_time">@color/light_user_home_join_time</item>
+        <item name="user_home_coordinate">@color/light_user_home_coordinate</item>
+        <item name="user_home_statistic">@color/light_user_home_statistic</item>
+        <item name="user_home_statistic_border">@color/light_user_home_statistic_border</item>
+        <item name="user_home_blow_background">@color/light_user_home_blow_background</item>
+        <item name="user_home_blow_row">@color/light_user_home_blow_row</item>
+        <item name="user_home_blow_label">@color/light_user_home_blow_label</item>
+        <item name="user_home_blow_label_value">@color/light_user_home_blow_label_value</item>
+        <item name="user_home_blow_label_value_background">@drawable/shape_light_user_home_label_value</item>
+
     </style>
 
     <!--======================Dark Theme========================-->
@@ -199,6 +210,17 @@
         <item name="tweet_publish_editor_background">@color/dark_tweet_publish_editor_background</item>
         <item name="tweet_publish_editor_text">@color/dark_tweet_publish_editor_text</item>
         <item name="tweet_publish_emotion_navigation">@color/dark_tweet_publish_emotion_navigation</item>
+
+        <item name="user_home_username">@color/dark_user_home_username</item>
+        <item name="user_home_join_time">@color/dark_user_home_join_time</item>
+        <item name="user_home_coordinate">@color/dark_user_home_coordinate</item>
+        <item name="user_home_statistic">@color/dark_user_home_statistic</item>
+        <item name="user_home_statistic_border">@color/dark_user_home_statistic_border</item>
+        <item name="user_home_blow_background">@color/dark_user_home_blow_background</item>
+        <item name="user_home_blow_row">@color/dark_user_home_blow_row</item>
+        <item name="user_home_blow_label">@color/dark_user_home_blow_label</item>
+        <item name="user_home_blow_label_value">@color/dark_user_home_blow_label_value</item>
+        <item name="user_home_blow_label_value_background">@drawable/shape_dark_user_home_label_value</item>
     </style>
 
     <style name="LightTheme" parent="LightTheme.Base">

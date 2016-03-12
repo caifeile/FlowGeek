@@ -121,7 +121,7 @@ public class DetailPresenter extends RxPresenter<DetailActivity> {
     private Observable<Article> requestBlogDetail(DetailActivity view) {
         return Observable.zip(
                 ServerAPI.getOSChinaAPI().getBlogDetail(view.getNews().getId()),
-                ServerAPI.getOSChinaAPI().getUserInfo(-1, view.getNews().getAuthorId(), "", 0, 0),
+                ServerAPI.getOSChinaAPI().getUserInfo(null, view.getNews().getAuthorId(), "", 0, 0),
                 (respBlogDetail, respUserInfo) -> {
                     Article<Blog> article = new Article<Blog>();
                     article.setId(respBlogDetail.getBlog().getId());
@@ -141,7 +141,7 @@ public class DetailPresenter extends RxPresenter<DetailActivity> {
     private Observable<Article> requestNewsDetail(DetailActivity view) {
         return Observable.zip(
                 ServerAPI.getOSChinaAPI().getNewsDetail(view.getNews().getId()),
-                ServerAPI.getOSChinaAPI().getUserInfo(-1, view.getNews().getAuthorId(), "", 0, 0),
+                ServerAPI.getOSChinaAPI().getUserInfo(null, view.getNews().getAuthorId(), "", 0, 0),
                 (respNewsDetail, respUserInfo) -> {
                     Article<News> article = new Article<News>();
                     article.setId(respNewsDetail.getNews().getId());

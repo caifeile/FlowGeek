@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="?attr/tweet_publish_editor_background"
+    android:background="?attr/colorPrimaryDark"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,7 +13,7 @@
         android:id="@+id/et_input"
         android:layout_width="match_parent"
         android:padding="7dp"
-        android:background="@null"
+        android:background="?attr/tweet_publish_editor_background"
         android:textColor="?attr/tweet_publish_editor_text"
         android:textColorHint="?attr/hint"
         android:hint="@string/let_us_fuck_it"

@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import org.thanatos.base.R;
 
 /**
+ * SharePreference管理类, oop管理众多的首选项文件
+ *
  * Created by thanatos on 16/2/2.
  */
 public class SharePreferenceManager {
@@ -25,9 +27,8 @@ public class SharePreferenceManager {
         public static final String FILE_NAME = "APPLICATION_SETTING";
         public static final String KEY_THEME = "KEY_THEME";
 
-        /**
-         * 主题列举
-         */
+
+         // ---主题列举---
         public enum ApplicationTheme{
             LIGHT(1, R.style.LightTheme),
             DARK(2, R.style.DarkTheme);
@@ -66,6 +67,7 @@ public class SharePreferenceManager {
         public static final String KEY_LOGIN_STATE = "KEY_LOGIN_STATE";
         public static final String KEY_PORTRAIT = "KEY_PORTRAIT";
         public static final String KEY_COOKIES = "KEY_COOKIES";
+
     }
 
 }

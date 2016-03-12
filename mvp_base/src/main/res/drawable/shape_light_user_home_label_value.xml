@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <corners android:radius="7dp"/>
+
+    <padding
+        android:bottom="1dp"
+        android:left="7dp"
+        android:right="7dp"
+        android:top="1dp"/>
+
+    <solid android:color="@color/light_user_home_blow_label_value_background"/>
+
+</shape>

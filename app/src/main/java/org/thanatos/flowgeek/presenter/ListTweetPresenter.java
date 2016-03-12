@@ -51,6 +51,8 @@ public class ListTweetPresenter extends BaseListPresenter<ListTweetFragment>{
             case ListTweetFragment.TWEET_TYPE_HOT:
                 cache_key = CACHE_KEY_TWEET_HOT;
                 break;
+            default:
+                cache_key = null;
         }
     }
 
@@ -92,7 +94,8 @@ public class ListTweetPresenter extends BaseListPresenter<ListTweetFragment>{
                                         if (sub != null){
                                             dismissReadCache(view, sub);
                                         }
-                                        if (pageIndex == 0 && data.getTweets() != null && data.getTweets().size() > 0) {
+                                        if (pageIndex == 0 && data.getTweets() != null
+                                                && data.getTweets().size() > 0 && cache_key != null) {
                                             cacheData(view.mContext, data.getTweets(), cache_key);
                                         }
                                         view.onLoadResultData(data.getTweets());

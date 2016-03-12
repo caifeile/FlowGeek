@@ -77,4 +77,17 @@
     <string name="dan_yi_dan">弹一弹</string>
     <string name="let_us_fuck_it">弹一弹, #软件名#, @好友</string>
     <string name="go_to_login"><![CDATA[去登录>>>]]></string>
+    <string name="my_blog">我的博客</string>
+    <string name="my_tweet">我的动弹</string>
+    <string name="my_favorite">我的收藏</string>
+    <string name="integral">积分</string>
+    <string name="integral_count">积分\n0</string>
+    <string name="collection_count">收藏\n0</string>
+    <string name="follow_count">关注\n0</string>
+    <string name="fans_count">粉丝\n0</string>
+    <string name="devplatform">devplatform:</string>
+    <string name="develop_platform">Develop Platform</string>
+    <string name="expertise">Expertise</string>
+    <string name="follow">关注</string>
+    <string name="fans">粉丝</string>
 </resources>

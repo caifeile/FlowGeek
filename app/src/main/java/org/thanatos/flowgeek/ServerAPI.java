@@ -70,7 +70,7 @@ public class ServerAPI {
                 }
             });
 
-            httpClient.setConnectTimeout(3, TimeUnit.MINUTES);
+            httpClient.setConnectTimeout(4, TimeUnit.MINUTES);
 
             httpClient.interceptors().add(chain -> {
                 Request original = chain.request();
@@ -149,11 +149,21 @@ public class ServerAPI {
          */
         @GET("/action/api/user_information")
         Observable<RespUserInfo> getUserInfo(
-                @Query("uid") long uid,
+                @Query("uid") Long uid,
                 @Query("hisuid") long hid,
                 @Query("hisname") String hname,
                 @Query("pageIndex") int pageIndex,
                 @Query("pageSize") int pageSize
+        );
+
+        /**
+         * 得到自己的信息
+         * @param uid
+         * @return
+         */
+        @GET("/action/api/my_information")
+        Observable<RespUser> getSelfInfo(
+                @Query("uid") long uid
         );
 
         // ------------- 新闻api --------------

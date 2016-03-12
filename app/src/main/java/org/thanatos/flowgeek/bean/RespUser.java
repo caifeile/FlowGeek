@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * Created by thanatos on 16/2/23.
  */
-@Root
+@Root(name = "oschina")
 public class RespUser implements Serializable{
 
     @Element(name = "result", required = false)

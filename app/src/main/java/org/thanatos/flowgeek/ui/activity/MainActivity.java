@@ -46,6 +46,7 @@ import org.thanatos.pay.ui.fragment.EntryFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import rx.Observable;
 
 
@@ -57,7 +58,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Bind(R.id.layout_drawer) DrawerLayout mDrawerLayout;
     @Bind(R.id.nav_view) NavigationView mDrawerNavView;
     @Bind(R.id.layout_coordinator) CoordinatorLayout mLayoutCoordinator;
-    private ImageView ivPortrait;
+    private CircleImageView ivPortrait;
     private TextView tvNick;
     private TextView tvScore;
     private ImageView ivExit;
@@ -73,7 +74,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         ButterKnife.bind(this);
 
         View mNavHeaderView = mDrawerNavView.getHeaderView(0);
-        ivPortrait = (ImageView) mNavHeaderView.findViewById(R.id.iv_portrait);
+        ivPortrait = (CircleImageView) mNavHeaderView.findViewById(R.id.iv_portrait);
         tvNick = (TextView) mNavHeaderView.findViewById(R.id.tv_nick);
         tvScore = (TextView) mNavHeaderView.findViewById(R.id.tv_score);
         ivExit = (ImageView) mNavHeaderView.findViewById(R.id.iv_exit);
@@ -118,18 +119,20 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         ivPortrait.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UIManager.toUserHome(MainActivity.this);
+                UIManager.toUserHome(MainActivity.this, AppManager.LOCAL_LOGINED_USER);
             }
         });
 
         // nick
         tvNick.setText(AppManager.LOCAL_LOGINED_USER.getName());
 
-        // gender
-        if (AppManager.LOCAL_LOGINED_USER.getGender().equals("1")){ // --> 男
+        // gender 我真是服了他们的接口了
+        if (AppManager.LOCAL_LOGINED_USER.getGender().equals("1")
+                || AppManager.LOCAL_LOGINED_USER.getGender().trim().equals("男")){ // --> 男
             tvNick.setCompoundDrawablesWithIntrinsicBounds(null, null,
                     getResources().getDrawable(R.mipmap.icon_male), null);
-        }else if (AppManager.LOCAL_LOGINED_USER.getGender().equals("0")){
+        }else if (AppManager.LOCAL_LOGINED_USER.getGender().equals("0")
+                || AppManager.LOCAL_LOGINED_USER.getGender().trim().equals("女")){
             tvNick.setCompoundDrawablesWithIntrinsicBounds(null, null,
                     getResources().getDrawable(R.mipmap.icon_female), null);
         }else{
@@ -220,10 +223,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.menu_explore: // 发现探索
+            /*case R.id.menu_explore: // 发现探索
                 if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_explore) break;
 
-                break;
+                break;*/
             case R.id.menu_blog: // 博客
                 if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_blog) break;
 
@@ -262,13 +265,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_setting) break;
 
                 break;
-            case R.id.menu_donate: // 捐助我
+            /*case R.id.menu_donate: // 捐助我
                 if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_donate) break;
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_container,
                                 Fragment.instantiate(this, EntryFragment.class.getName()))
                         .commit();
-                break;
+                break;*/
 
             case R.id.menu_new : // 资讯
                 if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_new) break;
