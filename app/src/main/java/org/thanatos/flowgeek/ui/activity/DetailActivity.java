@@ -1,14 +1,20 @@
 package org.thanatos.flowgeek.ui.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -31,9 +37,11 @@ import org.thanatos.flowgeek.UIManager;
 import org.thanatos.flowgeek.bean.Article;
 import org.thanatos.flowgeek.bean.Blog;
 import org.thanatos.flowgeek.bean.Software;
+import org.thanatos.flowgeek.bean.User;
 import org.thanatos.flowgeek.event.Events;
 import org.thanatos.flowgeek.event.RxBus;
 import org.thanatos.flowgeek.listener.OnScrollerGoDownListener;
+import org.thanatos.flowgeek.listener.ScrollerBottomLayoutDelegation;
 import org.thanatos.flowgeek.presenter.DetailPresenter;
 import org.thanatos.base.utils.Utilities;
 import org.thanatos.flowgeek.utils.DialogFactory;
@@ -70,9 +78,8 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
     private Article<? extends Entity> article;
     private int mCatalog;
     private ProgressDialog dialog;
-    private RecyclerView.Adapter<TextViewHold> mAdapter;
 
-    @Bind(R.id.list_view) RecyclerView mRecycler;
+    @Bind(R.id.layout_scroller) NestedScrollView mNestedScroller;
     @Bind(R.id.layout_bottom_panel) LinearLayout mBottomLayout;
     @Bind(R.id.tv_person_name) TextView tvName;
     @Bind(R.id.img_portrait) ImageView ivPortrait;
@@ -82,29 +89,7 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
     @Bind(R.id.tv_title) TextView tvTitle;
     @Bind(R.id.btn_bookmark) TextView btnBookMark;
     @Bind(R.id.btn_comment) TextView btnComment;
-
-    protected class TextViewHold extends RecyclerView.ViewHolder{
-        @Bind(R.id.tv_content) WebView mWebView;
-        public TextViewHold(View view) {
-            super(view);
-
-            ButterKnife.bind(this, view);
-
-            // init WebView
-            WebSettings settings = mWebView.getSettings();
-            settings.setJavaScriptEnabled(true);
-            settings.setSupportZoom(true);
-            settings.setBuiltInZoomControls(true);
-            int sysVersion = Build.VERSION.SDK_INT;
-            if (sysVersion >= 11) {
-                settings.setDisplayZoomControls(false);
-            } else {
-                ZoomButtonsController zbc = new ZoomButtonsController(mWebView);
-                zbc.getZoomControls().setVisibility(View.GONE);
-            }
-//            mWebView.setWebViewClient(UIHelper.getWebViewClient());
-        }
-    }
+    @Bind(R.id.layout_web_view) WebView mWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +99,7 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
         ButterKnife.bind(this);
 
         initView();
+        onLoading();
         initData();
         initSubscribers();
     }
@@ -123,15 +109,15 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
      */
     private void initSubscribers() {
         // 处理请求文章id
-        RxBus.getInstance().toObservable()
-                .compose(bindUntilEvent(ActivityEvent.DESTROY))
-                .filter(events -> events.what == Events.EventEnum.GET_ARTICLE_ID)
-                .subscribe(events -> {
+        RxBus.with(this)
+                .setEvent(Events.EventEnum.GET_ARTICLE_ID)
+                .setEndEvent(ActivityEvent.DESTROY)
+                .onNext((events) -> {
                     Events<Long> event = new Events<Long>();
                     event.what = events.getMessage();
                     event.message = article.getId();
                     RxBus.getInstance().send(event);
-                });
+                }).create();
 
         // 文章所属人id
         RxBus.with(this)
@@ -145,15 +131,15 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
                 }).create();
 
         // 处理请求详情类别catalog
-        RxBus.getInstance().toObservable()
-                .compose(bindUntilEvent(ActivityEvent.DESTROY))
-                .filter(events -> events.what == Events.EventEnum.GET_ARTICLE_CATALOG)
-                .subscribe(events -> {
+        RxBus.with(this)
+                .setEvent(Events.EventEnum.GET_ARTICLE_CATALOG)
+                .setEndEvent(ActivityEvent.DESTROY)
+                .onNext((events) -> {
                     Events<Integer> event = new Events<Integer>();
                     event.what = events.getMessage();
                     event.message = mCatalog;
                     RxBus.getInstance().send(event);
-                });
+                }).create();
     }
 
     /**
@@ -191,7 +177,8 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
                 tvName.setText(article.getAuthor());
                 if (!Utilities.isEmpty(article.getPubDate())){
                     try {
-                        tvCreateOn.setText(getResources().getText(R.string.publish_on) + Utilities.dateFormat(article.getPubDate()));
+                        tvCreateOn.setText(getResources().getText(R.string.publish_on)
+                                + Utilities.dateFormat(article.getPubDate()));
                     } catch (ParseException e) {
                         e.printStackTrace();
                         tvCreateOn.setText(article.getPubDate());
@@ -203,41 +190,31 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
                 break;
         }
 
-        btnComment.setText(getResources().getString(R.string.comment) + "(" + String.valueOf(article.getCmmCount()) + ")");
+        btnComment.setText(getResources().getString(R.string.comment)
+                + "(" + String.valueOf(article.getCmmCount()) + ")");
 
         if (article.getFavorite()==1){
-            btnBookMark.setCompoundDrawables(null, getResources().getDrawable(R.mipmap.icon_star_mid_yes, getTheme()), null, null);
+            btnBookMark.setCompoundDrawables(null,
+                    getResources().getDrawable(R.mipmap.icon_star_mid_yes, getTheme()), null, null);
         }
-        mAdapter.notifyItemChanged(0);
+
+        mWebView.loadDataWithBaseURL("",
+                loadHTMLData(article.getBody() == null ? "" : article.getBody()),
+                "text/html", "UTF-8", "");
     }
 
     /**
      * init view
      */
     private void initView() {
+        // init WebView
+        WebSettings settings = mWebView.getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setSupportZoom(false);
+
         btnComment.setClickable(false);
-        mRecycler.setLayoutManager(new LinearLayoutManager(this));
-        mRecycler.addOnScrollListener(new OnScrollerGoDownListener(mBottomLayout));
-        mRecycler.setAdapter(mAdapter = new RecyclerView.Adapter<TextViewHold>() {
-            @Override
-            public TextViewHold onCreateViewHolder(ViewGroup parent, int viewType) {
-                return new TextViewHold(getLayoutInflater().inflate(R.layout.view_news_content, parent, false));
-            }
 
-            @Override
-            public void onBindViewHolder(TextViewHold holder, int position) {
-                holder.mWebView.loadDataWithBaseURL("", loadHTMLData(article.getBody() == null ? "" : article.getBody()), "text/html", "UTF-8", "");
-            }
-
-            @Override
-            public int getItemCount() {
-                return 1;
-            }
-        });
-
-        onLoadFinished(article);
-        onLoading();
-
+        ScrollerBottomLayoutDelegation.delegation(mNestedScroller, mBottomLayout);
     }
 
     /**
@@ -287,7 +264,21 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
         }
         this.article = article;
         initData();
+
         btnComment.setClickable(true);
+
+        // make portrair and name clickable
+        User user = new User();
+        user.setName(article.getAuthor());
+        user.setId(article.getAuthorId());
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIManager.toUserHome(DetailActivity.this, user);
+            }
+        };
+        tvName.setOnClickListener(listener);
+        ivPortrait.setOnClickListener(listener);
     }
 
     /**
@@ -306,6 +297,7 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
      */
     public void onLoading() {
         dialog = DialogFactory.getFactory().getLoadingDialog(this);
+        dialog.show();
     }
 
     @OnClick(R.id.btn_comment) void onClickCmm(){

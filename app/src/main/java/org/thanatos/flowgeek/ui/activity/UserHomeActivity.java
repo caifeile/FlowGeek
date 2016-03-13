@@ -54,6 +54,7 @@ public class UserHomeActivity extends BaseHoldBackActivity<UserHomePresenter>{
         ButterKnife.bind(this);
         user = (User) getIntent().getSerializableExtra(BUNDLE_USER_KEY);
         if (user == null || user.getId() == null) finish();
+        if (isLocalUser()) user = AppManager.LOCAL_LOGINED_USER;
         initUser();
     }
 
@@ -68,7 +69,7 @@ public class UserHomeActivity extends BaseHoldBackActivity<UserHomePresenter>{
         // user's join time
         String joinTime = "0000-00-00";
         if (!Utilities.isEmpty(user.getJoinTime())){
-            joinTime = user.getJoinTime().split(" ")[0];
+            joinTime = user.getJoinTime().split(" ")[0]; // <--简单粗暴
         }
         mJoinTime.setText("加入时间: " + joinTime);
 
