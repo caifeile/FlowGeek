@@ -16,10 +16,6 @@
             android:title="@string/blog"
             android:checkable="true"
             android:icon="@mipmap/icon_blog"/>
-        <!--<item
-            android:id="@+id/menu_explore"
-            android:title="@string/explore"
-            android:icon="@mipmap/icon_explore"/>-->
         <item
             android:id="@+id/menu_technology_question_answer"
             android:title="@string/technology_question_answer"

@@ -222,29 +222,50 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==item.getItemId())
+            return true;
         switch (item.getItemId()){
-            /*case R.id.menu_explore: // 发现探索
-                if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_explore) break;
 
-                break;*/
-            case R.id.menu_blog: // 博客
-                if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_blog) break;
-
+            // 资讯
+            case R.id.menu_new :
+                setDefaultMenuItem();
                 break;
-            case R.id.menu_tweets: // 动弹
-                if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_tweets) break;
+
+            // 博客
+            case R.id.menu_blog:
+                // TODO 最新博客,推荐博客
+                break;
+
+            // 动弹
+            case R.id.menu_tweets:
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_container, Fragment.instantiate(this, TabTweetFragment.class.getName()))
+                        .replace(R.id.frame_container,
+                                Fragment.instantiate(this, TabTweetFragment.class.getName()))
                         .commit();
                 break;
 
-            case R.id.menu_technology_question_answer: // 技术问答
-                if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_technology_question_answer) break;
-
+            // 技术问答
+            case R.id.menu_technology_question_answer:
+                // TODO 提问, 分享, 综合, 职业, 不要站务
                 break;
 
-            case R.id.menu_theme: // 更改主题
-                if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_theme) break;
+            // 我的博客
+            case R.id.menu_my_blog:
+                // TODO
+                break;
+
+            // 我的收藏夹
+            case R.id.menu_my_favorite:
+                // TODO
+                break;
+
+            // 我的动弹
+            case R.id.menu_my_tweet:
+                // TODO
+                break;
+
+            // 更改主题
+            case R.id.menu_theme:
                 SharedPreferences preferences = SharePreferenceManager.getApplicationSetting(this);
                 int theme = preferences.getInt(ApplicationSetting.KEY_THEME, ApplicationTheme.LIGHT.getKey());
                 SharedPreferences.Editor editor = preferences.edit();
@@ -261,22 +282,20 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 startActivity(intent);
                 overridePendingTransition(R.anim.enter, R.anim.exit);
                 return true;
-            case R.id.menu_setting: // 设置
-                if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_setting) break;
 
+            // 设置
+            case R.id.menu_setting:
+                // TODO 设置界面
                 break;
+
             /*case R.id.menu_donate: // 捐助我
-                if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_donate) break;
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_container,
                                 Fragment.instantiate(this, EntryFragment.class.getName()))
                         .commit();
                 break;*/
 
-            case R.id.menu_new : // 资讯
-                if (mCurrentMenuItem!=null && mCurrentMenuItem.getItemId()==R.id.menu_new) break;
-                setDefaultMenuItem();
-                break;
+
         }
         item.setChecked(true);
         mCurrentMenuItem = item;
@@ -288,6 +307,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_search:
+                // TODO 搜索资讯\软件\问答\博客
+                break;
+
+            case R.id.menu_reminder:
+                // TODO 我的消息中心
                 break;
         }
         return super.onOptionsItemSelected(item);

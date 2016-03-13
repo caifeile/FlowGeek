@@ -305,7 +305,15 @@ public class DetailActivity extends BaseHoldBackActivity<DetailPresenter> {
     }
 
     @OnClick(R.id.btn_like) void onClickLike(){
+        // TODO 貌似后台没有这个接口
+    }
 
+    @OnClick(R.id.btn_bookmark) void onClickBookmark(){
+        // TODO 收藏
+    }
+
+    @OnClick(R.id.btn_share) void onClickShare(){
+        // TODO 分享
     }
 
 

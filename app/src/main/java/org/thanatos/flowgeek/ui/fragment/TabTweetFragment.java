@@ -95,11 +95,17 @@ public class TabTweetFragment extends BaseTabMainFragment implements View.OnClic
                 break;
 
             case R.id.btn_publish_photograph:
+                // TODO 拍照上传图片到动弹
                 UIManager.showTweetPublishUI(getContext(), TweetPublishActivity.TYPE_PHOTOGRAPH);
                 break;
 
             case R.id.btn_publish_voice:
+                // TODO 录音上传语音到动弹
                 UIManager.showTweetPublishUI(getContext(), TweetPublishActivity.TYPE_VOICE);
+                break;
+
+            case R.id.btn_scan:
+                // TODO 扫一扫
                 break;
         }
     }

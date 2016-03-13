@@ -16,9 +16,4 @@
         android:title="@string/about"
         android:icon="@mipmap/icon_info"
         td:showAsAction="never"/>
-    <item
-        android:id="@+id/menu_logout"
-        android:title="@string/logout"
-        android:icon="@mipmap/icon_exit"
-        td:showAsAction="never"/>
 </menu>

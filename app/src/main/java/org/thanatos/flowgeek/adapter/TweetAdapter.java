@@ -115,6 +115,13 @@ public class TweetAdapter extends BaseListAdapter<Tweet>{
                     .load(item.getImgSmall())
                     .placeholder(mContext.getResources().getDrawable(R.mipmap.loading_holdplacer))
                     .into(mSmallImage);
+            mSmallImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // TODO 显示大图, 考虑Bitmap的性能问题
+                }
+            });
+
 
         }else {
             if (holder.layoutImageList.getChildCount()>0)
