@@ -57,18 +57,27 @@ Presenter
  
 - [RxJava技术博文](http://gank.io/post/560e15be2dca930e00da1083)
 
+- [MVP入坑文](https://github.com/bboyfeiyu/android-tech-frontier/blob/master/issue-12%2FAndroid%E4%B8%8AMVP%E7%9A%84%E4%BB%8B%E7%BB%8D.md#使用mvp)
+
 ##Feture
+
+- **2016.03.13更新**: 添加用户首页,优化一些地方, 添加TODO. 不好意思,现在开始忙起来了,开发进度放缓. 做到这里,常用的几个地方我已经做好了,每天看看资讯,发发动弹还是没什么问题的,
+最近我发现app老是不稳定,希望高手能手帮我看看. 明天我就要开始学习React Native做毕业设计了,到时候我会做一个React Native版本的开源中国社区,届时,希望大家多多关注
+当然,这个版本我会坚持下去,一个人的力量有时穷,单凭我一个人做不知道什么时候才到反扑原版的时候,所以我在一些需要补充的功能的位置写了TODO,希望大家能够参与进来展现
+我们GIT@OSC的开源力量!
+    如果你想补充某一个TODO,请告诉我,免得大家做重复工作,做完提交PR和效果图给我就好了,审核代码质量,命名规范...之后我会添加到master ^_^
+
 - **2016.03.10更新**：目前功能：登录、资讯（暂且只支持一些分类，其他太过复杂）、资讯评论、动弹列表、我的动弹、发表动弹（文字or有图像）、动弹评论
 
 
 ##效果图一览
-#FlowGeek
 
+### 夜间主题
 
-
-
-<img src="http://git.oschina.net/uploads/images/2016/0310/140319_0b00d52d_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140333_50142400_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140336_b459238f_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140338_5dee381c_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140340_621e5059_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140342_1c1dd7b1_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140356_9403ffcd_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140427_e8e3fcaf_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140435_c73abe4d_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140437_0effd45f_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140438_f37f37e1_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140440_c5e114a0_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140442_3d2414e2_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140450_6f4611e7_116508.png" height="550"/>
-
+<img src="http://git.oschina.net/uploads/images/2016/0310/140319_0b00d52d_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140333_50142400_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140336_b459238f_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140338_5dee381c_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140340_621e5059_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140342_1c1dd7b1_116508.png" height="550"/><img src="http://git.oschina.net/uploads/images/2016/0313/173028_4630f6c6_116508.png" height="550"/>
+ 
+### 日间主题
+<img src="http://git.oschina.net/uploads/images/2016/0310/140356_9403ffcd_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140427_e8e3fcaf_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140435_c73abe4d_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140437_0effd45f_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140438_f37f37e1_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140440_c5e114a0_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140442_3d2414e2_116508.png" height="550"/> <img src="http://git.oschina.net/uploads/images/2016/0310/140450_6f4611e7_116508.png" height="550"/><img src="http://git.oschina.net/uploads/images/2016/0313/173038_47f608ee_116508.png" height="550"/>
 
 
 ##Note
@@ -76,6 +85,6 @@ Presenter
 
 - 我一直在自己的小米手机上开发的，版本是5.1，回过头看了下4.4的样子，发现有些地方匪夷所思，暂且Design Support向下兼容得并不好，很多地方不相通，如果你想看最佳的效果，请用Android5.0以上。
 
-- 没有正式完成前改动都会比较大，希望大家定期关注。
+- 没有正式完成前改动都会比较大，希望大家watch me, star me and fork me :)。
 
 - 恩，我可以去当设计师了╭∩╮（︶︿︶）╭∩╮
